@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
   res.send("respond with a resource");
 });
 
-router.get("/signup", csrfProtection, (req, res, next) => {
+router.get("/signup", csrfProtection, (req, res) => {
   const user = db.User.build();
   res.render("user-signup", {
     title: "Sign-up",
