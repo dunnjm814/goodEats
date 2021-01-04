@@ -1,3 +1,27 @@
 extends layout
 
-  form(action='/login' )
+block content
+
+  form(action='/login' method='post' id=loginForm)
+      table
+        thead
+          tr
+            th(colspan=2) Enter user detail
+        tbody
+          tr
+            td
+              label(for='userName') Username
+            td
+              input(type='text' name='userName' value=user.userName placeholder='enter user name')
+          tr
+            td
+              label(for='email') Email
+            td
+              input(type='email' name='email' value=user.email placeholder='enter your email')
+          tr
+            td
+              label(for='password') Password
+            td
+              input(type='password' name='password' placeholder='enter your password')
+      div
+        button(type='submit') Login!

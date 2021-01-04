@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/login', (req, res, next) => {
+  const user = {userName: null, email:null}
+  res.render('login', { user } )
+} )
 module.exports = router;
