@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
+const { loginUser, logoutUser } = require('../sign-in-auth.js')
 
 /* GET users listing. */
 router.get("/", function(req, res, next) {
@@ -20,10 +21,24 @@ router.get("/signup", csrfProtection, (req, res, next) => {
     });
 });
 
-router.get('/login', (req, res, next) => {
+router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
     const user = { userName: null, email: null }
-    res.render('login', { user })
-})
+    res.render('login', { user, token: req.csrfToken() })
+}));
+
+
+
+const loginValidators = [
+    check("emailAddress")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide an email address.")
+    .isEmail()
+    .withMessage("The email address entered is not valid."),
+    check("password")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a password.")
+];
+
 const userValidators = [
     check("userName")
     .exists({ checkFalsy: true })
@@ -79,6 +94,33 @@ const userValidators = [
     }),
 ];
 
+router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, res, next) => {
+    const { email, password } = req.body;
+    const errors = [];
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+        const user = await db.User.findOne({
+            where: {
+                email
+            }
+        })
+        if (user !== null) {
+            const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
+                //HASHED PASSWORD?
+            if (passwordMatch) {
+                loginUser(req, res, user);
+                return res.redirect('/')
+            }
+        }
+        errors.push('Login Failed');
+
+    } else {
+        errors = validatorErrors.array().map((error) => error.message)
+    }
+    res.render('login', { user, token: req.csrfToken() })
+}));
+
 router.post(
     "/signup",
     csrfProtection,
@@ -111,4 +153,10 @@ router.post(
         }
     })
 );
+
+router.post('/user/logout', (req, res) => {
+    logoutUser(req, res);
+    res.redirect('/')
+});
+
 module.exports = router;
