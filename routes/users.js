@@ -7,12 +7,13 @@ const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
+router.get("/", function (req, res) {
   res.send("respond with a resource");
 });
 
-router.get("/signup", csrfProtection, (req, res, next) => {
-  const user = db.User.build();
+router.get("/signup", csrfProtection, (req, res) => {
+  //const user = db.User.build();
+  const user = {username: null, emailAddress: null, password: null , confirmedPassword: nullc}
   res.render("user-signup", {
     title: "Sign-up",
     user,
