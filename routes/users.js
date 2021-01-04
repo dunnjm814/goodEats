@@ -13,7 +13,7 @@ router.get("/", function (req, res) {
 
 router.get("/signup", csrfProtection, (req, res) => {
   //const user = db.User.build();
-  const user = {username: null, emailAddress: null, password: null , confirmedPassword: nullc}
+  const user = {username: null, emailAddress: null, password: null , confirmedPassword: null}
   res.render("user-signup", {
     title: "Sign-up",
     user,
