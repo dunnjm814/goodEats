@@ -1,7 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     const CookBook = sequelize.define('CookBook', {
-        id: DataTypes.INTEGER,
         userId: DataTypes.INTEGER,
         name: DataTypes.STRING(50)
     }, {});
