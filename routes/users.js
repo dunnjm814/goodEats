@@ -25,8 +25,8 @@ router.get("/signup", csrfProtection, (req, res) => {
 });
 
 router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
-    const user = { userName: null, email: null }
-    res.render('login', { user, token: req.csrfToken() })
+    const user = {username: null, emailAddress: null, password: null , confirmedPassword: null}
+    res.render('splash', { user, token: req.csrfToken() })
 }));
 
 
