@@ -17,10 +17,10 @@ module.exports = {
             description: {
                 type: Sequelize.TEXT
             },
-            prep: {
+            ingredients: {
                 type: Sequelize.TEXT
             },
-            cookSteps: {
+            directions: {
                 type: Sequelize.TEXT
             },
             recipeType: {

@@ -4,8 +4,8 @@ module.exports = (sequelize, DataTypes) => {
         title: DataTypes.STRING,
         foodImg: DataTypes.STRING,
         description: DataTypes.TEXT,
-        prep: DataTypes.TEXT,
-        cookSteps: DataTypes.TEXT,
+        ingredients: DataTypes.TEXT,
+        directions: DataTypes.TEXT,
         recipeType: DataTypes.STRING,
         dietType: DataTypes.STRING,
         rating: DataTypes.INTEGER
