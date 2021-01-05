@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             otherKey: 'recipeId',
             foreignKey: 'cookBookId'
         }
-        CookBook.hasMany(models.Recipe, columnMapping)
+        CookBook.belongsToMany(models.Recipe, columnMapping)
     };
     return CookBook;
 };
