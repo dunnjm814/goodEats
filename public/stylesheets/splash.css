@@ -42,7 +42,7 @@ body {
     color:burlywood;
     background-color: red;
     border-radius: 6px;
-    transition: all .5s ease-in-out;
+    /* transition: all .5s ease-in-out; */
 
 
   }
