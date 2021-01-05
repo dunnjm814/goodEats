@@ -39,19 +39,19 @@ module.exports = {
             },
             {
                 userId: 4,
-                name: 'Aphrodisiacs'
+                name: 'Wedding'
             },
             {
                 userId: 4,
-                name: 'Literal Poison'
+                name: 'Funeral'
             },
             {
                 userId: 5,
-                name: 'Aphrodisiacs'
+                name: 'Christmas'
             },
             {
                 userId: 5,
-                name: 'Literal Poison'
+                name: 'PARTYYYYY'
             },
         ], {});
 
