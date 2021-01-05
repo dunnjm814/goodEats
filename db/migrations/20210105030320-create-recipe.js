@@ -9,9 +9,11 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             title: {
-                type: Sequelize.STRING
+                allowNull: false,
+                type: Sequelize.STRING(100)
             },
             foodImg: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             description: {
@@ -21,15 +23,21 @@ module.exports = {
                 type: Sequelize.TEXT
             },
             directions: {
+                allowNull: false,
                 type: Sequelize.TEXT
             },
             recipeType: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             dietType: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
-            rating: {
+            avgRating: {
+                type: Sequelize.INTEGER
+            },
+            numReviews: {
                 type: Sequelize.INTEGER
             },
             createdAt: {

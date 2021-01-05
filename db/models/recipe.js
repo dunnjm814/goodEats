@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         directions: DataTypes.TEXT,
         recipeType: DataTypes.STRING,
         dietType: DataTypes.STRING,
-        rating: DataTypes.INTEGER
+        avgRating: DataTypes.INTEGER,
+        numReviews: DataTypes.INTEGER
     }, {});
     Recipe.associate = function(models) {
         const columnMapping = {
