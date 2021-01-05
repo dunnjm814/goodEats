@@ -8,17 +8,20 @@ const { csrfProtection, asyncHandler } = require("./utils");
 const { loginUser, logoutUser } = require('../sign-in-auth.js')
 
 /* GET users listing. */
-router.get("/", function(req, res, next) {
-    res.send("respond with a resource");
+
+router.get("/", function (req, res) {
+  res.send("respond with a resource");
 });
 
-router.get("/signup", csrfProtection, (req, res, next) => {
-    const user = db.User.build();
-    res.render("user-signup", {
-        title: "Sign-up",
-        user,
-        csrfToken: req.csrfToken(),
-    });
+router.get("/signup", csrfProtection, (req, res) => {
+  //const user = db.User.build();
+  const user = {username: null, emailAddress: null, password: null , confirmedPassword: null}
+  res.render("user-signup", {
+    title: "Sign-up",
+    user,
+    csrfToken: req.csrfToken(),
+  });
+
 });
 
 router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
