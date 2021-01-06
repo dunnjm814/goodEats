@@ -8,9 +8,14 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
   const pullRecipe = parseInt(req.params.id, 10)
   const recipe = await db.Recipe.findByPk(pullRecipe, { include: { model: db.Review } })
   const recipeReviews = recipe.Reviews
+  let recipeDescriptions;
+  if(recipe.description) {
+    recipeDescriptions = recipe.description.split('&%')
+  }
+
   let recipeIngredients = recipe.ingredients.split('&%')
   let recipeDirections = recipe.directions.split('&%')
-  res.render('recipe', {recipe, recipeIngredients, recipeDirections, recipeReviews})
+  res.render('recipe', {recipe, recipeIngredients, recipeDirections, recipeReviews,recipeDescriptions})
 }))
 
 module.exports = router

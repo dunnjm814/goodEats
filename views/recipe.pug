@@ -1,3 +1,16 @@
-extends layout
-
-block content
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="recipe-page.css")
+        title Recipe
+    body
+        block content
+            div(class="header-1")
+                h1=recipe.title
+            div(class="recipeCard")
+                each recipeDescription in recipeDescriptions
+                    p=recipeDescription
+                div
+                    img(src=recipe.foodImg, alt=recipe.title)
