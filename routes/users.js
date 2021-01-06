@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
-const { loginUser, logoutUser } = require('../sign-in-auth.js')
+const { loginUser, logoutUser } = require('../auth.js')
 
 /* GET users listing. */
 
@@ -113,7 +113,11 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
                 //HASHED PASSWORD?
             if (passwordMatch) {
                 loginUser(req, res, user);
-                return res.redirect('/')
+                return req.session.save(() => {
+                    // redirect to dashboard
+                    return res.redirect('/')
+                })
+
             }
         }
         errors.push('Login Failed');
