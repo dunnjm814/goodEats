@@ -113,7 +113,11 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
                 //HASHED PASSWORD?
             if (passwordMatch) {
                 loginUser(req, res, user);
-                return res.redirect('/')
+                return req.session.save(() => {
+                    // redirect to dashboard
+                    return res.redirect('/')
+                })
+
             }
         }
         errors.push('Login Failed');
