@@ -15,7 +15,7 @@ router.get("/", function (req, res) {
 
 router.get("/signup", csrfProtection, (req, res) => {
   //const user = db.User.build();
-  const user = {username: null, emailAddress: null, password: null , confirmedPassword: null}
+  const user = {userName: null, email: null, password: null , confirmedPassword: null}
   res.render("user-signup", {
     title: "Sign-up",
     user,
@@ -25,14 +25,14 @@ router.get("/signup", csrfProtection, (req, res) => {
 });
 
 router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
-    const user = {username: null, emailAddress: null, password: null , confirmedPassword: null}
+    const user = {userName: null, email: null, password: null , confirmedPassword: null}
     res.render('splash', { user, token: req.csrfToken() })
 }));
 
 
 
 const loginValidators = [
-    check("emailAddress")
+    check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please provide an email address.")
     .isEmail()
@@ -55,7 +55,7 @@ const userValidators = [
             }
         });
     }),
-    check("emailAddress")
+    check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please provide an email address.")
     .isLength({ max: 100 })
@@ -63,7 +63,7 @@ const userValidators = [
     .isEmail()
     .withMessage("The email address entered is not valid.")
     .custom((value) => {
-        return db.User.findOne({ where: { emailAddress: value } }).then(
+        return db.User.findOne({ where: { email: value } }).then(
             (user) => {
                 if (user) {
                     return Promise.reject(
@@ -109,7 +109,7 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
             }
         })
         if (user !== null) {
-            const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
+            const passwordMatch = await bcrypt.compare(password, user.hashPass.toString())
                 //HASHED PASSWORD?
             if (passwordMatch) {
                 loginUser(req, res, user);
@@ -129,18 +129,18 @@ router.post(
     csrfProtection,
     userValidators,
     asyncHandler(async(req, res) => {
-        const { userName, emailAddress, password } = req.body;
+        const { userName, email, password } = req.body;
 
         const user = db.User.build({
             userName,
-            emailAddress,
+            email,
         });
 
         const validatorErrors = validationResult(req);
 
         if (validatorErrors.isEmpty()) {
-            const hashedPassword = await bcrypt.hash(password, 10);
-            user.hashedPassword = hashedPassword;
+            const hashPass = await bcrypt.hash(password, 10);
+            user.hashPass = hashPass;
             await user.save();
             loginUser(req, res, user);
             // needs to redirect to dashboard or wherever we want to redirect to after signup
