@@ -5,9 +5,9 @@ block content
     link(rel='stylesheet' href='/stylesheets/splash.css')
     img(src='/images/pexels-chan-walrus-958545.jpg' class="splashImg")
 
-    div(id="header")
+    div(class="header-1")
         h1 Welcome to GoodEats!
-    div(id="buttons")
+    div(class="buttons")
         div(class="buttonDiv")
             button(id="signUpButton") Sign Up
             span Sign up to have access
@@ -17,7 +17,7 @@ block content
         div(class="buttonDiv")
             button(id="demoButton") Demo User
             span Test out the site without having to enter any information
-    div(id="formHolder")
+    div(class="formHolder")
         if errors
             div(class="alert" role="alert")
                 p The following error(s) occurred:
@@ -42,7 +42,7 @@ block content
                             label(for='password') Password
                         td
                             input(type='password' name='password' placeholder='enter your password')
-            button(type='submit') Login!
+            button(type='submit' class="loginButton") Login!
         form(action='/users/signup' method='post' id='signupForm' class="hidden")
             input(type="hidden" name="_csrf" value=token)
             table
