@@ -4,13 +4,36 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="recipe-page.css")
+        link(rel="icon" href="../favicon.jpg" type="image/jpg")
         title Recipe
     body
         block content
-            div(class="header-1")
+            div(class='header-1')
                 h1=recipe.title
-            div(class="recipeCard")
-                each recipeDescription in recipeDescriptions
-                    p=recipeDescription
-                div
-                    img(src=recipe.foodImg, alt=recipe.title)
+                h2(class='recipeRating')=recipe.avgRating
+            div(class='recipe__recipeCard')
+                div(class='recipe__description')
+                    each recipeDescription in recipeDescriptions
+                        p=recipeDescription
+                    div
+                        img(src=recipe.foodImg, alt=recipe.title)
+                    div(class='recipe__ingredients')
+                        h3(class='header-3') Ingredients
+                        ul
+                            each recipeIngredient in recipeIngredients
+                                li=recipeIngredient
+                    div(class='recipe__directions')
+                        h3(class='header-3') Directions
+                        ul
+                            each recipeDirection in recipeDirections
+                                li=recipeDirection
+                    div(class='recipe__reviews')
+                        h3(class='header-3') Reviews
+                        div(class='recipe__review')
+                            each recipeReview in recipeReviews
+                                div(class='recipe__review--content')
+                                    p(class='recipe__review--username')=recipeReview.User.userName
+                                    span=recipeReview.revContent
+                                //- do we want to display the user who posted the review?
+                                //- how to oder the reviews
+            form(action='/api/review/:id' method='post' id='reviewForm' class='hidden')

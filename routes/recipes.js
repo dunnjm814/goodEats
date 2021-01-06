@@ -1,21 +1,39 @@
-const express = require("express")
+const express = require('express');
 const router = express.Router();
 
-const db = require("../db/models")
-const { csrfProtection, asyncHandler } = require("./utils")
+const db = require('../db/models');
+const { csrfProtection, asyncHandler } = require('./utils');
 
-router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-  const pullRecipe = parseInt(req.params.id, 10)
-  const recipe = await db.Recipe.findByPk(pullRecipe, { include: { model: db.Review } })
-  const recipeReviews = recipe.Reviews
-  let recipeDescriptions;
-  if(recipe.description) {
-    recipeDescriptions = recipe.description.split('&%')
-  }
+router.get(
+  '/:id(\\d+)',
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const pullRecipe = parseInt(req.params.id, 10);
+    const recipe = await db.Recipe.findByPk(pullRecipe, {
+      include: { model: db.Review,
+        include: { model: db.User}
+      },
 
-  let recipeIngredients = recipe.ingredients.split('&%')
-  let recipeDirections = recipe.directions.split('&%')
-  res.render('recipe', {recipe, recipeIngredients, recipeDirections, recipeReviews,recipeDescriptions})
-}))
+    });
 
-module.exports = router
+    const recipeReviews = recipe.Reviews;
+    let recipeDescriptions;
+    if (recipe.description) {
+      recipeDescriptions = recipe.description.split('&%');
+    } else {
+      recipeDescriptions = '';
+    }
+
+    let recipeIngredients = recipe.ingredients.split('&%');
+    let recipeDirections = recipe.directions.split('&%');
+    res.render('recipe', {
+      recipe,
+      recipeIngredients,
+      recipeDirections,
+      recipeReviews,
+      recipeDescriptions,
+    });
+  })
+);
+
+module.exports = router;
