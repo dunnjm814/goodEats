@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
-const { loginUser, logoutUser } = require('../sign-in-auth.js')
+const { loginUser, logoutUser } = require('../auth.js')
 
 /* GET users listing. */
 
@@ -14,16 +14,16 @@ router.get("/", function(req, res) {
     res.render("splash", { user });
 });
 
-router.get("/splash", csrfProtection, (req, res) => {
-    //const user = db.User.build();
-    const user = { userName: null, email: null, password: null, confirmedPassword: null }
-    res.render("splash", {
-        title: "Sign-up",
-        user,
-        token: req.csrfToken(),
-    });
+// router.get("/splash", csrfProtection, (req, res) => {
+//     //const user = db.User.build();
+//     const user = { userName: null, email: null, password: null, confirmedPassword: null }
+//     res.render("splash", {
+//         title: "Sign-up",
+//         user,
+//         token: req.csrfToken(),
+//     });
 
-});
+// });
 
 const loginValidators = [
     check("email")
@@ -115,7 +115,7 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
     } else {
         errors = validatorErrors.array().map((error) => error.message)
     }
-    res.render('splash', { user, token: req.csrfToken() })
+    res.render('splash', { user, token: req.csrfToken() });
 }));
 
 router.post(
@@ -128,18 +128,22 @@ router.post(
         const validatorErrors = validationResult(req);
 
         if (validatorErrors.isEmpty()) {
+            const hashPass = await bcrypt.hash(password, 10);
             const user = db.User.build({
                 userName,
                 email,
+                hashPass
             });
-            const hashPass = await bcrypt.hash(password, 10);
-            user.hashPass = hashPass;
             await user.save();
             loginUser(req, res, user);
             // needs to redirect to dashboard or wherever we want to redirect to after signup
             res.redirect(`/dashboard`);
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
+            const user = {
+                userName,
+                email
+            }
             res.render("splash", {
                 title: "Sign-up",
                 user,
