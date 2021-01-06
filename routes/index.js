@@ -7,7 +7,12 @@ const { csrfProtection, asyncHandler } = require("./utils");
 
 /* GET home page. */
 router.get('/', csrfProtection, (req, res, next) => {
-    //const user = db.User.build();
+
+    let displayLogin = 'hidden'
+    if (req.query.redirect) {
+        displayLogin = ''
+    }
+
     if (res.locals.authenticated) {
         return res.redirect('/dashboard')
     }
@@ -16,8 +21,9 @@ router.get('/', csrfProtection, (req, res, next) => {
     res.render("splash", {
         title: "Sign-up",
         user,
+        displayLogin,
         token: req.csrfToken(),
-    })
+    });
 });
 
 router.get('/dashboard', csrfProtection, asyncHandler(async(req, res, next) => {
