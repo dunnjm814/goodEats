@@ -15,7 +15,7 @@ router.get("/", function (req, res) {
 
 router.get("/signup", csrfProtection, (req, res) => {
   //const user = db.User.build();
-  const user = {username: null, emailAddress: null, password: null , confirmedPassword: null}
+  const user = {userName: null, email: null, password: null , confirmedPassword: null}
   res.render("user-signup", {
     title: "Sign-up",
     user,
@@ -25,7 +25,7 @@ router.get("/signup", csrfProtection, (req, res) => {
 });
 
 router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
-    const user = {username: null, emailAddress: null, password: null , confirmedPassword: null}
+    const user = {userName: null, emailAddress: null, password: null , confirmedPassword: null}
     res.render('splash', { user, token: req.csrfToken() })
 }));
 
@@ -129,18 +129,18 @@ router.post(
     csrfProtection,
     userValidators,
     asyncHandler(async(req, res) => {
-        const { userName, emailAddress, password } = req.body;
+        const { userName, email, password } = req.body;
 
         const user = db.User.build({
             userName,
-            emailAddress,
+            email,
         });
 
         const validatorErrors = validationResult(req);
 
         if (validatorErrors.isEmpty()) {
             const hashedPassword = await bcrypt.hash(password, 10);
-            user.hashedPassword = hashedPassword;
+            user.hashedPass = hashedPassword;
             await user.save();
             loginUser(req, res, user);
             // needs to redirect to dashboard or wherever we want to redirect to after signup
