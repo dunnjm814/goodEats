@@ -25,7 +25,7 @@ block content
                     each error in errors
                         li=error
 
-        form(action='/login' method='post' id="loginForm" class="hidden")
+        form(action='/users/login' method='post' id="loginForm" class="hidden")
             input(type="hidden" name="_csrf" value=token)
             table
                 thead
