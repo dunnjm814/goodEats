@@ -10,26 +10,20 @@ const { loginUser, logoutUser } = require('../auth.js')
 /* GET users listing. */
 
 router.get("/", function(req, res) {
-    res.send("respond with a resource");
+    const user = { userName: null, email: null, password: null, confirmedPassword: null }
+    res.render("splash", { user });
 });
 
-router.get("/signup", csrfProtection, (req, res) => {
-    //const user = db.User.build();
-    const user = { userName: null, email: null, password: null, confirmedPassword: null }
-    res.render("user-signup", {
-        title: "Sign-up",
-        user,
-        csrfToken: req.csrfToken(),
-    });
+// router.get("/splash", csrfProtection, (req, res) => {
+//     //const user = db.User.build();
+//     const user = { userName: null, email: null, password: null, confirmedPassword: null }
+//     res.render("splash", {
+//         title: "Sign-up",
+//         user,
+//         token: req.csrfToken(),
+//     });
 
-});
-
-router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
-    const user = { userName: null, email: null, password: null, confirmedPassword: null }
-    res.render('splash', { user, token: req.csrfToken() })
-}));
-
-
+// });
 
 const loginValidators = [
     check("email")
@@ -114,10 +108,8 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
             if (passwordMatch) {
                 loginUser(req, res, user);
                 return req.session.save(() => {
-                    // redirect to dashboard
-                    return res.redirect('/')
+                    return res.redirect('/dashboard')
                 })
-
             }
         }
         errors.push('Login Failed');
@@ -125,7 +117,7 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
     } else {
         errors = validatorErrors.array().map((error) => error.message)
     }
-    res.render('login', { user, token: req.csrfToken() })
+    res.render('splash', { user, token: req.csrfToken() });
 }));
 
 router.post(
@@ -135,33 +127,36 @@ router.post(
     asyncHandler(async(req, res) => {
         const { userName, email, password } = req.body;
 
-        const user = db.User.build({
-            userName,
-            email,
-        });
-
         const validatorErrors = validationResult(req);
 
         if (validatorErrors.isEmpty()) {
             const hashPass = await bcrypt.hash(password, 10);
-            user.hashPass = hashPass;
+            const user = db.User.build({
+                userName,
+                email,
+                hashPass
+            });
             await user.save();
             loginUser(req, res, user);
             // needs to redirect to dashboard or wherever we want to redirect to after signup
-            res.redirect("/");
+            res.redirect(`/dashboard`);
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
-            res.render("user-signup", {
+            const user = {
+                userName,
+                email
+            }
+            res.render("splash", {
                 title: "Sign-up",
                 user,
                 errors,
-                csrfToken: req.csrfToken()
+                token: req.csrfToken()
             });
         }
     })
 );
 
-router.post('/user/logout', (req, res) => {
+router.post('/logout', (req, res) => {
     logoutUser(req, res);
     res.redirect('/')
 });
