@@ -15,43 +15,63 @@ module.exports = {
 
         return queryInterface.bulkInsert('CookBooks', [{
                 userId: 1,
-                name: 'Aphrodisiacs'
+                name: 'Aphrodisiacs',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
             {
                 userId: 1,
-                name: 'Literal Poison'
+                name: 'Literal Poison',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
             {
                 userId: 2,
-                name: 'For My Friends'
+                name: 'For My Friends',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
             {
                 userId: 2,
-                name: 'For My Enemies'
+                name: 'For My Enemies',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
             {
                 userId: 3,
-                name: 'Mexican'
+                name: 'Mexican',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
             {
                 userId: 3,
-                name: 'Chinese'
+                name: 'Chinese',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
             {
                 userId: 4,
-                name: 'Wedding'
+                name: 'Wedding',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
             {
                 userId: 4,
-                name: 'Funeral'
+                name: 'Funeral',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
             {
                 userId: 5,
-                name: 'Christmas'
+                name: 'Christmas',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
             {
                 userId: 5,
-                name: 'PARTYYYYY'
+                name: 'PARTYYYYY',
+                createdAt: new Date(),
+                updatedAt: new Date()
             },
         ], {});
 

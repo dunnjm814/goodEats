@@ -4,37 +4,50 @@ const asyncHandler = require("./routes/utils");
 async function createUsers() {
     let password = await bcrypt.hash('password', 10);
     let users = [{
-            username: 'CB',
-            emailAddress: 'cb@gmail.com',
-            hashedPassword: password
+            userName: 'CB',
+            email: 'cb@gmail.com',
+            hashPass: password,
+            createdAt: new Date(),
+            updatedAt: new Date()
         },
         {
-            username: 'Taten',
-            emailAddress: 'taten@gmail.com',
-            hashedPassword: password
+            userName: 'Taten',
+            email: 'taten@gmail.com',
+            hashPass: password,
+            createdAt: new Date(),
+            updatedAt: new Date()
         },
         {
-            username: 'Jesse',
-            emailAddress: 'jesse@gmail.com',
-            hashedPassword: password
+            userName: 'Jesse',
+            email: 'jesse@gmail.com',
+            hashPass: password,
+            createdAt: new Date(),
+            updatedAt: new Date()
         },
         {
-            username: 'Jason',
-            emailAddress: 'jaso@gmail.com',
-            hashedPassword: password
+            userName: 'Jason',
+            email: 'jaso@gmail.com',
+            hashPass: password,
+            createdAt: new Date(),
+            updatedAt: new Date()
         },
         {
-            username: 'demo',
-            emailAddress: 'demo@gmail.com',
-            hashedPassword: password
+            userName: 'demo',
+            email: 'demo@gmail.com',
+            hashPass: password,
+            createdAt: new Date(),
+            updatedAt: new Date()
         }
     ]
 
     for (let i = 6; i < 11; i++) {
         let newUser = {
-            username: `user${i}`,
-            emailAddress: `user${i}@gmail.com`,
-            hashedPassword: await bcrypt.hash('userPassword', 10)
+            userName: `user${i}`,
+            email: `user${i}@gmail.com`,
+            hashPass: await bcrypt.hash('userPassword', 10),
+            createdAt: new Date(),
+            updatedAt: new Date()
+            
         }
 
         users.push(newUser);

@@ -1,29 +1,16 @@
 'use strict';
-import createUsers from '../../userSeeding.js';
+ const createUsers = require('../../userSeeding.js') //from '../../userSeeding.js';
 
-export function up(queryInterface, Sequelize) {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
+module.exports = {
+  up: (queryInterface, Sequelize) => {
 
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
-    return createUsers().then(users => {
-        queryInterface.bulkInsert('Users', users, {})
-    });
+  return createUsers().then(users => {
+    queryInterface.bulkInsert('Users', users, {})
+  });
 
+},
+down: (queryInterface, Sequelize) => {
+
+  return queryInterface.bulkDelete('Users', null, {});
 }
-export function down(queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
-    return queryInterface.bulkDelete('Users', null, {});
 }
