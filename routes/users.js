@@ -9,30 +9,30 @@ const { loginUser, logoutUser } = require('../sign-in-auth.js')
 
 /* GET users listing. */
 
-router.get("/", function (req, res) {
-  res.send("respond with a resource");
+router.get("/", function(req, res) {
+    res.send("respond with a resource");
 });
 
 router.get("/signup", csrfProtection, (req, res) => {
-  //const user = db.User.build();
-  const user = {userName: null, email: null, password: null , confirmedPassword: null}
-  res.render("user-signup", {
-    title: "Sign-up",
-    user,
-    csrfToken: req.csrfToken(),
-  });
+    //const user = db.User.build();
+    const user = { userName: null, email: null, password: null, confirmedPassword: null }
+    res.render("user-signup", {
+        title: "Sign-up",
+        user,
+        csrfToken: req.csrfToken(),
+    });
 
 });
 
 router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
-    const user = {userName: null, emailAddress: null, password: null , confirmedPassword: null}
+    const user = { userName: null, email: null, password: null, confirmedPassword: null }
     res.render('splash', { user, token: req.csrfToken() })
 }));
 
 
 
 const loginValidators = [
-    check("emailAddress")
+    check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please provide an email address.")
     .isEmail()
@@ -55,7 +55,7 @@ const userValidators = [
             }
         });
     }),
-    check("emailAddress")
+    check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please provide an email address.")
     .isLength({ max: 100 })
@@ -63,7 +63,7 @@ const userValidators = [
     .isEmail()
     .withMessage("The email address entered is not valid.")
     .custom((value) => {
-        return db.User.findOne({ where: { emailAddress: value } }).then(
+        return db.User.findOne({ where: { email: value } }).then(
             (user) => {
                 if (user) {
                     return Promise.reject(
@@ -109,7 +109,7 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
             }
         })
         if (user !== null) {
-            const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
+            const passwordMatch = await bcrypt.compare(password, user.hashPass.toString())
                 //HASHED PASSWORD?
             if (passwordMatch) {
                 loginUser(req, res, user);
@@ -139,8 +139,8 @@ router.post(
         const validatorErrors = validationResult(req);
 
         if (validatorErrors.isEmpty()) {
-            const hashedPassword = await bcrypt.hash(password, 10);
-            user.hashedPass = hashedPassword;
+            const hashPass = await bcrypt.hash(password, 10);
+            user.hashPass = hashPass;
             await user.save();
             loginUser(req, res, user);
             // needs to redirect to dashboard or wherever we want to redirect to after signup
