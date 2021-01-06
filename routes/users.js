@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
-const { loginUser, logoutUser } = require('../sign-in-auth.js')
+const { loginUser, logoutUser } = require('../auth.js')
 
 /* GET users listing. */
 
