@@ -3,3 +3,5 @@ extends layout
 block content
 
     h1 MADE IT TO DASHBOARD
+    form(action="/users/logout" method="post" id="logoutUserButton")
+        button(type='submit' class="logout-button") Logout
