@@ -1,0 +1,76 @@
+extends layout
+
+block content
+    script(src="../javascripts/splash.js" type="module" defer)
+    link(rel='stylesheet' href='/stylesheets/splash.css')
+    img(src='/images/pexels-chan-walrus-958545.jpg' class="splashImg")
+
+    div(id="header")
+        h1 Welcome to GoodEats!
+    div(id="buttons")
+        div(class="buttonDiv")
+            button(id="signUpButton") Sign Up
+            span Sign up to have access
+        div(class="buttonDiv")
+            button(id="logInButton") Log In
+            span Already a user? Log in!
+        div(class="buttonDiv")
+            button(id="demoButton") Demo User
+            span Test out the site without having to enter any information
+    div(id="formHolder")
+        if errors
+            div(class="alert" role="alert")
+                p The following error(s) occurred:
+                ul
+                    each error in errors
+                        li=error
+
+        form(action='/login' method='post' id="loginForm" class="hidden")
+            input(type="hidden" name="_csrf" value=token)
+            table
+                thead
+                    tr
+                        th(colspan=2) Enter user detail
+                tbody
+                    tr
+                        td
+                            label(for='email') Email
+                        td
+                            input(type='email' name='emailAddress' value=user.emailAddress placeholder='enter your email')
+                    tr
+                        td
+                            label(for='password') Password
+                        td
+                            input(type='password' name='password' placeholder='enter your password')
+            button(type='submit') Login!
+        form(action='/users/signup' method='post' id='signupForm' class="hidden")
+            input(type="hidden" name="_csrf" value=token)
+            table
+                thead
+                    tr
+                    th(colspan=2) Enter user information
+                tbody
+                    tr
+                        td
+                            label(for='username') Username
+                        td
+                            input(type='username' name='Username' value=user.username placeholder='Enter your username')
+                    tr
+                        td
+                            label(for='email') Email
+                        td
+                            input(type='email' name='emailAddress' value=user.emailAddress placeholder='Enter your email')
+                    tr
+                        td
+                            label(for='password') Password
+                        td
+                            input(type='password' name='password' placeholder='Enter your password')
+                    tr
+                        td
+                            label(for='password') Confirmed Password
+                        td
+                            input(type='password' name='confirmedPassword' placeholder='Confirm password')
+            button(type='submit' class='signup-button') Signup
+        form(action="/users/dashboard/5" method="get" id="demoUserForm" class="hidden" )
+            p Use this feature to test out the site, but none of your information will be saved
+            button(type='submit' class="signup-button") Enter GoodEats

@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'a/A Express Skeleton Home' });
+  const user = {username: null, emailAddress: null, password: null , confirmedPassword: null}
+  res.render("splash", { user });
+
 });
 
 module.exports = router;

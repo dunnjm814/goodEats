@@ -19,11 +19,10 @@ module.exports = {
             description: {
                 type: Sequelize.TEXT
             },
-            prep: {
-                allowNull: false,
+            ingredients: {
                 type: Sequelize.TEXT
             },
-            cookSteps: {
+            directions: {
                 allowNull: false,
                 type: Sequelize.TEXT
             },
