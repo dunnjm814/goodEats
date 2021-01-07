@@ -3,10 +3,11 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="recipe-page.css")
+        script(src="../javascripts/recipe.js" type='module' defer)
+        link(rel="stylesheet", href="/stylesheets/recipe-page.css")
         link(rel="icon" href="../favicon.jpg" type="image/jpg")
-        <script src="https://kit.fontawesome.com/33df1dd2cb.js" crossorigin="anonymous"></script>
-        title Recipe
+        //-<script src="https://kit.fontawesome.com/33df1dd2cb.js" crossorigin="anonymous"></script>
+        title Recipes
     body
         block content
             div(class='header-1')
@@ -29,6 +30,13 @@ html(lang="en")
                         ul
                             each recipeDirection in recipeDirections
                                 li=recipeDirection
+                        div(class='reviewCookbookWrap')
+                            div(class='recipe__reviewButton')
+                                button(id='displayReviewButton') Write A Review
+                            div
+                                button(class='recipe__cookBook--button') Add to Cookbook
+                                //- ask about this for add to cookbooks
+
                     div(class='recipe__reviews')
                         h3(class='header-3') Reviews
                         div(class='recipe__review')
@@ -36,19 +44,26 @@ html(lang="en")
                                 div(class='recipe__review--content')
                                     p(class='recipe__review--username')=recipeReview.User.userName
                                     span=recipeReview.revContent
-                                //- do we want to display the user who posted the review?
-                                //- how to oder the reviews
+                            //- how to oder the reviews
+
             div(class='review__form')
                 form(action=`/api/recipes/${recipe.id}/review` method='post' id='reviewForm' class='hidden')
 
-                    label(for='revContent') Write your review!
+                    label(for='revContent' class='revFormLabel') Write your review!
                     textarea(name='revContent' cols='30' row='10' class='revContent') Your review here!
 
-                    label(for='rating') Rate the recipe
-                        //- select(class='ratingSelector')
-                        each val in [5, 4, 3, 2, 1]
-                            option(value="")
-                            i.fas.fa-star
-                    //- <i class="fas fa-star"></i>
-                    //- i.fas.fa-star
-                    //- <i class="fas fa-star-half"></i>
+                    label(for='rating' class='revFormLabel') Rate the recipe
+                        select(class='ratingSelector')
+                            each val in [5, 4, 3, 2, 1]
+                                option(class='review__form--dropdown') #{val} &#127775
+                    div(class='review__form--button')
+                        button(type='submit' id='review__form--submit') Submit
+            //-    ask about if api route
+            //- div(class='addToCookbook__form')
+            //-         form(action=`/api/cookbook/${cookBook.id}/recipes/${recipe.id}` id='addToCookbookForm' class='hidden')
+            //-             h1(class='addToCookbookLabel')
+            //-             label(for='addToCookbookForm' class='addToCookBookLabel') Add this recipe to one of you cookbooks!
+            //-                     //- do we want to do a selector?
+            //-             select(class='cookbookSelector') Select A Cookbook
+            //-                 each cookbook in cookbooks
+            //-                     option(class='')
