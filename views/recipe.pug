@@ -5,12 +5,14 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="recipe-page.css")
         link(rel="icon" href="../favicon.jpg" type="image/jpg")
+        <script src="https://kit.fontawesome.com/33df1dd2cb.js" crossorigin="anonymous"></script>
         title Recipe
     body
         block content
             div(class='header-1')
                 h1=recipe.title
                 h2(class='recipeRating')=recipe.avgRating
+                //- still need to get avgRating
             div(class='recipe__recipeCard')
                 div(class='recipe__description')
                     each recipeDescription in recipeDescriptions
@@ -36,4 +38,17 @@ html(lang="en")
                                     span=recipeReview.revContent
                                 //- do we want to display the user who posted the review?
                                 //- how to oder the reviews
-            form(action='/api/review/:id' method='post' id='reviewForm' class='hidden')
+            div(class='review__form')
+                form(action=`/api/recipes/${recipe.id}/review` method='post' id='reviewForm' class='hidden')
+
+                    label(for='revContent') Write your review!
+                    textarea(name='revContent' cols='30' row='10' class='revContent') Your review here!
+
+                    label(for='rating') Rate the recipe
+                        //- select(class='ratingSelector')
+                        each val in [5, 4, 3, 2, 1]
+                            //- option(value="")
+                            i.fas.fa-star
+                    //- <i class="fas fa-star"></i>
+                    //- i.fas.fa-star
+                    //- <i class="fas fa-star-half"></i>
