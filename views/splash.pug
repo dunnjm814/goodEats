@@ -24,8 +24,8 @@ block content
                 ul
                     each error in errors
                         li=error
-
-        form(action='/users/login' method='post' id="loginForm" class=displayLogin)
+        
+        form(action='/users/login' method='post' id="loginForm" class=displayLogin )
             input(type="hidden" name="_csrf" value=token)
             table
                 thead
@@ -54,7 +54,7 @@ block content
                         td
                             label(for='userName') UserName
                         td
-                            input(type='userName' name='UserName' value=user.userName placeholder='Enter your UserName')
+                            input(type='userName' name='userName' value=user.userName placeholder='Enter your UserName')
                     tr
                         td
                             label(for='email') Email
@@ -67,10 +67,10 @@ block content
                             input(type='password' name='password' placeholder='Enter your password')
                     tr
                         td
-                            label(for='password') Confirmed Password
+                            label(for='confirmedPassword') Confirmed Password
                         td
                             input(type='password' name='confirmedPassword' placeholder='Confirm password')
             button(type='submit' class='signup-button') Signup
-        form(action="/users/dashboard/5" method="get" id="demoUserForm" class="hidden" )
+        form(action="/dashboard" method="get" id="demoUserForm" class="hidden" )
             p Use this feature to test out the site, but none of your information will be saved
             button(type='submit' class="signup-button") Enter GoodEats

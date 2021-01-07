@@ -76,19 +76,20 @@ const userValidators = [
     .withMessage(
         'Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*").'
     ),
-    check("confirmPassword")
+    check("confirmedPassword")
     .exists({ checkFalsy: true })
     .withMessage("Please confirm your password.")
     .isLength({ max: 50 })
     .withMessage(
         "Password confirmation must not be more than 50 characters long."
     )
-    .custom((value, { req }) => {
-        if (value !== req.body.password) {
+    .custom(((value, { req }) => {
+        if (req.body.confirmedPassword !== req.body.password) {
             throw new Error("Passwords do not match.");
         }
         return true;
-    }),
+    })),
+
 ];
 
 router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, res, next) => {
@@ -117,7 +118,10 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
     } else {
         errors = validatorErrors.array().map((error) => error.message)
     }
-    res.render('splash', { user, token: req.csrfToken() });
+    const user = {
+        email
+    }
+    res.render('splash', { user, errors, token: req.csrfToken() });
 }));
 
 router.post(
@@ -125,10 +129,10 @@ router.post(
     csrfProtection,
     userValidators,
     asyncHandler(async(req, res) => {
-        const { userName, email, password } = req.body;
+        const { userName, email, password, confirmedPassword } = req.body;
 
         const validatorErrors = validationResult(req);
-
+    
         if (validatorErrors.isEmpty()) {
             const hashPass = await bcrypt.hash(password, 10);
             const user = db.User.build({
@@ -138,8 +142,9 @@ router.post(
             });
             await user.save();
             loginUser(req, res, user);
-            // needs to redirect to dashboard or wherever we want to redirect to after signup
-            res.redirect(`/dashboard`);
+            return req.session.save(() => {
+                return res.redirect('/dashboard')
+            })
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
             const user = {
