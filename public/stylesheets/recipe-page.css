@@ -1,0 +1,33 @@
+/* for the directions use numbers instead of bullet points */
+/* do we want the same font for whole site or different for differnt pages */
+
+.hidden {
+    visibility: hidden;
+}
+.reviewCookbookWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+button {
+    margin: 20px;
+    padding: 5px;
+    height: 50px;
+    width: 100px;
+    color:burlywood;
+    background-color: slateblue;
+    border-radius: 6px;
+}
+
+h1, h2, h3 {
+    color: springgreen;
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.recipe__description,
+.recipe__direction,
+.recipe__ingredients {
+    color: tan;
+}

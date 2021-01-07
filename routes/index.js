@@ -2,8 +2,8 @@ const express = require('express');
 const { render } = require('../app.js');
 const router = express.Router();
 const { restoreUser } = require('../auth.js');
-const db = require("../db/models");
-const { csrfProtection, asyncHandler } = require("./utils");
+const db = require('../db/models');
+const { csrfProtection, asyncHandler } = require('./utils');
 
 
 /* GET home page. */
@@ -19,8 +19,8 @@ router.get('/', csrfProtection, (req, res, next) => {
     }
 
     const user = { userName: null, email: null, password: null, confirmedPassword: null }
-    res.render("splash", {
-        title: "Sign-up",
+    res.render('splash', {
+        title: 'Sign-up',
         user,
         displayLogin,
         token: req.csrfToken(),
