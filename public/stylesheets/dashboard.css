@@ -1,12 +1,29 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-around;
     width: 100%;
     border: 2px black solid;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);
 }
+
+.nav-icons {
+    display: flex;
+    flex-direction: column;
+}
+.fas {
+    display: flex;
+    color: black;
+    font-size: 4em;
+}
+
+.icon-caption {
+    display: flex;
+    align-content: center;
+    font-size: large;
+}
+
 
 .column-holder {
     display: flex;
@@ -19,6 +36,11 @@
     width: 33%;
 }
 
+.column_title {
+    display: flex;
+    justify-content: center;
+}
+
 .recipe-library {
     width: 40%;
     overflow: hidden;
@@ -29,7 +51,7 @@
     flex-direction: column;
     width: 90%;
     height: 200px;
-    overflow: scroll;
+    overflow: hidden;
     border: 2px red solid;
     margin: 5px;
     border-radius: 5px;
@@ -38,7 +60,9 @@
 }
 
 .card_body {
+    display: flex;
     margin: 2px;
+    justify-content: center;
 }
 
 .card h3 {
@@ -50,6 +74,17 @@
 .card p {
     font-size: 20px;
     margin: 2px;
+}
+
+.card_header {
+    display: flex;
+    justify-content: center;
+}
+
+.food_img {
+    display: flex;
+    width: 200px;
+    height: 200px;
 }
 
 #logout-user-button {

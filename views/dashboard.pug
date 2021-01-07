@@ -1,28 +1,38 @@
 extends layout
 
 block content
-
+    <script src="https://kit.fontawesome.com/928decbe91.js" crossorigin="anonymous"></script>
     script(src="../javascripts/dashboard.js" type="module" defer)
     link(rel='stylesheet' href='/stylesheets/dashboard.css')
 
-    h1 #{user.userName} MADE IT TO DASHBOARD
+    h1 #{user.userName}'s DASHBOARD
 
 
     div(class="navbar")
+        div(class='nav-icons')
+            i(class="fas fa-book-open fa-2x row text-center" id="open-book")
+            figcaption CookBooks
 
-        form(action="/users/logout" method="post" id="logout-user-button")
-            button(type='submit' class="logout-button") Logout
+        a(class="nav-icons" href="/users/logout")
+            i(class="fas fa-door-open" id="logout-user-button")
+            figcaption Logout
+        
 
     div(class="column-holder")
         div(class="recently-viewed column")
-            h1 Recently Viewed
+            div(class="column_title")
+                h1 Cookbooks
         div(class="recipe-library column")
-            h1 Recipe Library
+            div(class="column_title")
+                h1 Recipe Library
             each recipe in recipes
                 div(class="card")
                     div(class="card_header")
                         h3 #{recipe.title} #{recipe.avgRating}
-                        div(class="card_body")
-                            p #{recipe.description}
+                    div(class="card_body")
+                        img(src=recipe.foodImg, class="food_img", alt=recipe.title)
         div(class="top-rated column")
-            h1 Top Rated
+            div(class="column_title")
+                h1 Top Rated
+
+//-  p #{recipe.description}
