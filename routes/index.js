@@ -34,9 +34,9 @@ router.get('/dashboard', csrfProtection, asyncHandler(async(req, res, next) => {
     console.log(res.locals.user)
     const userId = res.locals.user.id
     const user = await db.User.findByPk(userId);
-    res.render('dashboard', { user });
+    const recipes = await db.Recipe.findAll();
+    res.render('dashboard', { user, recipes });
 
-    
 }));
 
 module.exports = router;

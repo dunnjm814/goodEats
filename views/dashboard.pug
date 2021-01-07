@@ -2,6 +2,27 @@ extends layout
 
 block content
 
-    h1 MADE IT TO DASHBOARD
-    form(action="/users/logout" method="post" id="logoutUserButton")
-        button(type='submit' class="logout-button") Logout
+    script(src="../javascripts/dashboard.js" type="module" defer)
+    link(rel='stylesheet' href='/stylesheets/dashboard.css')
+
+    h1 #{user.userName} MADE IT TO DASHBOARD
+
+
+    div(class="navbar")
+
+        form(action="/users/logout" method="post" id="logout-user-button")
+            button(type='submit' class="logout-button") Logout
+
+    div(class="column-holder")
+        div(class="recently-viewed column")
+            h1 Recently Viewed
+        div(class="recipe-library column")
+            h1 Recipe Library
+            each recipe in recipes
+                div(class="card")
+                    div(class="card_header")
+                        h3 #{recipe.title} #{recipe.avgRating}
+                        div(class="card_body")
+                            p #{recipe.description}
+        div(class="top-rated column")
+            h1 Top Rated
