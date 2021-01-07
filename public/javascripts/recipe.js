@@ -23,23 +23,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
           body: JSON.stringify({ revContent, rating }),
         });
         const data = await res.json()
+        console.log(data)
         //create text nodes
-        const userNode = data.userName.createTextNode() //how to pull userId?
-        const ratingNode = data.review.rating.createTextNode()
-        const reviewContentNode = data.review.revContent.createTextNode()
+        // const userNode = document.createTextNode(data.userName) //how to pull userId?
+        // const ratingNode = document.createTextNode(data.review.rating)
+        // const reviewContentNode = document.createTextNode(data.review.revContent)
         //create dom elements to house text nodes
         const userSpan = document.createElement('span')
         const rateSpan = document.createElement('span')
         const pRevContent = document.createElement('p')
         // set innertext of new elements to text nodes
-        const userIdSpan = userSpan.innerText(userNode)
-        const ratingSpan = rateSpan.innerText(ratingNode)
-        const reviewContent = pRevContent.innerText(reviewContentNode)
+        userSpan.innerText = data.userName
+        rateSpan.innerText = data.review.rating
+        pRevContent.innerText = data.review.revContent
+        console.log(userSpan, rateSpan, pRevContent)
         // create new div to house elements set w/ text nodes and query for reviews
         const newReviewDiv = document.createElement('div')
-        const reviews = document.querySelector('recipe_review');
-
-        newReviewDiv.appendChild(userIdSpan, ratingSpan, reviewContent)
+        const reviews = document.querySelector('.recipe__review');
+            console.log(newReviewDiv)
+        newReviewDiv.appendChild(userSpan)
+        newReviewDiv.appendChild(rateSpan)
+        newReviewDiv.appendChild(pRevContent)
+            console.log(reviews)
         reviews.appendChild(newReviewDiv)
 
         reviewForm.classList.add('hidden')
