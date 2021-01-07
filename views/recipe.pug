@@ -48,19 +48,19 @@ html(lang='en')
 
             div(class='review__form')
                 form(action=`/api/recipes/${recipe.id}/review` method='post' id='reviewForm' class='hidden')
-
+                    input(type='hidden' id='recipeId' value=recipe.id)
                     label(for='revContent' class='revFormLabel') Write your review!
                     textarea(name='revContent' cols='30' row='10' class='revContent') Your review here!
 
                     label(for='rating' class='revFormLabel') Rate the recipe
-                        select(class='ratingSelector')
+                        select(class='ratingSelector' name='rating')
                             each val in [5, 4, 3, 2, 1]
                                 option(class='review__form--dropdown') #{val} &#127775
                     div(class='review__form--button')
                         button(type='submit' id='review__form--submit') Submit
             //-    ask about if api route
             //- div(class='addToCookbook__form')
-            //-         form(action=`/api/cookbook/${cookBook.id}/recipes/${recipe.id}` id='addToCookbookForm' class='hidden')
+            //-         form(action=`/api/cookbooks/recipes/${recipe.id}` id='addToCookbookForm' class='hidden')
             //-             h1(class='addToCookbookLabel')
             //-             label(for='addToCookbookForm' class='addToCookBookLabel') Add this recipe to one of you cookbooks!
             //-                     //- do we want to do a selector?
