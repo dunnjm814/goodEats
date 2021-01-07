@@ -22,7 +22,7 @@ body {
     font-weight: normal;
   }
 
-  #header {
+  .header-1 {
       display: flex;
       width: 100%;
       justify-content: center;
@@ -34,6 +34,18 @@ body {
     background-size: cover;
   }
 
+  .buttons {
+    margin: 20px;
+    padding: 12px;
+    height: 60px;
+    width: 110px;
+    color:burlywood;
+    background-color: red;
+    border-radius: 6px;
+    transition: all .5s ease-in-out; 
+
+
+  }
   button {
     margin: 20px;
     padding: 12px;
@@ -49,7 +61,7 @@ body {
   button:hover {
     transform:scale(1.25) ;
   }
-#buttons {
+.buttons {
     display: flex;
     justify-content: space-around;
     width: 100%;
