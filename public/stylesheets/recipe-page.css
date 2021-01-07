@@ -9,3 +9,25 @@
     align-items: center;
     justify-content: space-around;
 }
+
+button {
+    margin: 20px;
+    padding: 5px;
+    height: 50px;
+    width: 100px;
+    color:burlywood;
+    background-color: slateblue;
+    border-radius: 6px;
+}
+
+h1, h2, h3 {
+    color: springgreen;
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.recipe__description,
+.recipe__direction,
+.recipe__ingredients {
+    color: tan;
+}

@@ -74,7 +74,7 @@ const userValidators = [
     .withMessage('Password must not be more than 50 characters long.')
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
     .withMessage(
-        'Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. '!@#$%^&*').'
+        "Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. '!@#$%^&*')."
     ),
     check('confirmPassword')
     .exists({ checkFalsy: true })
