@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+    script(src="../javascripts/cookbooks.js" type="module" defer)
+    link(rel='stylesheet' href='/stylesheets/cookbooks.css')
+
+
+
+    div(class="navbar")
+        .header-1
+            h1 #{user.userName}'s Cookbooks
+        form(action="/dashboard" method="post" id="return-to-dashboard-button")
+            button(type='submit' class="return-to-dashboard-button") Return to Dashboard
+        form(action="/users/logout" method="post" id="logout-user-button")
+            button(type='submit' class="logout-button") Logout
+    div(class="body-flex")
+        div(class="cookbook-flex")
+            each cookBook, index in cookBooks
+                div(class="card")
+                    div(class="card_header")
+                        h2 #{index + 1}. #{cookBook.name}
+                        div(class="card_body")
+                    div(class="recipe_images")
