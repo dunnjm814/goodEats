@@ -1,0 +1,62 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    border: 2px black solid;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .2);
+}
+
+.column-holder {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.column {
+    border-right: 1px black solid;
+    width: 33%;
+}
+
+.recipe-library {
+    width: 40%;
+    overflow: hidden;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 200px;
+    overflow: scroll;
+    border: 2px red solid;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: 10px 5px 5px black;
+}
+
+.card_body {
+    margin: 2px;
+}
+
+.card h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 2px;
+}
+
+.card p {
+    font-size: 20px;
+    margin: 2px;
+}
+
+#logout-user-button {
+    justify-self: flex-end;
+}
+
+.logout-button {
+    color: black;
+    justify-self: flex-end;
+}

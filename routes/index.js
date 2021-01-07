@@ -5,6 +5,7 @@ const { restoreUser } = require('../auth.js');
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
+
 /* GET home page. */
 router.get('/', csrfProtection, (req, res, next) => {
 
@@ -27,9 +28,15 @@ router.get('/', csrfProtection, (req, res, next) => {
 });
 
 router.get('/dashboard', csrfProtection, asyncHandler(async(req, res, next) => {
-    const userId = res.locals.user.id;
+    if (!res.locals.authenticated) {
+        return res.redirect('/')
+    }
+    console.log(res.locals.user)
+    const userId = res.locals.user.id
     const user = await db.User.findByPk(userId);
-    res.render('dashboard', { user });
+    const recipes = await db.Recipe.findAll();
+    res.render('dashboard', { user, recipes });
+
 }));
 
 module.exports = router;
