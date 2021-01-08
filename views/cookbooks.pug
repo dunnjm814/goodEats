@@ -25,11 +25,9 @@ block content
                     div(class="card_inner")
                         div(class="recipe_images")
                             each recipe in recipes
-                                if !recipe.CookBookRecipe.cooked
-                                    - uncooked++;
                                 img(src=recipe.foodImg, alt=recipe.title style=`width:${width * .9}%;height:auto; max-height:300px; width: auto;`)
                     div(class='status')
-                        if uncooked > 0
-                            p #{uncooked} recipe(s) left to cook
+                        if cookBook.uncooked > 0
+                            p #{cookBook.uncooked} recipe(s) left to cook
                         else
                             p All recipes cooked!

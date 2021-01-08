@@ -17,6 +17,19 @@ router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
         include: db.Recipe
     });
 
+    cookBooks.forEach(cookBook => {
+        cookBook.Recipes.forEach(recipe => {
+            if (!recipe.cooked) {
+                if (!cookBook.uncooked) {
+                    cookBook.uncooked = 1;
+                } else {
+                    cookBook.uncooked++;
+                }
+            }
+
+        })
+    })
+
     res.render('cookbooks', { user, cookBooks });
 }));
 
