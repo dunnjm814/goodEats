@@ -6,64 +6,68 @@ html(lang='en')
         script(src='../javascripts/recipe.js' type='module' defer)
         link(rel='stylesheet', href='/stylesheets/recipe-page.css')
         link(rel='icon' href='../favicon.jpg' type='image/jpg')
-        //-<script src='https://kit.fontawesome.com/33df1dd2cb.js' crossorigin='anonymous'></script>
+
         title Recipes
     body
-        block content
-            div(class='header-1')
-                h1=recipe.title
-                h2(class='recipeRating')=recipe.avgRating
-                //- still need to get avgRating
-            div(class='recipe__recipeCard')
-                div(class='recipe__description')
-                    each recipeDescription in recipeDescriptions
-                        p=recipeDescription
-                    div
-                        img(src=recipe.foodImg, alt=recipe.title)
-                    div(class='recipe__ingredients')
-                        h3(class='header-3') Ingredients
-                        ul
-                            each recipeIngredient in recipeIngredients
-                                li=recipeIngredient
-                    div(class='recipe__directions')
-                        h3(class='header-3') Directions
-                        ul
-                            each recipeDirection in recipeDirections
-                                li=recipeDirection
-                        div(class='reviewCookbookWrap')
-                            div(class='recipe__reviewButton')
-                                button(id='displayReviewButton') Write A Review
-                            div
-                                button(class='recipe__cookBook--button') Add to Cookbook
-                                //- ask about this for add to cookbooks
+        div(class='header-1')
+            h1=recipe.title
+            h2(class='recipeRating')=recipe.avgRating
+            //- still need to get avgRating
+        div(class='recipe__recipeCard')
+            div(class='recipe__description')
+                each recipeDescription in recipeDescriptions
+                    p=recipeDescription
+                div
+                    img(src=recipe.foodImg, alt=recipe.title)
+                div(class='recipe__ingredients')
+                    h3(class='header-3') Ingredients
+                    ul
+                        each recipeIngredient in recipeIngredients
+                            li=recipeIngredient
+                div(class='recipe__directions')
+                    h3(class='header-3') Directions
+                    ul
+                        each recipeDirection in recipeDirections
+                            li=recipeDirection
+                    div(class='reviewCookbookWrap')
+                        div(class='recipe__reviewButton')
+                            button(id='displayReviewButton') Write A Review
+                        div
+                            button(class='recipe__cookBook--button') Add to Cookbook
+                            //- ask about this for add to cookbooks
 
-                    div(class='recipe__reviews')
-                        h3(class='header-3') Reviews
-                        div(class='recipe__review')
-                            each recipeReview in recipeReviews
-                                div(class='recipe__review--content')
-                                    p(class='recipe__review--username')=recipeReview.User.userName
-                                    span=recipeReview.revContent
-                            //- how to oder the reviews
+                div(class='recipe__reviews')
+                    h3(class='header-3') Reviews
+                    div(class='recipe__review')
+                        each recipeReview in recipeReviews
+                            div(class='recipe__review--content')
+                                div(class='reviewContent__name--andRating')
+                                    span(class='userName_and_rating')= `${recipeReview.User.userName} ${recipeReview.rating}`
+                                    -let n=0
+                                    while n<recipeReview.rating
+                                        span(id='the-stars') &#127775
+                                        -n++
+                                div(class='reviewContent__the--content')
+                                    p(id='review__content')=recipeReview.revContent
+                        //- how to oder the reviews
 
-            div(class='review__form')
-                form(action=`/api/recipes/${recipe.id}/review` method='post' id='reviewForm' class='hidden')
+        div(class='review__form hidden')
+            form(action=`/api/recipes/${recipe.id}/review` method='post' id='reviewForm')
+                input(type='hidden' id='recipeId' value=recipe.id)
+                label(for='revContent' class='revFormLabel') Write your review!
+                textarea(name='revContent' cols='30' row='10' class='revContent' placeholder=name)
 
-                    label(for='revContent' class='revFormLabel') Write your review!
-                    textarea(name='revContent' cols='30' row='10' class='revContent') Your review here!
-
-                    label(for='rating' class='revFormLabel') Rate the recipe
-                        select(class='ratingSelector')
-                            each val in [5, 4, 3, 2, 1]
-                                option(class='review__form--dropdown') #{val} &#127775
-                    div(class='review__form--button')
-                        button(type='submit' id='review__form--submit') Submit
-            //-    ask about if api route
-            //- div(class='addToCookbook__form')
-            //-         form(action=`/api/cookbook/${cookBook.id}/recipes/${recipe.id}` id='addToCookbookForm' class='hidden')
-            //-             h1(class='addToCookbookLabel')
-            //-             label(for='addToCookbookForm' class='addToCookBookLabel') Add this recipe to one of you cookbooks!
-            //-                     //- do we want to do a selector?
-            //-             select(class='cookbookSelector') Select A Cookbook
-            //-                 each cookbook in cookbooks
-            //-                     option(class='')
+                label(for='rating' class='revFormLabel') Rate the recipe
+                    select(class='ratingSelector' name='rating')
+                        each val in [5, 4, 3, 2, 1]
+                            option(class='review__form--dropdown') #{val} &#127775
+                div(class='review__form--button')
+                    button(type='submit' id='review__form--submit') Submit
+        //- div(class='addToCookbook__form')
+        //-         form(action=`/api/cookbooks/recipes/${recipe.id}` id='addToCookbookForm' class='hidden')
+        //-             h1(class='addToCookbookLabel')
+        //-             label(for='addToCookbookForm' class='addToCookBookLabel') Add this recipe to one of you cookbooks!
+        //-                     //- do we want to do a selector?
+        //-             select(class='cookbookSelector') Select A Cookbook
+        //-                 each cookbook in cookbooks
+        //-                     option(class='')
