@@ -1,12 +1,24 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
 .navbar {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
     border: 2px black solid;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, .01);
+    background-color: rgba(0, 0, 0, .2);
     max-height: 100px;
+}
+
+.navbar-thirds {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
@@ -39,6 +51,7 @@
 
 .hover-popout {
     transition: all .5s ease-in-out;
+    text-decoration: none;
 }
 
 .hover-popout:hover {
@@ -49,11 +62,15 @@
 .recipe-image-holder {
     width: 100%;
     position: relative;
+    margin: 0px;
+    padding: 0px;
 }
 
 .recipe-image {
     width: 100%;
     height: auto;
+    margin: 0px;
+    padding: 0px;
 }
 
 .recipe-holder {
@@ -65,6 +82,46 @@
 
 .recipe-all {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    display: flex;
+    justify-content: center;
+    top: 40%;
+    width: 100%;
+}
+
+.card_header {
+    display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+    background-color: rgba(0, 0, 0, .2);
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    font-weight: bold;
+}
+
+button {
+    margin: 20px;
+    padding: 12px;
+    height: 60px;
+    width: 110px;
+    color: burlywood;
+    background-color: red;
+    border-radius: 6px;
+    /* transition: all .5s ease-in-out; */
+}
+
+h3 {
+    font-size: 50px;
+    margin: 10px;
+}
+
+h4 {
+    font-size: 40px;
+    margin: 10px;
+}
+
+img {
+    margin: 0px;
+    padding: 0px;
 }

@@ -18,10 +18,18 @@ block content
                 - const recipes = cookBook.Recipes;
                 - const recipeLength = recipes.length;
                 - const width = 1/recipeLength * 100;
+                - let uncooked = 0;
                 a(href=`http://localhost:8080/cookbooks/${cookBook.id}` class="card hover-popout")
                     div(class="card_header")
-                        h2 #{index + 1}. #{cookBook.name}
+                        h2 #{cookBook.name}
                     div(class="card_inner")
                         div(class="recipe_images")
                             each recipe in recipes
-                                img(style=`width:${width}%` src=recipe.foodImg, alt=recipe.title)
+                                if !recipe.CookBookRecipe.cooked
+                                    - uncooked++;
+                                img(src=recipe.foodImg, alt=recipe.title style=`width:${width * .9}%;height:auto; max-height:300px; width: auto;`)
+                    div(class='status')
+                        if uncooked > 0
+                            p #{uncooked} recipe(s) left to cook
+                        else
+                            p All recipes cooked!

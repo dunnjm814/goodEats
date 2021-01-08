@@ -37,23 +37,24 @@ html {
 .card {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    max-width: 80%;
     height: fit-content;
-    max-height: 400px;
+    max-height: min-content;
     overflow: hidden;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);
     box-shadow: 10px 5px 5px black;
     margin: 20px;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     color: whitesmoke;
 }
 
 .card h2 {
-    font-size: 22px;
+    font-size: 30px;
     font-weight: bold;
     margin: 2px;
+    padding-top: 6px;
 }
 
 img {
@@ -66,8 +67,9 @@ img {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    height: auto;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
     max-height: 80%;
 }
 
@@ -77,9 +79,18 @@ img {
 
 .hover-popout:hover {
     transform: scale(1.05);
-    max-width: 100%;
 }
 
 .card-inner {
     max-height: 100%;
+    max-width: 80%;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    padding: 10px;
+    margin: 10px;
 }

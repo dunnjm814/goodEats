@@ -6,20 +6,26 @@ block content
     link(rel='stylesheet' href='/stylesheets/cookbook.css')
 
     div(class="navbar")
-        .header-1
-            h1 Cookbook: #{cookBook.name}
-        form(action="/dashboard" method="get" id="return-to-dashboard-button")
-            button(type='submit' class="return-to-dashboard-button hover-popout") Return to Dashboard
-        form(action="/users/logout" method="post" id="logout-user-button")
-            button(type='submit' class="logout-button hover-popout") Logout
+        div(class="navbar-thirds")
+        div(class="navbar-thirds")
+            .header-1
+                h1 Cookbook: #{cookBook.name}
+        div(class="navbar-thirds")
+            form(action="/dashboard" method="get" id="return-to-dashboard-button")
+                button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
+            form(action="/cookbooks" method="get" id="cookbooks-button")
+                button(type='submit' class="cookbooks-button hover-popout") Cookbooks
+            form(action="/users/logout" method="post" id="logout-user-button")
+                button(type='submit' class="logout-button hover-popout") Logout
     div(class="body-flex")
         each recipe in cookBook.Recipes
             div(id="recipe-holder")
-                a(href=`http://localhost:8080/recipes/${recipe.id}` class="hover-popout")
-                    div(class="recipe-image-holder")
-                        img(src=recipe.foodImg, alt=recipe.title, class="recipe-image")
-                        div(class="recipe-all")
-                            div(class="card_header")
-                                h3 #{recipe.title} #{recipe.avgRating}
-                                div(class="card_body")
-                                    p #{recipe.description}
+                div(class="recipe-image-holder")
+                    img(src=recipe.foodImg alt=recipe.title class="recipe-image")
+                    div(class="recipe-all")
+                        a(href=`http://localhost:8080/recipes/${recipe.id}` class="hover-popout card_header")
+                            h3 #{recipe.title}
+                            if recipe.CookBookRecipe.cooked
+                                h4 Cook Again!
+                            else
+                                h4 Cook Me!

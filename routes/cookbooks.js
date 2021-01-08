@@ -33,6 +33,9 @@ router.get(
             include: db.Recipe
         });
 
+        console.log(cookBook.Recipes)
+        console.log(cookBook.Recipes[0].CookBookRecipes)
+
         res.render('cookbook', {
             cookBook,
         });
