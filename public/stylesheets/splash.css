@@ -10,13 +10,83 @@ body {
   padding: 0%;
   margin: 0%;
 }
+.formHolder {
+  position: relative;
+}
+
 #innerForm {
   background-image: url('/images/plate.png');
   background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
-  height: 10000px;
-  width: 500px;
+  height: 600px;
+  width: 600px;
+  top: 290px;
+  right: 168px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+#loginForm {
+  position: absolute;
+  right: 180px;
+  top: 230px;
+}
+#login__form--title {
+  font-size: 2em;
+  position: absolute;
+  top: -56px;
+  right: -40px;
+}
+#login__form--label {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 26px;
+}
+
+#loginTextBox {
+  background-color: rgba(0, 0, 0, 0);
+  height: 35px;
+  width: 170px;
+  font-size: 17px;
+  color: black;
+  border-color: black;
+}
+
+
+#loginButton {
+  position: absolute;
+  top:110px;
+  right: 60px;
+  width: 120px;
+  height: 50px;
+  border-color: black;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 24px;
+  color: rgb(8, 75, 32);
+
+}
+#loginButton:hover {
+  transform:scale(1.20) ;
+    transition: all .8s ease-in-out;
+    background: black;
+    color: whitesmoke;
+}
+
+
+#signupForm {
+  position: absolute;
+
+}
+
+#demoUserForm {
+  position: absolute;
+  top: 210px;
+}
+::placeholder {
+  color: rgb(8, 75, 32);
+}
+
 
 /* #bodyContainer {
   position: relative;
@@ -40,7 +110,7 @@ body {
     right: 3%;
 }
 
-/* #buttons {
+#buttons {
   position: relative;
   top: 0px;
   left: 0px;
@@ -50,8 +120,9 @@ body {
   /* give top and left a percentage to keep everything where it needs to be */
 
 
-/* } */
-
+}
+/* make buttons disapear when clicked with slow transition
+ */
 /* .signUpButton > button, .logInButton > button, .demoButton > button {
   display: flex;
   justify-content: center;
@@ -102,4 +173,35 @@ body {
   visibility: hidden;
 }
 
+.fade-in {
+  animation: fadeIn ease 6s;
+  -webkit-animation: fadeIn ease 6s;
+  -moz-animation: fadeIn ease 6s;
+  -o-animation: fadeIn ease 6s;
+  -ms-animation: fadeIn ease 6s;
+  }
+  @keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+
+  @-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+
+  @-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+
+  @-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+
+  @-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
 /* buttonDiv should be absolute*/

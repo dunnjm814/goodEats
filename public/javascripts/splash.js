@@ -1,29 +1,27 @@
+const formHolder = document.getElementById('innerForm');
+const signUpForm = document.getElementById('signupForm');
+const logInForm = document.getElementById('loginForm');
+const demoUserForm = document.getElementById('demoUserForm')
+
+const logInButton = document.getElementById('logInButton');
+const signUpButton = document.getElementById('signUpButton');
+const demoUserButton = document.getElementById('demoButton');
+const header = document.getElementById('header-1')
+
+const fadeIn = [logInButton, signUpButton, demoUserButton, header]
+
 window.addEventListener('DOMContentLoaded', (event) => {
-    // form holder necessary?
-    const formHolder = document.getElementById('formHolder');
-    const signUpForm = document.getElementById('signupForm');
-    const logInForm = document.getElementById('loginForm');
-    const demoUserForm = document.getElementById('demoUserForm')
 
-    const signUpButton = document.getElementById('signUpButton');
-    const logInButton = document.getElementById('logInButton');
-    const demoUserButton = document.getElementById('demoButton');
+fadeIn.forEach(element => element.classList.add('fade-in'))
 
-    signUpButton.addEventListener('click', (event) => {
-
-        if(signUpForm.classList.contains('hidden')) {
-            signUpForm.classList.remove('hidden');
-            logInForm.classList.add('hidden');
-            demoUserForm.classList.add('hidden');
-        } else {
-            signUpForm.classList.add('hidden');
-
-        }
-    })
 
     logInButton.addEventListener('click', (event) => {
+        logInButton.classList.add('hidden');
+        signUpButton.classList.remove('hidden')
+        demoUserButton.classList.remove('hidden')
 
         if(logInForm.classList.contains('hidden')) {
+            formHolder.classList.remove('hidden')
             logInForm.classList.remove('hidden');
             demoUserForm.classList.add('hidden');
             signUpForm.classList.add('hidden');
@@ -33,9 +31,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     })
 
+    signUpButton.addEventListener('click', (event) => {
+        signUpButton.classList.add('hidden');
+        logInButton.classList.remove('hidden')
+        demoUserButton.classList.remove('hidden')
+        if(signUpForm.classList.contains('hidden')) {
+            formHolder.classList.remove('hidden')
+            signUpForm.classList.remove('hidden');
+            logInForm.classList.add('hidden');
+            demoUserForm.classList.add('hidden');
+        } else {
+            signUpForm.classList.add('hidden');
+
+        }
+    })
+
     demoUserButton.addEventListener('click', (event) => {
 
+        logInButton.classList.remove('hidden');
+        signUpButton.classList.remove('hidden')
+        demoUserButton.classList.add('hidden')
+
         if(demoUserForm.classList.contains('hidden')) {
+            formHolder.classList.remove('hidden')
             demoUserForm.classList.remove('hidden');
             logInForm.classList.add('hidden');
             signUpForm.classList.add('hidden');
@@ -44,4 +62,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         }
     })
+
+
 })

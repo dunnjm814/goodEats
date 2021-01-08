@@ -26,25 +26,25 @@ html
                             each error in errors
                                 li=error
 
-                div(id='innerForm')
+                div(id='innerForm' class='hidden')
                     form(action='/users/login' method='post' id='loginForm' class=`${displayLogin} splash__form` )
                         input(type='hidden' name='_csrf' value=token)
                         table
                             thead
                                 tr
-                                    th(colspan=2) Enter user detail
+                                    th(id='login__form--title' colspan=2) Enter User Information
                             tbody
                                 tr
                                     td
-                                        label(for='email') Email
+                                        label(id='login__form--label' for='email') Email
                                     td
-                                        input(type='email' name='email' value=user.email placeholder='enter your email')
+                                        input(type='text' id='loginTextBox' name='email' value=user.email placeholder='enter your email')
                                 tr
                                     td
-                                        label(for='password') Password
+                                        label(id='login__form--label' for='password') Password
                                     td
-                                        input(type='password' name='password' placeholder='enter your password')
-                        button(type='submit' class='loginButton') Login!
+                                        input(type='password' name='password' id='loginTextBox' placeholder='enter your password')
+                        button(type='submit' id='loginButton') Login!
                     form(action='/users/signup' method='post' id='signupForm' class='hidden splash__form')
                         input(type='hidden' name='_csrf' value=token)
                         table
@@ -76,4 +76,4 @@ html
                     form(action='/users/dashboard/5' method='get' id='demoUserForm' class='hidden splash__form' )
 
                         p Use this feature to test out the site, but none of your information will be saved
-                        button(type='submit' class='signup-button') Enter GoodEats
+                        button(type='submit' id='signup-button') Enter GoodEats
