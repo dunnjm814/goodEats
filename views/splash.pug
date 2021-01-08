@@ -11,12 +11,13 @@ html
         div(id='bodyContainer')
             h1(id='header-1') Welcome to GoodEats
             div(id='buttons')
-                div(class='buttonDiv')
+                div(class='logInButton')
                     button(id='logInButton') Log In
-                div(class='buttonDiv')
+                div(class='signUpButton')
                     button(id='signUpButton') Sign Up
-                div(class='buttonDiv')
+                div(class='demoButton')
                     button(id='demoButton') Test Drive
+                    //- form holder relative
             div(class='formHolder')
                 if errors
                     div(class='alert' role='alert')
@@ -26,7 +27,7 @@ html
                                 li=error
 
                 div(id='innerForm')
-
+                    
                     form(action='/users/login' method='post' id='loginForm' class=`${displayLogin} splash__form` )
                         input(type='hidden' name='_csrf' value=token)
                         table

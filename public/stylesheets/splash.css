@@ -33,19 +33,19 @@ body {
     right: 3%;
 }
 
-#buttons {
-  position: absolute;
+/* #buttons {
+  position: relative;
   top: 0px;
   left: 0px;
   display: flex;
   width: 100%;
   height: 100%;
+  /* git top and left a percentage to keep everything where it needs to be */
 
 
-}
+/* } */
 
-#signUpButton, #logInButton, #demoButton {
-  position: absolute;
+/* .signUpButton > button, .logInButton > button, .demoButton > button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,10 +64,8 @@ body {
   color:black;
   border-color: black;
   border-radius: 20px;
-}
-
-
-
+} */
+/*
 #signUpButton:hover, #logInButton:hover, #demoButton:hover {
     transform:scale(1.20) ;
     transition: all .8s ease-in-out;
@@ -75,20 +73,30 @@ body {
     color: whitesmoke;
   }
 
-  #logInButton {
+  .logInButton {
+    position: absolute;
     top:41.5%;
     left:17%;
   }
 
-  #signUpButton {
+  .signUpButton {
+    position: absolute;
     top: 110%;
     left:30.6%;
   }
 
-  #demoButton {
+  .demoButton {
+    position: absolute;
     top:212.3%;
     left:32.6%;
-  }
+  } */
+
 .hidden {
   visibility: hidden;
+}
+
+/* buttonDiv should be absolute*/
+
+#innerForm {
+  background-image: url('/images/plate.png');
 }

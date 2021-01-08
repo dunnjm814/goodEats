@@ -13,12 +13,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         if(signUpForm.classList.contains('hidden')) {
             signUpForm.classList.remove('hidden');
-            formHolder.classList.remove('hidden')
             logInForm.classList.add('hidden');
             demoUserForm.classList.add('hidden');
         } else {
             signUpForm.classList.add('hidden');
-            formHolder.classList.add('hidden')
+
         }
     })
 
@@ -26,12 +25,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         if(logInForm.classList.contains('hidden')) {
             logInForm.classList.remove('hidden');
-            formHolder.classList.remove('hidden')
             demoUserForm.classList.add('hidden');
             signUpForm.classList.add('hidden');
         } else {
             logInForm.classList.add('hidden');
-            formHolder.classList.add('hidden')
+
         }
     })
 
@@ -39,12 +37,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         if(demoUserForm.classList.contains('hidden')) {
             demoUserForm.classList.remove('hidden');
-            formHolder.classList.remove('hidden')
             logInForm.classList.add('hidden');
             signUpForm.classList.add('hidden');
         } else {
             demoUserForm.classList.add('hidden');
-            formHolder.classList.add('hidden')
+
         }
     })
 })
