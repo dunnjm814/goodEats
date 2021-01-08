@@ -96,7 +96,7 @@ const userValidators = [
 
 router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, res, next) => {
     const { email, password } = req.body;
-    const errors = [];
+    let errors = [];
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
@@ -134,7 +134,7 @@ router.post(
         const { userName, email, password, confirmedPassword } = req.body;
 
         const validatorErrors = validationResult(req);
-    
+
         if (validatorErrors.isEmpty()) {
             const hashPass = await bcrypt.hash(password, 10);
             const user = db.User.build({
