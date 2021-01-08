@@ -2,8 +2,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const reviewForm = document.querySelector('.review__form');
     const displayFormButton = document.getElementById('displayReviewButton')
     const submitFormButton = document.getElementById('review__form--submit')
-
-    reviewForm.classList.add('hidden')
+    const reviewFormContent = document.getElementById("reviewForm");
 
 
     displayFormButton.addEventListener('click', (event) => {
@@ -17,7 +16,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         let recipeId = document.getElementById('recipeId');
 
-        const form = new FormData(reviewForm);
+        const form = new FormData(reviewFormContent);
         const revContent = form.get('revContent');
         const rating = form.get('rating');
 
@@ -49,6 +48,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         // append newReviewDiv container to reviews
         reviews.appendChild(newReviewDiv)
+
+        // update avgRating on page
+        const avgRatingDisplay = document.querySelector('.recipeRating')
+        const newAvgRating = data.finalAvg
+        avgRatingDisplay.innerText = newAvgRating
 
         reviewForm.classList.add('hidden')
 

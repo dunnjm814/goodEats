@@ -2,6 +2,12 @@
 /* do we want the same font for whole site or different for differnt pages */
 body{
     text-decoration: none;
+    background-image: url('../images/simona-sergi-k87kcKN-Vvs-unsplash.jpg');
+    background-size: 2400px;
+    background-attachment: scroll;
+    background-origin: border-box;
+    background-position: center;
+    align-content: center;
 }
 .hidden {
     visibility: hidden;
@@ -49,7 +55,7 @@ h1, h2, h3 {
     align-items: flex-start;
     font-weight: bold;
     font-size: 20px;
-    color: black;
+    color:  cornsilk;
 }
 
 .list-stars{
@@ -84,10 +90,15 @@ h1, h2, h3 {
     transition: 0.5s ease-in;
 }
 #reviewForm{
+    display: flex;
+    flex-direction: column;
     max-width: 300px;
     padding: 10px;
     border: 1px solid black;
     background: cornflowerblue;
+}
+.revContent{
+    max-width: 275px;
 }
 #reviewForm .revContent:focus{
     background-color: darkgray;

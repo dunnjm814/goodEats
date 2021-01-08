@@ -11,7 +11,7 @@ html(lang='en')
     body
         div(class='header-1')
             h1=recipe.title
-            h2(class='recipeRating')=recipe.avgRating
+            h3(class='recipeRating')=recipe.avgRating
             //- still need to get avgRating
         div(class='recipe__recipeCard')
             div(class='recipe__description')
@@ -56,11 +56,11 @@ html(lang='en')
                 input(type='hidden' id='recipeId' value=recipe.id)
                 label(for='revContent' class='revFormLabel') Write your review!
                 textarea(name='revContent' cols='30' row='10' class='revContent' placeholder=name)
-
-                label(for='rating' class='revFormLabel') Rate the recipe
-                    select(class='ratingSelector' name='rating')
-                        each val in [5, 4, 3, 2, 1]
-                            option(class='review__form--dropdown') #{val} &#127775
+                div(id='rating__wrapper')
+                    label(for='rating' class='revFormLabel') Rate the recipe
+                        select(class='ratingSelector' name='rating')
+                            each val in [5, 4, 3, 2, 1]
+                                option(class='review__form--dropdown') #{val} &#127775
                 div(class='review__form--button')
                     button(type='submit' id='review__form--submit') Submit
         //-    ask about if api route
