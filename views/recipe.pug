@@ -6,7 +6,7 @@ html(lang='en')
         script(src='../javascripts/recipe.js' type='module' defer)
         link(rel='stylesheet', href='/stylesheets/recipe-page.css')
         link(rel='icon' href='../favicon.jpg' type='image/jpg')
-        //-<script src='https://kit.fontawesome.com/33df1dd2cb.js' crossorigin='anonymous'></script>
+
         title Recipes
     body
         div(class='header-1')
@@ -63,7 +63,6 @@ html(lang='en')
                             option(class='review__form--dropdown') #{val} &#127775
                 div(class='review__form--button')
                     button(type='submit' id='review__form--submit') Submit
-        //-    ask about if api route
         //- div(class='addToCookbook__form')
         //-         form(action=`/api/cookbooks/recipes/${recipe.id}` id='addToCookbookForm' class='hidden')
         //-             h1(class='addToCookbookLabel')
