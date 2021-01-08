@@ -1,6 +1,8 @@
 /* for the directions use numbers instead of bullet points */
 /* do we want the same font for whole site or different for differnt pages */
-
+body{
+    text-decoration: none;
+}
 .hidden {
     visibility: hidden;
 }
@@ -30,4 +32,71 @@ h1, h2, h3 {
 .recipe__direction,
 .recipe__ingredients {
     color: tan;
+}
+.recipe__reviews{
+    max-width: 500px;
+    border: 2px black;
+}
+.recipe__review--content{
+    border-bottom: 1px solid rgba(46, 49, 49, 1);
+    padding: 5px;
+}
+.reviewContent__name--andRating{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: flex-start;
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+.list-stars{
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.list-stars > li {
+    float:left;
+}
+.reviewContent__the--content{
+    display: flex;
+    justify-content: center;
+    border:.5px solid black;
+    border-radius: .5em;
+    background:rgba(103, 128, 159, 1);
+    margin-bottom: 2px;
+}
+#review__content{
+    padding: 10px;
+}
+.review__form{
+    position:fixed;
+    top: 40%;
+    left: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    transition: 0.5s ease-in;
+}
+#reviewForm{
+    max-width: 300px;
+    padding: 10px;
+    border: 1px solid black;
+    background: cornflowerblue;
+}
+#reviewForm .revContent:focus{
+    background-color: darkgray;
+}
+#review__form--submit{
+    cursor: pointer;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+#review__form--submit:hover{
+    opacity: 1;
 }

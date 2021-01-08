@@ -1,6 +1,10 @@
 extends layout
 
 append head
+
+  script(src="../javascripts/cookbooks.js" type="module" defer)
+    link(rel='stylesheet' href='/stylesheets/cookbooks.css')
+
   //- add page specific styles by appending to the head
   link(rel='stylesheet' href='/stylesheets/index.css')
   //- add page specific js

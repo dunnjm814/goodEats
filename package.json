@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "nodemon -r dotenv/config ./bin/www",
+        "start": "per-env",
         "start:development": "nodemon -r dotenv/config ./bin/www .",
         "start:production": "node ./bin/www ."
     },
