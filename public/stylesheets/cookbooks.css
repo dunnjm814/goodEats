@@ -1,3 +1,8 @@
+html {
+    background-image: url('../images/pexels-chan-walrus-958545.jpg');
+    background-size: cover;
+}
+
 .navbar {
     display: flex;
     flex-direction: row;
@@ -6,6 +11,7 @@
     border: 2px black solid;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);
+    color: whitesmoke;
 }
 
 .header-1 {
@@ -30,18 +36,50 @@
 
 .card {
     display: flex;
-    width: 80%;
-    height: 200px;
+    flex-direction: column;
+    width: 40%;
+    height: fit-content;
+    max-height: 400px;
     overflow: hidden;
-    border: 2px red solid;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);
     box-shadow: 10px 5px 5px black;
     margin: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    color: whitesmoke;
 }
 
 .card h2 {
     font-size: 22px;
     font-weight: bold;
     margin: 2px;
+}
+
+img {
+    border-radius: 20px;
+    padding: 10px;
+    height: auto;
+}
+
+.recipe_images {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 80%;
+}
+
+.hover-popout {
+    transition: all .5s ease-in-out;
+}
+
+.hover-popout:hover {
+    transform: scale(1.05);
+    max-width: 100%;
+}
+
+.card-inner {
+    max-height: 100%;
 }

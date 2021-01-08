@@ -19,37 +19,32 @@
     width: 33%;
 }
 
-.recipe-library {
-    width: 40%;
-    overflow: hidden;
-}
-
 .card {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    height: 200px;
-    overflow: scroll;
+    width: 40%;
+    height: fit-content;
+    max-height: 400px;
+    overflow: hidden;
     border: 2px red solid;
-    margin: 5px;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);
     box-shadow: 10px 5px 5px black;
+    margin: 20px;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.card_body {
-    margin: 2px;
-}
-
-.card h3 {
+.card h2 {
     font-size: 22px;
     font-weight: bold;
     margin: 2px;
 }
 
-.card p {
-    font-size: 20px;
-    margin: 2px;
+img {
+    border-radius: 20px;
+    padding: 10px;
+    height: auto;
 }
 
 #logout-user-button {

@@ -38,22 +38,4 @@ router.get('/dashboard', csrfProtection, asyncHandler(async(req, res, next) => {
 
 }));
 
-router.get('/cookbooks', csrfProtection, asyncHandler(async(req, res, next) => {
-    if (!res.locals.authenticated) {
-        return res.redirect('/')
-    }
-    const userId = res.locals.user.id
-    const user = await db.User.findByPk(userId);
-    const cookBooks = await db.CookBook.findAll({
-        where: {
-            userId: userId
-        },
-        include: db.Recipe
-    });
-
-    console.log(cookBooks[0].Recipes[0].CookBookRecipe.cooked)
-
-    res.render('cookbooks', { user, cookBooks });
-}));
-
 module.exports = router;
