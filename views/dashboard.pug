@@ -6,7 +6,7 @@ block content
     link(rel='stylesheet' href='/stylesheets/dashboard.css')
 
     div(class="dashboard-page")
-        h1 #{user.userName}'s DASHBOARD
+        h1(class='dashboard-title') #{user.userName}'s Dashboard
 
         div(class="navbar")
             div(class='nav-icons')
@@ -26,18 +26,20 @@ block content
                 div(class="column_title")
                     h1 Recipe Library
                 each recipe in recipes
-                    div(class="card")
+                    a(class="card hover" href=`http://localhost:8080/recipes/${recipe.id}`)
                         div(class="card_header")
-                            h3 #{recipe.title} #{recipe.avgRating}
+                            h3 #{recipe.title} #{recipe.avgRating} stars
+                                h4(id='recipe-id') #{recipe.id}
                         div(class="card_body")
                             img(src=recipe.foodImg, class="food_img", alt=recipe.title)
             div(class="top-rated-column")
                 div(class="column_title")
                     h1 Top Rated
                 each recipe in topRecipes
-                    div(class="card")
+                    a(class="card hover" href=`http://localhost:8080/recipes/${recipe.id}` )
                         div(class="card_header")
-                            h3 #{recipe.title} #{recipe.avgRating}
+                            h3 #{recipe.title} #{recipe.avgRating} stars
+                                h4(id='recipe-id') #{recipe.id}
                         div(class="card_body")
                             img(src=recipe.foodImg, class="food_img", alt=recipe.title)
 

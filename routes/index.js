@@ -39,7 +39,7 @@ router.get('/dashboard', csrfProtection, asyncHandler(async(req, res, next) => {
         order: [
             ['avgRating', 'DESC']
         ],
-        limit: 5
+        limit: 3
     })
     const cookbooks = await db.CookBook.findAll({
         where: {

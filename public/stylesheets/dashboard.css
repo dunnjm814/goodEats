@@ -8,6 +8,9 @@
     padding: 0px;
     position: fixed;
 } */
+.dashboard-title {
+    font-family: Arial, Helvetica, sans-serif;
+}
 .navbar {
     display: flex;
     position: sticky;
@@ -50,17 +53,24 @@
 }
 
 .cookbook-column {
-    border-right: 1px black solid;
+    position: fixed;
     width: 33%;
+    left: 0px;
+    height: 100vh;
 }
 
 .recipe-library-column {
+    margin: 0 auto;
     border-right: 1px black solid;
-    width: 33%;
+    border-left: 1px black solid;
+    width: 32%;
+    
 }
 
 .top-rated-column {
+    position: fixed;
     width: 33%;
+    right: 0px;
 }
 
 .card {
@@ -72,8 +82,20 @@
     border: 2px red solid;
     margin: 5px;
     border-radius: 5px;
+    border-style: inset;
     background-color: rgba(0, 0, 0, .2);
     box-shadow: 10px 5px 5px black;
+}
+#recipe-id {
+    visibility: hidden;
+}
+
+.hover {
+    transition: all .2s ease-in-out;
+}
+
+.hover:hover {
+    transform: scale(1.05);
 }
 
 .card_body {
