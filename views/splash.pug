@@ -1,74 +1,79 @@
-extends layout
+doctype html
+html
+  head
+      block head
+        title='GoodEats'
+        link(rel='icon' href='../favicon.jpg' type='image/jpg')
+        link(rel='stylesheet' href='/stylesheets/splash.css')
+        script(src='../javascripts/splash.js' type='module' defer)
+  body
+    block content
+        div(id='bodyContainer')
+            h1(id='header-1') Welcome to GoodEats
+            div(id='buttons')
+                div(class='buttonDiv')
+                    button(id='logInButton') Log In
+                div(class='buttonDiv')
+                    button(id='signUpButton') Sign Up
+                div(class='buttonDiv')
+                    button(id='demoButton') Test Drive
+            div(class='formHolder')
+                if errors
+                    div(class='alert' role='alert')
+                        p The following error(s) occurred:
+                        ul
+                            each error in errors
+                                li=error
 
-block content
-    script(src='../javascripts/splash.js' type='module' defer)
-    link(rel='stylesheet' href='/stylesheets/splash.css')
-    div(class='bodyContainer')
-        h1(class='header-1') Welcome to GoodEats
-        div(class='buttons')
-            div(class='buttonDiv')
-                button(id='logInButton') Log In
-            div(class='buttonDiv')
-                button(id='signUpButton') Sign Up
-            div(class='buttonDiv')
-                button(id='demoButton') Test Drive
-        div(class='formHolder')
-            if errors
-                div(class='alert' role='alert')
-                    p The following error(s) occurred:
-                    ul
-                        each error in errors
-                            li=error
+                div(id='innerForm')
 
+                    form(action='/users/login' method='post' id='loginForm' class=`${displayLogin} splash__form` )
+                        input(type='hidden' name='_csrf' value=token)
+                        table
+                            thead
+                                tr
+                                    th(colspan=2) Enter user detail
+                            tbody
+                                tr
+                                    td
+                                        label(for='email') Email
+                                    td
+                                        input(type='email' name='email' value=user.email placeholder='enter your email')
+                                tr
+                                    td
+                                        label(for='password') Password
+                                    td
+                                        input(type='password' name='password' placeholder='enter your password')
+                        button(type='submit' class='loginButton') Login!
+                    form(action='/users/signup' method='post' id='signupForm' class='hidden splash__form')
+                        input(type='hidden' name='_csrf' value=token)
+                        table
+                            thead
+                                tr
+                                th(colspan=2) Enter user information
+                            tbody
+                                tr
+                                    td
+                                        label(for='userName') UserName
+                                    td
+                                        input(type='userName' name='userName' value=user.userName placeholder='Enter your UserName')
+                                tr
+                                    td
+                                        label(for='email') Email
+                                    td
+                                        input(type='email' name='email' value=user.email placeholder='Enter your email')
+                                tr
+                                    td
+                                        label(for='password') Password
+                                    td
+                                        input(type='password' name='password' placeholder='Enter your password')
+                                tr
+                                    td
+                                        label(for='confirmedPassword') Confirmed Password
+                                    td
+                                        input(type='password' name='confirmedPassword' placeholder='Confirm password')
+                        button(type='submit' class='signup-button') Signup
+                    form(action='/users/dashboard/5' method='get' id='demoUserForm' class='hidden splash__form' )
 
-            form(action='/users/login' method='post' id='loginForm' class=displayLogin )
-                input(type='hidden' name='_csrf' value=token)
-
-                table
-                    thead
-                        tr
-                            th(colspan=2) Enter user detail
-                    tbody
-                        tr
-                            td
-                                label(for='email') Email
-                            td
-                                input(type='email' name='email' value=user.email placeholder='enter your email')
-                        tr
-                            td
-                                label(for='password') Password
-                            td
-                                input(type='password' name='password' placeholder='enter your password')
-                button(type='submit' class='loginButton') Login!
-            form(action='/users/signup' method='post' id='signupForm' class='hidden')
-                input(type='hidden' name='_csrf' value=token)
-                table
-                    thead
-                        tr
-                        th(colspan=2) Enter user information
-                    tbody
-                        tr
-                            td
-                                label(for='userName') UserName
-                            td
-                                input(type='userName' name='userName' value=user.userName placeholder='Enter your UserName')
-                        tr
-                            td
-                                label(for='email') Email
-                            td
-                                input(type='email' name='email' value=user.email placeholder='Enter your email')
-                        tr
-                            td
-                                label(for='password') Password
-                            td
-                                input(type='password' name='password' placeholder='Enter your password')
-                        tr
-                            td
-                                label(for='confirmedPassword') Confirmed Password
-                            td
-                                input(type='password' name='confirmedPassword' placeholder='Confirm password')
-                button(type='submit' class='signup-button') Signup
-            form(action='/users/dashboard/5' method='get' id='demoUserForm' class='hidden' )
-
-                p Use this feature to test out the site, but none of your information will be saved
-                button(type='submit' class='signup-button') Enter GoodEats
+                        p Use this feature to test out the site, but none of your information will be saved
+                        button(type='submit' class='signup-button') Enter GoodEats
