@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    const reviewForm = document.getElementById('reviewForm');
+    const reviewForm = document.querySelector('.review__form');
     const displayFormButton = document.getElementById('displayReviewButton')
     const submitFormButton = document.getElementById('review__form--submit')
 
