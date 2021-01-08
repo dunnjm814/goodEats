@@ -31,16 +31,22 @@ router.get('/dashboard', csrfProtection, asyncHandler(async(req, res, next) => {
     if (!res.locals.authenticated) {
         return res.redirect('/')
     }
-    
+
     const userId = res.locals.user.id
     const user = await db.User.findByPk(userId);
     const recipes = await db.Recipe.findAll();
+    const topRecipes = await db.Recipe.findAll({
+        order: [
+            ['avgRating', 'DESC']
+        ],
+        limit: 5
+    })
     const cookbooks = await db.CookBook.findAll({
         where: {
             userId: userId
         }
     })
-    res.render('dashboard', { user, recipes, cookbooks });
+    res.render('dashboard', { user, recipes, cookbooks, topRecipes });
 
 }));
 

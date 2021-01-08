@@ -34,5 +34,11 @@ block content
         div(class="top-rated column")
             div(class="column_title")
                 h1 Top Rated
+            each recipe in topRecipes
+                div(class="card")
+                    div(class="card_header")
+                        h3 #{recipe.title} #{recipe.avgRating}
+                    div(class="card_body")
+                        img(src=recipe.foodImg, class="food_img", alt=recipe.title)
 
 //-  p #{recipe.description}
