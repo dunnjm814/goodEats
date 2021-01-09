@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
     head
-        meta(charset='UTF-8')
+        meta(charset='UTF-16')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
         script(src='../javascripts/recipe.js' type='module' defer)
         link(rel='stylesheet', href='/stylesheets/recipe-page.css')
@@ -9,16 +9,22 @@ html(lang='en')
 
         title Recipes
     body
-        div(class='header-1')
-            h1=recipe.title
-            h2(class='recipeRating')=recipe.avgRating
-            //- still need to get avgRating
+        div(id='headings-wrap')
+            div(class='header-1')
+                h1(id='title')=recipe.title
+            span(id='recipe__avgRating--andstars')
+                h2(class='recipeRating')=recipe.avgRating
+                -let n=0
+                    while n<recipe.avgRating
+                        span(id='the-stars_')
+                            img(id='star' src='../images/star-icon.png')
+                        -n++
         div(class='recipe__recipeCard')
             div(class='recipe__description')
                 each recipeDescription in recipeDescriptions
                     p=recipeDescription
                 div
-                    img(src=recipe.foodImg, alt=recipe.title)
+                    img(id='recipeImg' src=recipe.foodImg, alt=recipe.title)
                 div(class='recipe__ingredients')
                     h3(class='header-3') Ingredients
                     ul
@@ -26,30 +32,38 @@ html(lang='en')
                             li=recipeIngredient
                 div(class='recipe__directions')
                     h3(class='header-3') Directions
-                    ul
+                    ol
                         each recipeDirection in recipeDirections
                             li=recipeDirection
-                    div(class='reviewCookbookWrap')
-                        div(class='recipe__reviewButton')
-                            button(id='displayReviewButton') Write A Review
-                        div
-                            button(class='recipe__cookBook--button') Add to Cookbook
-                            //- ask about this for add to cookbooks
+            div(class='reviewCookbookWrap')
+                div(class='recipe__reviewButton')
+                    button(id='displayReviewButton') Write A Review
+                div
+                    button(class='recipe__cookBook--button') Add to Cookbook
+                    //- ask about this for add to cookbooks
 
-                div(class='recipe__reviews')
-                    h3(class='header-3') Reviews
-                    div(class='recipe__review')
-                        each recipeReview in recipeReviews
-                            div(class='recipe__review--content')
-                                div(class='reviewContent__name--andRating')
-                                    span(class='userName_and_rating')= `${recipeReview.User.userName} ${recipeReview.rating}`
-                                    -let n=0
-                                    while n<recipeReview.rating
-                                        span(id='the-stars') &#127775
-                                        -n++
-                                div(class='reviewContent__the--content')
-                                    p(id='review__content')=recipeReview.revContent
-                        //- how to oder the reviews
+            div(class='recipe__reviews')
+                h3(class='header-3') Reviews
+                div(class='recipe__review')
+                    each recipeReview in recipeReviews
+                        div(class='recipe__review--content')
+                            div(class='reviewContent__name--andRating')
+                                span(class='userName_and_rating')= `${recipeReview.User.userName} ${recipeReview.rating}`
+                                -let n=0
+                                while n<recipeReview.rating
+                                    span(id='the-stars')
+                                        img(id='star' src='../images/star-icon.png')
+                                    -n++
+                            div(class='reviewContent__the--content')
+                                p(id='review__content')=recipeReview.revContent
+                            if recipeReview.User.id === recipeReview.userId
+                                div(id='editDelete__container')
+                                    span(id='edit')
+                                    span(id='delete')
+                            else
+                                div(id='editDelete__container' class='hidden')
+                                  
+                    //- how to oder the reviews
 
         div(class='review__form hidden')
             form(action=`/api/recipes/${recipe.id}/review` method='post' id='reviewForm')
