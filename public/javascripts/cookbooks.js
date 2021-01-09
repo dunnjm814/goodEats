@@ -10,6 +10,7 @@ window.addEventListener("DOMContentLoaded", event => {
         if (form.classList.contains('hidden')) {
             // form.classList.add('cook-form-holder');
             form.classList.remove('hidden');
+            form.classList.add('cookbook-form-holder');
             // cookBookFlex.classList.add('hidden');
             // navBar.classList.add('hidden');
         } else {
@@ -17,6 +18,7 @@ window.addEventListener("DOMContentLoaded", event => {
             // cookBookFlex.classList.remove('hidden');
             // navBar.classList.remove('add');
             form.classList.add('hidden');
+            form.classList.remove('cookbook-form-holder');
         }
 
     });

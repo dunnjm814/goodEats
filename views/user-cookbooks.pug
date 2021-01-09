@@ -4,31 +4,24 @@ block content
 
     link(rel='stylesheet' href='/stylesheets/cookbooks.css')
     script(src="../javascripts/cookbooks.js" type="module" defer)
-    div(class='cookbook-form-holder hidden' id='cookbook-form-holder')
-        form(action='/cookbooks' method='post' id='loginForm')
+    div(class='hidden' id='cookbook-form-holder')
+        form(action='/cookbooks' method='post' class='cookbook-form')
             input(type='hidden' name='_csrf' value=token)
             table
-                thead
-                    tr
-                        th(id='login__form--title' colspan=2) Log In
                 tbody
                     tr
                         td
-                            label(id='login__form--label' for='email') Email
-                        td
-                            input(type='text' class='loginTextBox' name='email' value=user.email placeholder='enter your email')
+                            input(name='new-cookbook-name' class='new-cookbook-name-input' placeholder='New Cookbook Name')
                     tr
                         td
-                            label(id='login__form--label' for='password') Password
-                        td
-                            input(type='password' name='password' class='loginTextBox' placeholder='enter your password')
+                            button(type='submit' id='new-cookbook-submit-button') Create!
     div(class="navbar" id='navbar')
         div(class="navbar-thirds" id="navbar-thirds-header")
             .header-1
                 h1 My Cookbooks
         div(class="navbar-thirds")
         div(class="navbar-thirds")
-        div(class="navbar-thirds")
+        //- div(class="navbar-thirds")
         div(class="navbar-thirds" id="navbar-thirds-buttons")
             button(id="create-cookbook-button" class="create-cookbook-button hover-popout") Create Cookbook
             form(action="/dashboard" method="get" id="return-to-dashboard-button")
@@ -48,11 +41,11 @@ block content
                         if recipes.length > 2
                             div(class="recipe_image scroller")
                                 each recipe in recipes
-                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.9}%;height:auto; max-height:300px; width: auto;`)
+                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
                         else
                             div(class="recipe_image")
                                 each recipe in recipes
-                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.9}%;height:auto; max-height:300px; width: auto;`)
+                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
                     div(class='status')
                         if cookBook.uncooked > 0
                             h4 #{cookBook.uncooked} recipe(s) left to cook
