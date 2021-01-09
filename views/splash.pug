@@ -17,7 +17,6 @@ html
                     button(id='signUpButton') Sign Up
                 div(class='demoButton')
                     button(id='demoButton') Test Drive
-                    //- form holder relative
             div(class='formHolder')
                 div(id='innerForm' class='hidden')
                     form(action='/users/login' method='post' id='loginForm' class=`${displayLogin} hidden` )
@@ -37,7 +36,7 @@ html
                                         label(id='login__form--label' for='password') Password
                                     td
                                         input(type='password' name='password' class='loginTextBox' placeholder='enter your password')
-                        button(type='submit' id='loginButton') Login!
+                        button(type='submit' id='login__form--button') Login!
                     form(action='/users/signup' method='post' id='signupForm' class='hidden splash__form')
                         input(type='hidden' name='_csrf' value=token)
                         table
@@ -65,11 +64,11 @@ html
                                         label(id='signup__form--label' for='confirmedPassword') Confirm Password
                                     td
                                         input(type='password' class='signupTextBox' name='confirmedPassword' placeholder='Confirm password')
-                        button(type='submit' class='signup-button' id='signupButton') Signup
+                        button(type='submit' class='signup__form--button' id='signupButton') Signup
                     form(action='/users/dashboard/5' method='get' id='demoUserForm' class='hidden splash__form' )
 
                         p(id='demoUserInfo') You can use this feature to test out the site, but none of your information will be saved.
-                        button(type='submit' id='demoUserButton') Enter GoodEats
+                        button(type='submit' id='demoUser__form--button') Enter GoodEats
                     if loginErrors
                         div(class='loginErrors' role='alert')
                             ul

@@ -4,7 +4,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size:cover;
   width: 100%;
   height: 100%;
   padding: 0%;
@@ -55,7 +55,7 @@ body {
 }
 
 
-#loginButton {
+#login__form--button {
   position: absolute;
   top:110px;
   right: 60px;
@@ -68,7 +68,7 @@ body {
   color: rgb(8, 75, 32);
 
 }
-#loginButton:hover {
+#login__form--button:hover {
   transform:scale(1.20) ;
     transition: all .8s ease-in-out;
     background: black;
@@ -144,7 +144,7 @@ body {
 
 }
 
-#demoUserButton {
+#demoUser__form--button {
   position: absolute;
   top: 198px;
   right: 2px;
@@ -157,23 +157,12 @@ body {
   color: rgb(8, 75, 32);
 }
 
-#demoUserButton:hover {
+#demoUser__form--button:hover {
   transform:scale(1.20) ;
-    transition: all .8s ease-in-out;
-    background: black;
-    color: whitesmoke;
+  transition: all .8s ease-in-out;
+  background: black;
+  color: whitesmoke;
 }
-
-
-/* #bodyContainer {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  padding: 0%;
-  margin: 0%;
-} */
 
 #header-1 {
     display: flex;
@@ -187,16 +176,6 @@ body {
     right: 3%;
 }
 
-#buttons {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  /* give top and left a percentage to keep everything where it needs to be */
-}
-
 .loginErrors, .signUpErrors {
   font-size: 15px;
   color: white;
@@ -205,16 +184,16 @@ body {
 
 .loginErrors {
   position: absolute;
-  top: -94px;
-  right: 1199px;
+  top: -71px;
+  right: 1200px;
   width: 300px;
   background-color: rgba(0, 0, 0, .4);
 }
 
 .signUpErrors {
   position: absolute;
-  top: 77px;
-  left: -656px;
+  top: 90px;
+  left: -658px;
   width: 330px;
   font-weight: bold;
   background-color: rgba(0, 0, 0, .4);
@@ -223,53 +202,45 @@ body {
   transform:scale(1.20) ;
     transition: all .8s ease-in-out;
 }
-/* make buttons disapear when clicked with slow transition
- */
-/* .signUpButton > button, .logInButton > button, .demoButton > button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left:60px ;
-  padding-right: 60px;
-  margin: 90px;
-  margin-left: 10px;
-  margin-right: 10px;
-  height: 70px;
-  width: 10px;
-  transition: all .5s ease-in-out;
-  background-color: rgb(8, 75, 32, 0);
-  text-align: center;
-  font-family:Georgia, 'Times New Roman', Times, serif;
-  font-size: 25px;
-  color:black;
-  border-color: black;
-  border-radius: 20px;
-} */
-/*
+
 #signUpButton:hover, #logInButton:hover, #demoButton:hover {
     transform:scale(1.20) ;
-    transition: all .8s ease-in-out;
+    transition: 1s ease-in-out;
     background: black;
-    color: whitesmoke;
+    color: white;
   }
 
-  .logInButton {
+  #logInButton, #signUpButton, #demoButton {
+    color:black;
+    border-color: black;
+    border-radius: 20px;
+    height: 80px;
+    width: 145px;
+    font-size: 25px;
+    transition: all .5s ease-in-out;
+    background-color: rgb(8, 75, 32, 0);
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+  }
+
+  #logInButton {
     position: absolute;
-    top:41.5%;
-    left:17%;
+    top: 23.3%;
+    left: 17%;
   }
 
   .signUpButton {
     position: absolute;
-    top: 110%;
+    top: 44.8%;
     left:30.6%;
   }
 
   .demoButton {
     position: absolute;
-    top:212.3%;
+    top:78%;
     left:32.6%;
-  } */
+  }
 
 .hidden {
   visibility: hidden;
