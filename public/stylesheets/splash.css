@@ -10,11 +10,64 @@ body {
   padding: 0%;
   margin: 0%;
 }
+
+#header__1 {
+  display: flex;
+  justify-content: center;
+  padding-top: 3%;
+  font-size: 100px;
+  color: black;
+  font-family:'Palatino';
+  position: absolute;
+  top: 3%;
+  right: 3%;
+}
+
+#logInButton, #signUpButton, #demoButton {
+  color:black;
+  border-color: black;
+  border-radius: 20px;
+  height: 80px;
+  width: 145px;
+  font-size: 25px;
+  transition: all .5s ease-in-out;
+  background-color: rgb(8, 75, 32, 0);
+  text-align: center;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 25px;
+}
+
+#logInButton {
+  position: absolute;
+  top: 23.3%;
+  left: 17%;
+}
+
+.signUpButton {
+  position: absolute;
+  top: 44.8%;
+  left:30.6%;
+}
+
+.demoButton {
+  position: absolute;
+  top:78%;
+  left:32.6%;
+}
+
+#signUpButton:hover, #logInButton:hover, #demoButton:hover {
+  transform:scale(1.20) ;
+  transition: 1s ease-in-out;
+  background: black;
+  color: white;
+}
+
+
 .formHolder {
   position: relative;
 }
 
-#innerForm {
+#forms {
   background-image: url('/images/plate.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -28,7 +81,7 @@ body {
   align-items: center;
 }
 
-#loginForm {
+#login__form {
   position: absolute;
   right: 180px;
   top: 230px;
@@ -44,7 +97,7 @@ body {
   font-size: 25px;
 }
 
-.loginTextBox {
+.login__form--textBox {
   background-color: rgba(0, 0, 0, 0);
   height: 35px;
   width: 170px;
@@ -68,15 +121,8 @@ body {
   color: rgb(8, 75, 32);
 
 }
-#login__form--button:hover {
-  transform:scale(1.20) ;
-    transition: all .8s ease-in-out;
-    background: black;
-    color: whitesmoke;
-}
 
-
-#signupForm {
+#signup__form {
   position: absolute;
   font-size: 2em;
   position: absolute;
@@ -97,7 +143,7 @@ body {
   font-size: 25px;
 }
 
-.signupTextBox {
+.signup__form--textBox {
   background-color: rgba(0, 0, 0, 0);
   height: 35px;
   width: 170px;
@@ -107,7 +153,7 @@ body {
   border-radius: 8px;
 }
 
-#signupButton {
+#signup__form--submitButton {
   position: absolute;
   top: 226px;
   right: 136px;
@@ -120,21 +166,15 @@ body {
   color: rgb(8, 75, 32);
 
 }
-#signupButton:hover {
-  transform:scale(1.20) ;
-    transition: all .8s ease-in-out;
-    background: black;
-    color: whitesmoke;
-}
 
-#demoUserForm {
+#demoUser__form {
   position: absolute;
     top: 203px;
     right: 241px;
 
 }
 
-#demoUserInfo {
+#demoUser__form--info {
   position: absolute;
     top: -98px;
     right: -127px;
@@ -157,23 +197,13 @@ body {
   color: rgb(8, 75, 32);
 }
 
+#login__form--button:hover,
+#signup__form--submitButton:hover,
 #demoUser__form--button:hover {
   transform:scale(1.20) ;
-  transition: all .8s ease-in-out;
-  background: black;
-  color: whitesmoke;
-}
-
-#header-1 {
-    display: flex;
-    justify-content: center;
-    padding-top: 3%;
-    font-size: 100px;
-    color: black;
-    font-family:'Palatino';
-    position: absolute;
-    top: 3%;
-    right: 3%;
+    transition: all .8s ease-in-out;
+    background: black;
+    color: whitesmoke;
 }
 
 .loginErrors, .signUpErrors {
@@ -203,47 +233,20 @@ body {
     transition: all .8s ease-in-out;
 }
 
-#signUpButton:hover, #logInButton:hover, #demoButton:hover {
-    transform:scale(1.20) ;
-    transition: 1s ease-in-out;
-    background: black;
-    color: white;
-  }
-
-  #logInButton, #signUpButton, #demoButton {
-    color:black;
-    border-color: black;
-    border-radius: 20px;
-    height: 80px;
-    width: 145px;
-    font-size: 25px;
-    transition: all .5s ease-in-out;
-    background-color: rgb(8, 75, 32, 0);
-    text-align: center;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-size: 25px;
-  }
-
-  #logInButton {
-    position: absolute;
-    top: 23.3%;
-    left: 17%;
-  }
-
-  .signUpButton {
-    position: absolute;
-    top: 44.8%;
-    left:30.6%;
-  }
-
-  .demoButton {
-    position: absolute;
-    top:78%;
-    left:32.6%;
-  }
-
 .hidden {
   visibility: hidden;
+}
+
+input, button {
+  outline: none;
+}
+
+::placeholder {
+  color: rgb(8, 75, 32);
+}
+
+li {
+  list-style: none;
 }
 
 .fade-in {
@@ -277,14 +280,3 @@ body {
   0% {opacity:0;}
   100% {opacity:1;}
   }
-  input, button {
-    outline: none;
-  }
-  ::placeholder {
-    color: rgb(8, 75, 32);
-  }
-
-  li {
-    list-style: none;
-  }
-/* buttonDiv should be absolute*/

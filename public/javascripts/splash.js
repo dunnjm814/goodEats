@@ -1,9 +1,9 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-  const formHolder = document.getElementById('innerForm');
-  const signUpForm = document.getElementById('signupForm');
-  const logInForm = document.getElementById('loginForm');
-  const demoUserForm = document.getElementById('demoUserForm');
-  const header = document.getElementById('header-1');
+  const formHolder = document.getElementById('forms');
+  const signUpForm = document.getElementById('signup__form');
+  const logInForm = document.getElementById('login__form');
+  const demoUserForm = document.getElementById('demoUser__form');
+  const header = document.getElementById('header__1');
 
   const logInButton = document.getElementById('logInButton');
   const signUpButton = document.getElementById('signUpButton');

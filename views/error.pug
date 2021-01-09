@@ -1,6 +1,21 @@
-extends layout
-
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+doctype html
+html
+  head
+      block head
+        title='GoodEats'
+        link(rel='icon' href='../favicon.jpg' type='image/jpg')
+        link(rel="stylesheet", href="/stylesheets/error.css")
+        script(src='../javascripts/error.js' type='module' defer)
+  body
+    block content
+      div(id='header__1')
+        h1 Uh Oh! Something went wrong...
+      div(id='error__message')
+        h2= message
+      div(id='error__status')
+        h3= error.status
+      div(id='error__stack')
+        pre #{error.stack}
+      div(id='return__button')
+        form(action="/" method='get')
+          button(type='submit' id='returnHome__button')  Return Home
