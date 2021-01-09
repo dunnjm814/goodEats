@@ -16,10 +16,11 @@ router.post(
     const review = await Review.create({ userId, recipeId, revContent, rating: rating[0] })
     const recipe = await Recipe.findByPk(recipeId)
     const avgRating = recipe.avgRating
-    let numReview = recipe.numReview
+    let numReview = recipe.numReviews
     let tempSum = avgRating * numReview
     numReview++
-    let finalSum = (tempSum + rating[0])
+    let rateFromForm = parseInt(rating[0], 10)
+    let finalSum = (tempSum + rateFromForm)
     let finalAvg = Math.ceil(finalSum / numReview)
     await recipe.update({ avgRating: finalAvg, numReviews: numReview }, {
       where: {

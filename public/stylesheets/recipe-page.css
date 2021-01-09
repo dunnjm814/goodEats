@@ -33,11 +33,21 @@ h1, h2, h3 {
     font-weight: 600;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
+ol li{
+    list-style: upper-roman;
+    font-size: 25px;
+    padding: .5em;
+    line-height: 1em;
+}
 .recipe__description,
 .recipe__direction,
 .recipe__ingredients {
+    max-width: 600px;
+    margin: auto;
     color: tan;
+    background-size:cover;
+    filter: blur(4px);
+    border: 1px solid black
 }
 .recipe__reviews{
     max-width: 500px;
@@ -57,16 +67,15 @@ h1, h2, h3 {
     font-size: 20px;
     color:  cornsilk;
 }
-
-.list-stars{
-    list-style-type: none;
-    display: flex;
-    justify-content: flex-end;
-
+.userName_and_rating{
+    margin-left: 5px;
 }
-.list-stars > li {
-    float:left;
+#star{
+    max-width: 18px;
+    max-height: 18px;
 }
+
+
 .reviewContent__the--content{
     display: flex;
     justify-content: center;
@@ -97,6 +106,7 @@ h1, h2, h3 {
     border: 1px solid black;
     background: cornflowerblue;
 }
+
 .revContent{
     max-width: 275px;
 }

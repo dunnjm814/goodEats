@@ -18,6 +18,16 @@ const requireAuth = (req, res, next) => {
     }
     return next()
 }
+// const authorize = (req, res, next) => {
+//   if (!req.session.auth) {
+//     const err = new Error("Cannot perform this action");
+//     err.title = "Not authorized to view this resource.";
+//     err.status = 403;
+//     next(err);
+//   }
+//   next();
+// };
+
 
 const restoreUser = async(req, res, next) => {
     if (req.session.auth) {
