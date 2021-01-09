@@ -151,6 +151,11 @@ button {
     text-align: center;
 }
 
+input,
+button {
+    outline: none;
+}
+
 h4 {
     font-size: 40px;
     margin: 10px;
