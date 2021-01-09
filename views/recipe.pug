@@ -9,21 +9,22 @@ html(lang='en')
 
         title Recipes
     body
-        div(class='header-1')
-            h1=recipe.title
-        span(id='recipe__avgRating--andstars')
-            h2(class='recipeRating')=recipe.avgRating
-            -let n=0
-                while n<recipe.avgRating
-                    span(id='the-stars_')
-                        img(id='star' src='../images/star-icon.png')
-                    -n++
+        div(id='headings-wrap')
+            div(class='header-1')
+                h1(id='title')=recipe.title
+            span(id='recipe__avgRating--andstars')
+                h2(class='recipeRating')=recipe.avgRating
+                -let n=0
+                    while n<recipe.avgRating
+                        span(id='the-stars_')
+                            img(id='star' src='../images/star-icon.png')
+                        -n++
         div(class='recipe__recipeCard')
             div(class='recipe__description')
                 each recipeDescription in recipeDescriptions
                     p=recipeDescription
                 div
-                    img(src=recipe.foodImg, alt=recipe.title)
+                    img(id='recipeImg' src=recipe.foodImg, alt=recipe.title)
                 div(class='recipe__ingredients')
                     h3(class='header-3') Ingredients
                     ul
@@ -41,24 +42,24 @@ html(lang='en')
                     button(class='recipe__cookBook--button') Add to Cookbook
                     //- ask about this for add to cookbooks
 
-                div(class='recipe__reviews')
-                    h3(class='header-3') Reviews
-                    div(class='recipe__review')
-                        each recipeReview in recipeReviews
-                            div(class='recipe__review--content')
-                                div(class='reviewContent__name--andRating')
-                                    span(class='userName_and_rating')= `${recipeReview.User.userName} ${recipeReview.rating}`
-                                    -let n=0
-                                    while n<recipeReview.rating
-                                        span(id='the-stars')
-                                            img(id='star' src='../images/star-icon.png')
-                                        -n++
-                                div(class='reviewContent__the--content')
-                                    p(id='review__content')=recipeReview.revContent
-                                div(id='editDelete__container' class='hidden')
-                                    span(id='edit')
-                                    span(id='delete')
-                        //- how to oder the reviews
+            div(class='recipe__reviews')
+                h3(class='header-3') Reviews
+                div(class='recipe__review')
+                    each recipeReview in recipeReviews
+                        div(class='recipe__review--content')
+                            div(class='reviewContent__name--andRating')
+                                span(class='userName_and_rating')= `${recipeReview.User.userName} ${recipeReview.rating}`
+                                -let n=0
+                                while n<recipeReview.rating
+                                    span(id='the-stars')
+                                        img(id='star' src='../images/star-icon.png')
+                                    -n++
+                            div(class='reviewContent__the--content')
+                                p(id='review__content')=recipeReview.revContent
+                            div(id='editDelete__container' class='hidden')
+                                span(id='edit')
+                                span(id='delete')
+                    //- how to oder the reviews
 
         div(class='review__form hidden')
             form(action=`/api/recipes/${recipe.id}/review` method='post' id='reviewForm')
