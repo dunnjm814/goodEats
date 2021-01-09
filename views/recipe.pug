@@ -56,9 +56,13 @@ html(lang='en')
                                     -n++
                             div(class='reviewContent__the--content')
                                 p(id='review__content')=recipeReview.revContent
-                            div(id='editDelete__container' class='hidden')
-                                span(id='edit')
-                                span(id='delete')
+                            if recipeReview.User.id === recipeReview.userId
+                                div(id='editDelete__container')
+                                    span(id='edit')
+                                    span(id='delete')
+                            else
+                                div(id='editDelete__container' class='hidden')
+                                  
                     //- how to oder the reviews
 
         div(class='review__form hidden')

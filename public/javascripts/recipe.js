@@ -4,6 +4,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const submitFormButton = document.getElementById('review__form--submit')
     const reviewFormContent = document.getElementById("reviewForm");
 
+    
+
 
     displayFormButton.addEventListener('click', (event) => {
         reviewForm.classList.remove('hidden')
@@ -29,17 +31,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         // create elements
         const userSpan = document.createElement('span')
-        const rateSpan = document.createElement('span')
+        const starSpan = document.createElement('span')
         const pRevContent = document.createElement('p')
-
+        const rateSpan = document.createElement('span')
         // set innertext of new elements to text nodes
         userSpan.innerText = `${data.userName} ${data.review.rating}`;
         let n = data.review.rating;
         while (n > 0) {
-            
+
             let star = document.createElement('img')
-            star.src("../images/star-icon.png");
-            rateSpan.appendChild(star)
+            let starImg = star.src="../images/star-icon.png" ;
+            starSpan.innerHTML = starImg
+            rateSpan.appendChild(starSpan)
             n--
         }
 

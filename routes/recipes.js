@@ -3,7 +3,7 @@ const router = express.Router();
 
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
-
+const {requireAuth} = require('../auth')
 
 router.get(
   '/:id(\\d+)',
