@@ -20,9 +20,9 @@ block content
     div(class="body-flex")
         each recipe in cookBook.Recipes
             div(id="recipe-holder")
-                div(class="recipe-image-holder")
-                    img(src=recipe.foodImg alt=recipe.title class="recipe-image")
-                    div(class="recipe-all")
+                div(class="recipe-all")
+                    div(class="recipe-image-holder")
+                        img(src=recipe.foodImg alt=recipe.title class="recipe-image")
                         a(href=`http://localhost:8080/recipes/${recipe.id}` class="hover-popout card_header")
                             h3 #{recipe.title}
                             if recipe.CookBookRecipe.cooked

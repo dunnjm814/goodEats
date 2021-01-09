@@ -1,4 +1,11 @@
 body {
+    background-image: url('/images/pexels-pixabay-326268\ \(2\).jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
     margin: 0px;
     padding: 0px;
 }
@@ -60,7 +67,7 @@ body {
 }
 
 .recipe-image-holder {
-    width: 100%;
+    max-width: 90%;
     position: relative;
     margin: 0px;
     padding: 0px;
@@ -84,11 +91,13 @@ body {
     position: absolute;
     display: flex;
     justify-content: center;
-    top: 40%;
+    top: 21%;
+    left: -15%;
     width: 100%;
 }
 
 .card_header {
+    position: absolute;
     display: flex;
     flex-direction: column;
     color: whitesmoke;
@@ -98,6 +107,8 @@ body {
     justify-content: center;
     font-size: larger;
     font-weight: bold;
+    top: 28%;
+    right: 20%;
 }
 
 button {
