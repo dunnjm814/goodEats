@@ -18,6 +18,8 @@ router.get('/', nameValidators, csrfProtection, asyncHandler(async(req, res, nex
         return res.redirect('/')
     }
 
+    const userId = res.locals.user.id;
+
     const user = await db.User.findByPk(userId);
     const cookBooks = await db.CookBook.findAll({
         where: {
@@ -39,7 +41,7 @@ router.get('/', nameValidators, csrfProtection, asyncHandler(async(req, res, nex
         })
     })
 
-    res.render('user-cookbooks', { user, cookBooks });
+    res.render('user-cookbooks', { user, cookBooks, token: req.csrfToken() });
 }));
 
 router.get(
@@ -73,17 +75,10 @@ router.post(
 
         if (validatorErrors.isEmpty()) {
             const userId = res.locals.user.id;
-            const { name } = req.body;
+            const name = req.body.newCookbookName;
             const newBook = await db.CookBook.create({
-                userId: userId,
-                name: name
-            });
-            res.render('')
-
-            const { name } = req.body;
-            const userId = res.locals.user.id;
-            const cookBook = await db.CookBook.findByPk(pullCookbook, {
-                include: db.Recipe
+                userId,
+                name
             });
 
             const user = await db.User.findByPk(userId);
@@ -107,7 +102,7 @@ router.post(
                 })
             })
 
-            res.render('user-cookbooks', { user, cookBooks, errors });
+            res.render('user-cookbooks', { user, cookBooks, token: req.csrfToken() });
 
         }
     })

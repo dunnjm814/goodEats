@@ -4,17 +4,30 @@ block content
 
     link(rel='stylesheet' href='/stylesheets/cookbooks.css')
     script(src="../javascripts/cookbooks.js" type="module" defer)
-    div(class='hidden' id='cookbook-form-holder')
+    div(class='hidden' id='cookbook-form-holder' class='cookbook-form-holder')
         form(action='/cookbooks' method='post' class='cookbook-form')
             input(type='hidden' name='_csrf' value=token)
             table
                 tbody
                     tr
                         td
-                            input(name='new-cookbook-name' class='new-cookbook-name-input' placeholder='New Cookbook Name')
+                            input(name='newCookbookName' class='new-cookbook-name-input' placeholder='New Cookbook Name')
                     tr
                         td
-                            button(type='submit' id='new-cookbook-submit-button') Create!
+                            button(type='submit' id='new-cookbook-submit-button' class="hover-popout") Create!
+    div(class='hidden' id='logout-form-holder' class='logout-form-holder')
+        form(action='/users/logout' method='post' class='logout-form')
+            input(type='hidden' name='_csrf' value=token)
+            table
+                thead
+                    tr
+                        th Are you sure you want to logout?
+                tbody
+                    tr
+                        td
+                            button(type='submit' id='logout-confirm-button' class="hover-popout") Yep!
+                        td
+                            button(id="no-logout-button" class="hover-popout") No!
     div(class="navbar" id='navbar')
         div(class="navbar-thirds" id="navbar-thirds-header")
             .header-1
@@ -26,8 +39,7 @@ block content
             button(id="create-cookbook-button" class="create-cookbook-button hover-popout") Create Cookbook
             form(action="/dashboard" method="get" id="return-to-dashboard-button")
                 button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
-            form(action="/users/logout" method="post" id="logout-user-button")
-                button(type='submit' class="logout-button hover-popout") Logout
+            button(id="logout-button" class="logout-button hover-popout") Logout
     div(class="body-flex" id="body-flex")
         div(class="cookbook-flex" id="cookbook-flex")
             each cookBook, index in cookBooks
@@ -49,5 +61,7 @@ block content
                     div(class='status')
                         if cookBook.uncooked > 0
                             h4 #{cookBook.uncooked} recipe(s) left to cook
+                        else if recipes.length < 1
+                            h4 No recipes here!
                         else
                             h4 All recipes cooked!

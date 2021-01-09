@@ -23,17 +23,20 @@ body {
     width: 100%;
     border-radius: 5px;
     max-height: 100px;
+    justify-content: space-between;
     position: fixed;
 }
 
 .navbar-thirds {
-    width: 25%;
+    min-width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #navbar-thirds-buttons {
+    width: fit-content;
+    min-width: 25%;
     display: flex;
     justify-content: space-around;
     background-color: rgba(0, 0, 0, .2);
@@ -41,6 +44,8 @@ body {
 }
 
 #navbar-thirds-header {
+    width: fit-content;
+    min-width: 25%;
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, .2);
@@ -164,4 +169,35 @@ h4 {
 img {
     padding: 10px;
     margin: 10px;
+    border-radius: 20px;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.logout-form-holder {
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    position: fixed;
+    top: 40%;
+    right: 5%;
+}
+
+.logout-form {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 2px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: 10px 5px 5px black;
+    font-size: 24px;
+    height: fit-content;
+    color: aliceblue;
 }
