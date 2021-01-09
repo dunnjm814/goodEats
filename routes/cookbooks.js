@@ -30,7 +30,7 @@ router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
         })
     })
 
-    res.render('cookbooks', { user, cookBooks });
+    res.render('user-cookbooks', { user, cookBooks });
 }));
 
 router.get(
