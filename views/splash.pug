@@ -19,61 +19,64 @@ html
                     button(id='demoButton') Test Drive
                     //- form holder relative
             div(class='formHolder')
-                if errors
-                    div(class='alert' role='alert')
-                        p The following error(s) occurred:
-                        ul
-                            each error in errors
-                                li=error
-
                 div(id='innerForm' class='hidden')
-                    form(action='/users/login' method='post' id='loginForm' class=`${displayLogin} splash__form` )
+                    form(action='/users/login' method='post' id='loginForm' class=`${displayLogin} hidden` )
                         input(type='hidden' name='_csrf' value=token)
                         table
                             thead
                                 tr
-                                    th(id='login__form--title' colspan=2) Enter User Information
+                                    th(id='login__form--title' colspan=2) Log In
                             tbody
                                 tr
                                     td
                                         label(id='login__form--label' for='email') Email
                                     td
-                                        input(type='text' id='loginTextBox' name='email' value=user.email placeholder='enter your email')
+                                        input(type='text' class='loginTextBox' name='email' value=user.email placeholder='enter your email')
                                 tr
                                     td
                                         label(id='login__form--label' for='password') Password
                                     td
-                                        input(type='password' name='password' id='loginTextBox' placeholder='enter your password')
+                                        input(type='password' name='password' class='loginTextBox' placeholder='enter your password')
                         button(type='submit' id='loginButton') Login!
                     form(action='/users/signup' method='post' id='signupForm' class='hidden splash__form')
                         input(type='hidden' name='_csrf' value=token)
                         table
                             thead
                                 tr
-                                th(colspan=2) Enter user information
+                                th(id='signup__form--title' colspan=2) Sign Up
                             tbody
                                 tr
                                     td
-                                        label(for='userName') UserName
+                                        label(id='signup__form--label' for='username') Username
                                     td
-                                        input(type='userName' name='userName' value=user.userName placeholder='Enter your UserName')
+                                        input(type='text' class='signupTextBox' name='username' value=user.userName placeholder='Enter your Username')
                                 tr
                                     td
-                                        label(for='email') Email
+                                        label(id='signup__form--label' for='email') Email
                                     td
-                                        input(type='email' name='email' value=user.email placeholder='Enter your email')
+                                        input(type='text' name='email' class='signupTextBox' placeholder='Enter your email')
                                 tr
                                     td
-                                        label(for='password') Password
+                                        label(id='signup__form--label' for='password') Password
                                     td
-                                        input(type='password' name='password' placeholder='Enter your password')
+                                        input(type='password' name='password' class='signupTextBox' placeholder='Enter your password')
                                 tr
                                     td
-                                        label(for='confirmedPassword') Confirmed Password
+                                        label(id='signup__form--label' for='confirmedPassword') Confirm Password
                                     td
-                                        input(type='password' name='confirmedPassword' placeholder='Confirm password')
-                        button(type='submit' class='signup-button') Signup
+                                        input(type='password' class='signupTextBox' name='confirmedPassword' placeholder='Confirm password')
+                        button(type='submit' class='signup-button' id='signupButton') Signup
                     form(action='/users/dashboard/5' method='get' id='demoUserForm' class='hidden splash__form' )
 
-                        p Use this feature to test out the site, but none of your information will be saved
-                        button(type='submit' id='signup-button') Enter GoodEats
+                        p(id='demoUserInfo') You can use this feature to test out the site, but none of your information will be saved.
+                        button(type='submit' id='demoUserButton') Enter GoodEats
+                    if loginErrors
+                        div(class='loginErrors' role='alert')
+                            ul
+                                each error in loginErrors
+                                    li=error
+                    if signUpErrors
+                        div(class='signUpErrors' role='alert')
+                            ul
+                                each error in signUpErrors
+                                    li=error
