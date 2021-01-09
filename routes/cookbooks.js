@@ -6,14 +6,14 @@ const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 
 const nameValidators = [
-    check('new-cookbook-name')
+    check('newCookbookName')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a name.')
+    .withMessage('Please provide a name')
     .isLength({ max: 50 })
-    .withMessage('Name was over 50 characters')
+    .withMessage('Name must be under 50 characters')
 ];
 
-router.get('/', nameValidators, csrfProtection, asyncHandler(async(req, res, next) => {
+router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
     if (!res.locals.authenticated) {
         return res.redirect('/')
     }
@@ -25,7 +25,10 @@ router.get('/', nameValidators, csrfProtection, asyncHandler(async(req, res, nex
         where: {
             userId: userId
         },
-        include: db.Recipe
+        include: db.Recipe,
+        order: [
+            ['updatedAt', 'DESC']
+        ]
     });
 
     cookBooks.forEach(cookBook => {
@@ -54,7 +57,10 @@ router.get(
         const userId = res.locals.user.id;
         const pullCookbook = req.params.id;
         const cookBook = await db.CookBook.findByPk(pullCookbook, {
-            include: db.Recipe
+            include: db.Recipe,
+            order: [
+                ['updatedAt', 'DESC']
+            ]
         });
 
         res.render('cookbook', {
@@ -65,6 +71,7 @@ router.get(
 
 router.post(
     '/',
+    nameValidators,
     csrfProtection,
     asyncHandler(async(req, res) => {
         if (!res.locals.authenticated) {
@@ -80,31 +87,63 @@ router.post(
                 userId,
                 name
             });
-
-            const user = await db.User.findByPk(userId);
-            const cookBooks = await db.CookBook.findAll({
-                where: {
-                    userId: userId
-                },
-                include: db.Recipe
-            });
-
-            cookBooks.forEach(cookBook => {
-                cookBook.Recipes.forEach(recipe => {
-                    if (!recipe.cooked) {
-                        if (!cookBook.uncooked) {
-                            cookBook.uncooked = 1;
-                        } else {
-                            cookBook.uncooked++;
-                        }
-                    }
-
-                })
-            })
-
-            res.render('user-cookbooks', { user, cookBooks, token: req.csrfToken() });
-
+            return res.redirect('/cookbooks')
         }
+
+        const userId = res.locals.user.id;
+        const user = await db.User.findByPk(userId);
+        const cookBooks = await db.CookBook.findAll({
+            where: {
+                userId: userId
+            },
+            include: db.Recipe,
+            order: [
+                ['updatedAt', 'DESC']
+            ]
+        });
+
+        cookBooks.forEach(cookBook => {
+            cookBook.Recipes.forEach(recipe => {
+                if (!recipe.cooked) {
+                    if (!cookBook.uncooked) {
+                        cookBook.uncooked = 1;
+                    } else {
+                        cookBook.uncooked++;
+                    }
+                }
+
+            })
+        })
+
+        const errors = validatorErrors.array().map((error) => error.msg);
+
+
+        console.log(errors)
+
+        res.render('user-cookbooks', { errors, user, cookBooks, token: req.csrfToken() })
+
+    })
+);
+
+router.post(
+    '/delete',
+    csrfProtection,
+    asyncHandler(async(req, res) => {
+        if (!res.locals.authenticated) {
+            return res.redirect('/')
+        }
+
+        const cookBookId = parseInt(req.body.deleteCookbook);
+
+        await db.CookBook.destroy({
+            where: {
+                id: cookBookId
+            }
+        });
+
+        res.redirect('/cookbooks');
+
+
     })
 );
 

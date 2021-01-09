@@ -74,6 +74,31 @@ html {
     color: whitesmoke;
 }
 
+.cookbook-name {
+    width: fit-content;
+}
+
+.delete {
+    display: none;
+    transition: all 1.5s ease-in-out;
+}
+
+.card:hover .delete {
+    display: block;
+    width: fit-content;
+    height: auto;
+    font-size: 15px;
+    padding: 2px;
+    margin: 2px;
+}
+
+.delete button {
+    width: fit-content;
+    height: fit-content;
+    padding: 2px;
+    margin: 2px;
+}
+
 .card h3 {
     font-size: 22px;
     font-weight: bold;
@@ -122,11 +147,11 @@ html {
 
 .card_header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     color: whitesmoke;
     width: 60%;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     font-size: larger;
     font-weight: bold;
     top: 28%;

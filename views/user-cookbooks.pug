@@ -8,6 +8,13 @@ block content
         form(action='/cookbooks' method='post' class='cookbook-form')
             input(type='hidden' name='_csrf' value=token)
             table
+                if errors
+                    thead
+                        tr
+                            th
+                                ul
+                                    each error in errors
+                                        li=error
                 tbody
                     tr
                         td
@@ -48,7 +55,11 @@ block content
                 - const width = 1/recipeLength * 100;
                 a(href=`http://localhost:8080/cookbooks/${cookBook.id}` class="card hover-popout")
                     div(class="card_header")
-                        h2 #{cookBook.name}
+                        h2(class="cookbook-name") #{cookBook.name}
+                        form(action="/cookbooks/delete" method="post" id="delete-cookbook-button" class="delete")
+                            input(type='hidden' name='_csrf' value=token)
+                            input(type='hidden' name='deleteCookbook' value=cookBook.id)
+                            button(type='submit' class="delete-cookbook-button hover-popout") Delete Cookbook
                     div(id="box")
                         if recipes.length > 2
                             div(class="recipe_image scroller")
