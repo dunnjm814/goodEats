@@ -1,0 +1,32 @@
+extends layout
+
+block content
+
+    script(src="../javascripts/cookbooks.js" type="module" defer)
+    link(rel='stylesheet' href='/stylesheets/cookbooks.css')
+
+    div(class="navbar")
+        .header-1
+            h1 #{user.userName}'s Cookbooks
+        form(action="/dashboard" method="get" id="return-to-dashboard-button")
+            button(type='submit' class="return-to-dashboard-button hover-popout") Return to Dashboard
+        form(action="/users/logout" method="post" id="logout-user-button")
+            button(type='submit' class="logout-button hover-popout") Logout
+    div(class="body-flex")
+        div(class="cookbook-flex")
+            each cookBook, index in cookBooks
+                - const recipes = cookBook.Recipes;
+                - const recipeLength = recipes.length;
+                - const width = 1/recipeLength * 100;
+                a(href=`http://localhost:8080/cookbooks/${cookBook.id}` class="card hover-popout")
+                    div(class="card_header")
+                        h2 #{cookBook.name}
+                    div(class="card_inner")
+                        div(class="recipe_images")
+                            each recipe in recipes
+                                img(src=recipe.foodImg, alt=recipe.title style=`width:${width * .9}%;height:auto; max-height:300px; width: auto;`)
+                    div(class='status')
+                        if cookBook.uncooked > 0
+                            p #{cookBook.uncooked} recipe(s) left to cook
+                        else
+                            p All recipes cooked!

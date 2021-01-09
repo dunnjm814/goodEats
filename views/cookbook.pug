@@ -1,0 +1,31 @@
+extends layout
+
+block content
+
+    script(src="../javascripts/cookbook.js" type="module" defer)
+    link(rel='stylesheet' href='/stylesheets/cookbook.css')
+
+    div(class="navbar")
+        div(class="navbar-thirds")
+        div(class="navbar-thirds")
+            .header-1
+                h1 Cookbook: #{cookBook.name}
+        div(class="navbar-thirds")
+            form(action="/dashboard" method="get" id="return-to-dashboard-button")
+                button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
+            form(action="/cookbooks" method="get" id="cookbooks-button")
+                button(type='submit' class="cookbooks-button hover-popout") Cookbooks
+            form(action="/users/logout" method="post" id="logout-user-button")
+                button(type='submit' class="logout-button hover-popout") Logout
+    div(class="body-flex")
+        each recipe in cookBook.Recipes
+            div(id="recipe-holder")
+                div(class="recipe-all")
+                    div(class="recipe-image-holder")
+                        img(src=recipe.foodImg alt=recipe.title class="recipe-image")
+                        a(href=`http://localhost:8080/recipes/${recipe.id}` class="hover-popout card_header")
+                            h3 #{recipe.title}
+                            if recipe.CookBookRecipe.cooked
+                                h4 Cook Again!
+                            else
+                                h4 Cook Me!

@@ -1,0 +1,137 @@
+body {
+    background-image: url('/images/pexels-pixabay-326268\ \(2\).jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    border: 2px black solid;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .2);
+    max-height: 100px;
+}
+
+.navbar-thirds {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 200px;
+    overflow: hidden;
+    border: 2px red solid;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: 10px 5px 5px black;
+}
+
+.card_body {
+    margin: 2px;
+}
+
+.card h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 2px;
+}
+
+.card p {
+    font-size: 20px;
+    margin: 2px;
+}
+
+.hover-popout {
+    transition: all .5s ease-in-out;
+    text-decoration: none;
+}
+
+.hover-popout:hover {
+    transform: scale(1.05);
+    max-width: 100%;
+}
+
+.recipe-image-holder {
+    max-width: 90%;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+
+.recipe-image {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+}
+
+.recipe-holder {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    width: 90%;
+}
+
+.recipe-all {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 21%;
+    left: -15%;
+    width: 100%;
+}
+
+.card_header {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+    background-color: rgba(0, 0, 0, .2);
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    font-weight: bold;
+    top: 28%;
+    right: 20%;
+}
+
+button {
+    margin: 20px;
+    padding: 12px;
+    height: 60px;
+    width: 110px;
+    color: burlywood;
+    background-color: red;
+    border-radius: 6px;
+}
+
+h3 {
+    font-size: 50px;
+    margin: 10px;
+}
+
+h4 {
+    font-size: 40px;
+    margin: 10px;
+}
+
+img {
+    margin: 0px;
+    padding: 0px;
+}

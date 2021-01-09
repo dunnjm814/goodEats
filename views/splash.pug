@@ -1,79 +1,82 @@
-extends layout
+doctype html
+html
+  head
+      block head
+        title='GoodEats'
+        link(rel='icon' href='../favicon.jpg' type='image/jpg')
+        link(rel='stylesheet' href='/stylesheets/splash.css')
+        script(src='../javascripts/splash.js' type='module' defer)
+  body
+    block content
+        div(id='bodyContainer')
+            h1(id='header-1') Welcome to GoodEats
+            div(id='buttons')
+                div(class='logInButton')
+                    button(id='logInButton') Log In
+                div(class='signUpButton')
+                    button(id='signUpButton') Sign Up
+                div(class='demoButton')
+                    button(id='demoButton') Test Drive
+                    //- form holder relative
+            div(class='formHolder')
+                div(id='innerForm' class='hidden')
+                    form(action='/users/login' method='post' id='loginForm' class=`${displayLogin} hidden` )
+                        input(type='hidden' name='_csrf' value=token)
+                        table
+                            thead
+                                tr
+                                    th(id='login__form--title' colspan=2) Log In
+                            tbody
+                                tr
+                                    td
+                                        label(id='login__form--label' for='email') Email
+                                    td
+                                        input(type='text' class='loginTextBox' name='email' value=user.email placeholder='enter your email')
+                                tr
+                                    td
+                                        label(id='login__form--label' for='password') Password
+                                    td
+                                        input(type='password' name='password' class='loginTextBox' placeholder='enter your password')
+                        button(type='submit' id='loginButton') Login!
+                    form(action='/users/signup' method='post' id='signupForm' class='hidden splash__form')
+                        input(type='hidden' name='_csrf' value=token)
+                        table
+                            thead
+                                tr
+                                th(id='signup__form--title' colspan=2) Sign Up
+                            tbody
+                                tr
+                                    td
+                                        label(id='signup__form--label' for='username') Username
+                                    td
+                                        input(type='text' class='signupTextBox' name='username' value=user.userName placeholder='Enter your Username')
+                                tr
+                                    td
+                                        label(id='signup__form--label' for='email') Email
+                                    td
+                                        input(type='text' name='email' class='signupTextBox' placeholder='Enter your email')
+                                tr
+                                    td
+                                        label(id='signup__form--label' for='password') Password
+                                    td
+                                        input(type='password' name='password' class='signupTextBox' placeholder='Enter your password')
+                                tr
+                                    td
+                                        label(id='signup__form--label' for='confirmedPassword') Confirm Password
+                                    td
+                                        input(type='password' class='signupTextBox' name='confirmedPassword' placeholder='Confirm password')
+                        button(type='submit' class='signup-button' id='signupButton') Signup
+                    form(action='/users/dashboard/5' method='get' id='demoUserForm' class='hidden splash__form' )
 
-block content
-    script(src='../javascripts/splash.js' type='module' defer)
-    link(rel='stylesheet' href='/stylesheets/splash.css')
-    img(src='/images/pexels-chan-walrus-958545.jpg' class='splashImg')
-
-    div(class='header-1')
-        h1 Welcome to GoodEats!
-    div(class='buttons')
-        div(class='buttonDiv')
-            button(id='signUpButton') Sign Up
-            span Sign up to have access
-        div(class='buttonDiv')
-            button(id='logInButton') Log In
-            span Already a user? Log in!
-        div(class='buttonDiv')
-            button(id='demoButton') Demo User
-            span Test out the site without having to enter any information
-    div(class='formHolder')
-        if errors
-            div(class='alert' role='alert')
-                p The following error(s) occurred:
-                ul
-                    each error in errors
-                        li=error
-
-
-        form(action='/users/login' method='post' id='loginForm' class=displayLogin)
-            input(type='hidden' name='_csrf' value=token)
-
-            table
-                thead
-                    tr
-                        th(colspan=2) Enter user detail
-                tbody
-                    tr
-                        td
-                            label(for='email') Email
-                        td
-                            input(type='email' name='email' value=user.email placeholder='enter your email')
-                    tr
-                        td
-                            label(for='password') Password
-                        td
-                            input(type='password' name='password' placeholder='enter your password')
-            button(type='submit' class='loginButton') Login!
-        form(action='/users/signup' method='post' id='signupForm' class='hidden')
-            input(type='hidden' name='_csrf' value=token)
-            table
-                thead
-                    tr
-                    th(colspan=2) Enter user information
-                tbody
-                    tr
-                        td
-                            label(for='userName') UserName
-                        td
-                            input(type='userName' name='userName' value=user.userName placeholder='Enter your UserName')
-                    tr
-                        td
-                            label(for='email') Email
-                        td
-                            input(type='email' name='email' value=user.email placeholder='Enter your email')
-                    tr
-                        td
-                            label(for='password') Password
-                        td
-                            input(type='password' name='password' placeholder='Enter your password')
-                    tr
-                        td
-                            label(for='confirmedPassword') Confirmed Password
-                        td
-                            input(type='password' name='confirmedPassword' placeholder='Confirm password')
-            button(type='submit' class='signup-button') Signup
-        form(action='/users/dashboard/5' method='get' id='demoUserForm' class='hidden' )
-
-            p Use this feature to test out the site, but none of your information will be saved
-            button(type='submit' class='signup-button') Enter GoodEats
+                        p(id='demoUserInfo') You can use this feature to test out the site, but none of your information will be saved.
+                        button(type='submit' id='demoUserButton') Enter GoodEats
+                    if loginErrors
+                        div(class='loginErrors' role='alert')
+                            ul
+                                each error in loginErrors
+                                    li=error
+                    if signUpErrors
+                        div(class='signUpErrors' role='alert')
+                            ul
+                                each error in signUpErrors
+                                    li=error
