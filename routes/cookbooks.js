@@ -55,4 +55,26 @@ router.get(
     })
 );
 
+router.post(
+    '/',
+    csrfProtection,
+    asyncHandler(async(req, res) => {
+        if (!res.locals.authenticated) {
+            return res.redirect('/')
+        }
+        const userId = res.locals.user.id;
+        const pullCookbook = req.params.id;
+        const cookBook = await db.CookBook.findByPk(pullCookbook, {
+            include: db.Recipe
+        });
+
+        console.log(cookBook.Recipes)
+        console.log(cookBook.Recipes[0].CookBookRecipes)
+
+        res.render('cookbook', {
+            cookBook,
+        });
+    })
+);
+
 module.exports = router;
