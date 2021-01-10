@@ -1,8 +1,11 @@
 /* for the directions use numbers instead of bullet points */
-/* do we want the same font for whole site or different for differnt pages */
-body{
 
+
+/* do we want the same font for whole site or different for differnt pages */
+
+body {
     text-decoration: none;
+
     background-image: url('../images/saltwoodgrain.jpg');
 
   background-position: center;
@@ -14,8 +17,10 @@ body{
   padding: 0%;
   margin: 0%;
 
+
 }
-#headings-wrap{
+
+#headings-wrap {
     padding: 5%;
     margin:auto;
     margin-bottom: 1%;
@@ -24,7 +29,8 @@ body{
     max-width: 600px;
 
 }
-#title{
+
+#title {
     font-size: 50px;
     font-weight: bold;
     backdrop-filter: blur(6px);
@@ -32,21 +38,25 @@ body{
     border-radius: 5px;
     padding: 15px;
 }
+
 #recipe__avgRating--andstars{
     backdrop-filter: blur(6px);
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
 
+
 }
+
 .hidden {
     visibility: hidden;
 }
+
 .reviewCookbookWrap {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin:auto;
+    margin: auto;
     max-width: 400px;
 }
 
@@ -55,35 +65,42 @@ button {
     padding: 5px;
     height: 50px;
     width: 100px;
-    color:burlywood;
+    color: burlywood;
     background-color: slateblue;
     border-radius: 6px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     color: rgb(255, 255, 255);
     font-weight: 600;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-.header-3{
-    padding:10px;
+
+.header-3 {
+    padding: 10px;
     margin: 5px;
 }
-ol li{
+
+ol li {
     list-style: upper-roman;
     font-size: 25px;
     padding: 30px;
     line-height: 1em;
 }
-#recipeImg{
+
+#recipeImg {
     max-width: 550px;
     max-height: 550px;
-    display:flex;
+    display: flex;
     justify-content: center;
     padding: 5%;
 
     border-radius: 50px;
+
 }
+
 .recipe__description,
 .recipe__directions,
 .recipe__ingredients {
@@ -92,13 +109,13 @@ ol li{
     margin-top: 10px;
     margin-bottom: 10px;
     color: rgb(180, 180, 180);
-    background-size:cover;
+    background-size: cover;
     backdrop-filter: blur(10px);
     border: 1px solid black;
     border-radius: 20px;
     padding: 10px;
-
 }
+
 .recipe__description{
     padding: 20px;
 }
@@ -110,16 +127,19 @@ ol li{
     font-weight: bold;
     line-height: 50px;
 }
-.recipe__reviews{
+
+.recipe__reviews {
     max-width: 500px;
     border: 5% black;
     margin-left: 20%;
 }
-.recipe__review--content{
+
+.recipe__review--content {
     border-bottom: 1px solid rgba(46, 49, 49, 1);
     padding: 5px;
 }
-.reviewContent__name--andRating{
+
+.reviewContent__name--andRating {
     margin-left: 10px;
     display: flex;
     flex-direction: row;
@@ -127,29 +147,34 @@ ol li{
     align-items: flex-start;
     font-weight: bold;
     font-size: 25px;
-    color:  cornsilk;
+    color: cornsilk;
     padding: 10px;
 }
-.userName_and_rating{
+
+.userName_and_rating {
     margin-left: 5px;
 }
-#star{
+
+#star {
     max-width: 18px;
     max-height: 18px;
 }
 
-
-.reviewContent__the--content{
+.reviewContent__the--content {
     display: flex;
     justify-content: center;
-    border:.5px solid black;
+    border: .5px solid black;
     border-radius: .5em;
+
     background:rgba(103, 128, 159, .5);
+
     margin: 5px;
 }
-#review__content{
+
+#review__content {
     padding: 10px;
 }
+
 #editDelete__container{
     display:flex;
     flex-direction: row;
@@ -168,10 +193,10 @@ ol li{
     align-items: center;
     justify-content: center;
     width: 100%;
-
     transition: 0.5s ease-in;
 }
-#reviewForm{
+
+#reviewForm {
     display: flex;
     flex-direction: column;
     max-width: 300px;
@@ -182,20 +207,25 @@ ol li{
 
 }
 
-.revContent{
+.revContent {
     max-width: 275px;
 }
+
 #reviewForm .revContent:focus{
     transition-delay: 1s;
     background-color: rgb(211, 211, 211);
+
 }
-#review__form--submit{
+
+#review__form--submit {
     cursor: pointer;
     margin-bottom: 10px;
     opacity: 0.8;
 }
-#review__form--submit:hover{
+
+#review__form--submit:hover {
     opacity: 1;
+
 }
 #formReviewText{
     padding: 10px;
@@ -209,3 +239,4 @@ ol li{
 #review__form--submit{
     padding: 5px;
 }
+

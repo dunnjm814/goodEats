@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+
     const reviewForm = document.querySelector('.review__form');
     const displayFormButton = document.getElementById('displayReviewButton')
     const submitFormButton = document.getElementById('review__form--submit')
@@ -6,10 +7,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     displayFormButton.addEventListener('click', (event) => {
         reviewForm.classList.remove('hidden')
-
     })
     let recipeId = document.getElementById('recipeId');
     submitFormButton.addEventListener('click', async (event) => {
+
 
         event.preventDefault()
 
@@ -18,9 +19,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         const rating = form.get('rating');
 
         const res = await fetch(`/api/recipes/${recipeId.value}/review`, {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ revContent, rating }),
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ revContent, rating }),
         });
         const data = await res.json()
 
@@ -29,13 +30,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         const starSpan = document.createElement('span')
         const pRevContent = document.createElement('p')
         const rateSpan = document.createElement('span')
-        // set innertext of new elements to text nodes
+            // set innertext of new elements to text nodes
         userSpan.innerText = `${data.userName} ${data.review.rating}`;
         let n = data.review.rating;
         while (n > 0) {
 
             let star = document.createElement('img')
-            let starImg = star.src="../images/star-icon.png" ;
+            let starImg = star.src = "../images/star-icon.png";
             starSpan.innerHTML = starImg
             rateSpan.appendChild(starSpan)
             n--
@@ -96,3 +97,4 @@ window.addEventListener('DOMContentLoaded', (event) => {
     })
 
 })
+

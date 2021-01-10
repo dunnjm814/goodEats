@@ -1,167 +1,164 @@
-
 body {
-  background-image: url('/images/pexels-pixabay-461428.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size:cover;
-  width: 100%;
-  height: 100%;
-  padding: 0%;
-  margin: 0%;
+    background-image: url('/images/pexels-pixabay-461428.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    padding: 0%;
+    margin: 0%;
 }
+
 .formHolder {
-  position: relative;
+    position: relative;
 }
 
 #innerForm {
-  background-image: url('/images/plate.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: absolute;
-  height: 600px;
-  width: 600px;
-  top: 290px;
-  right: 168px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-image: url('/images/plate.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    height: 600px;
+    width: 600px;
+    top: 290px;
+    right: 168px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #loginForm {
-  position: absolute;
-  right: 180px;
-  top: 230px;
+    position: absolute;
+    right: 180px;
+    top: 230px;
 }
+
 #login__form--title {
-  font-size: 40px;
-  position: absolute;
-  top: -67px;
+    font-size: 40px;
+    position: absolute;
+    top: -67px;
     right: 65px;
 }
+
 #login__form--label {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
 }
 
 .loginTextBox {
-  background-color: rgba(0, 0, 0, 0);
-  height: 35px;
-  width: 170px;
-  font-size: 17px;
-  color: black;
-  border-color: black;
-  border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0);
+    height: 35px;
+    width: 170px;
+    font-size: 17px;
+    color: black;
+    border-color: black;
+    border-radius: 8px;
 }
-
 
 #login__form--button {
-  position: absolute;
-  top:110px;
-  right: 60px;
-  width: 120px;
-  height: 50px;
-  border-color: black;
-  background-color: rgba(0, 0, 0, 0);
-  font-size: 24px;
-  border-radius: 8px;
-  color: rgb(8, 75, 32);
-
+    position: absolute;
+    top: 110px;
+    right: 60px;
+    width: 120px;
+    height: 50px;
+    border-color: black;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 24px;
+    border-radius: 8px;
+    color: rgb(8, 75, 32);
 }
+
 #login__form--button:hover {
-  transform:scale(1.20) ;
+    transform: scale(1.20);
     transition: all .8s ease-in-out;
     background: black;
     color: whitesmoke;
 }
 
-
 #signupForm {
-  position: absolute;
-  font-size: 2em;
-  position: absolute;
-  top: 183px;
-  right: 111px
-
+    position: absolute;
+    font-size: 2em;
+    position: absolute;
+    top: 183px;
+    right: 111px
 }
 
 #signup__form--title {
-  font-size: 40px;
-  position: absolute;
-  top: -61px;
+    font-size: 40px;
+    position: absolute;
+    top: -61px;
     right: 134px;
 }
 
 #signup__form--label {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
 }
 
 .signupTextBox {
-  background-color: rgba(0, 0, 0, 0);
-  height: 35px;
-  width: 170px;
-  font-size: 17px;
-  color: black;
-  border-color: black;
-  border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0);
+    height: 35px;
+    width: 170px;
+    font-size: 17px;
+    color: black;
+    border-color: black;
+    border-radius: 8px;
 }
 
 #signupButton {
-  position: absolute;
-  top: 226px;
-  right: 136px;
-  width: 120px;
-  height: 50px;
-  border-color: black;
-  background-color: rgba(0, 0, 0, 0);
-  border-radius: 8px;
-  font-size: 24px;
-  color: rgb(8, 75, 32);
-
+    position: absolute;
+    top: 226px;
+    right: 136px;
+    width: 120px;
+    height: 50px;
+    border-color: black;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    font-size: 24px;
+    color: rgb(8, 75, 32);
 }
+
 #signupButton:hover {
-  transform:scale(1.20) ;
+    transform: scale(1.20);
     transition: all .8s ease-in-out;
     background: black;
     color: whitesmoke;
 }
 
 #demoUserForm {
-  position: absolute;
+    position: absolute;
     top: 203px;
     right: 241px;
-
 }
 
 #demoUserInfo {
-  position: absolute;
+    position: absolute;
     top: -98px;
     right: -127px;
     width: 381px;
     text-align: center;
     font-size: 40px;
-
 }
 
 #demoUser__form--button {
-  position: absolute;
-  top: 198px;
-  right: 2px;
-  width: 131px;
-  height: 60px;
-  border-color: black;
-  background-color: rgba(0, 0, 0, 0);
-  border-radius: 8px;
-  font-size: 24px;
-  color: rgb(8, 75, 32);
+    position: absolute;
+    top: 198px;
+    right: 2px;
+    width: 131px;
+    height: 60px;
+    border-color: black;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    font-size: 24px;
+    color: rgb(8, 75, 32);
 }
 
 #demoUser__form--button:hover {
-  transform:scale(1.20) ;
-  transition: all .8s ease-in-out;
-  background: black;
-  color: whitesmoke;
+    transform: scale(1.20);
+    transition: all .8s ease-in-out;
+    background: black;
+    color: whitesmoke;
 }
 
 #header-1 {
@@ -170,48 +167,55 @@ body {
     padding-top: 3%;
     font-size: 100px;
     color: black;
-    font-family:'Palatino';
+    font-family: 'Palatino';
     position: absolute;
     top: 3%;
     right: 3%;
 }
 
-.loginErrors, .signUpErrors {
-  font-size: 15px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0);
+.loginErrors,
+.signUpErrors {
+    font-size: 15px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .loginErrors {
-  position: absolute;
-  top: -71px;
-  right: 1200px;
-  width: 300px;
-  background-color: rgba(0, 0, 0, .4);
+    position: absolute;
+    top: -71px;
+    right: 1200px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, .4);
 }
 
 .signUpErrors {
-  position: absolute;
-  top: 90px;
-  left: -658px;
-  width: 330px;
-  font-weight: bold;
-  background-color: rgba(0, 0, 0, .4);
+    position: absolute;
+    top: 90px;
+    left: -658px;
+    width: 330px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, .4);
 }
-.signUpErrors:hover, .loginErrors:hover {
-  transform:scale(1.20) ;
+
+.signUpErrors:hover,
+.loginErrors:hover {
+    transform: scale(1.20);
     transition: all .8s ease-in-out;
 }
 
-#signUpButton:hover, #logInButton:hover, #demoButton:hover {
-    transform:scale(1.20) ;
+#signUpButton:hover,
+#logInButton:hover,
+#demoButton:hover {
+    transform: scale(1.20);
     transition: 1s ease-in-out;
     background: black;
     color: white;
-  }
+}
 
-  #logInButton, #signUpButton, #demoButton {
-    color:black;
+#logInButton,
+#signUpButton,
+#demoButton {
+    color: black;
     border-color: black;
     border-radius: 20px;
     height: 80px;
@@ -220,71 +224,97 @@ body {
     transition: all .5s ease-in-out;
     background-color: rgb(8, 75, 32, 0);
     text-align: center;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 25px;
-  }
+}
 
-  #logInButton {
+#logInButton {
     position: absolute;
     top: 23.3%;
     left: 17%;
-  }
+}
 
-  .signUpButton {
+.signUpButton {
     position: absolute;
     top: 44.8%;
-    left:30.6%;
-  }
+    left: 30.6%;
+}
 
-  .demoButton {
+.demoButton {
     position: absolute;
-    top:78%;
-    left:32.6%;
-  }
+    top: 78%;
+    left: 32.6%;
+}
 
 .hidden {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .fade-in {
-  animation: fadeIn ease 6s;
-  -webkit-animation: fadeIn ease 6s;
-  -moz-animation: fadeIn ease 6s;
-  -o-animation: fadeIn ease 6s;
-  -ms-animation: fadeIn ease 6s;
-  }
-  @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-  }
+    animation: fadeIn ease 6s;
+    -webkit-animation: fadeIn ease 6s;
+    -moz-animation: fadeIn ease 6s;
+    -o-animation: fadeIn ease 6s;
+    -ms-animation: fadeIn ease 6s;
+}
 
-  @-moz-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-  }
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
-  @-webkit-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-  }
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
-  @-o-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-  }
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
-  @-ms-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-  }
-  input, button {
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+input,
+button {
     outline: none;
-  }
-  ::placeholder {
-    color: rgb(8, 75, 32);
-  }
+}
 
-  li {
+ ::placeholder {
+    color: rgb(8, 75, 32);
+}
+
+li {
     list-style: none;
-  }
+}
+
+
 /* buttonDiv should be absolute*/
