@@ -135,6 +135,12 @@ router.post(
 
         const cookBookId = parseInt(req.body.deleteCookbook);
 
+        await db.CookBookRecipe.destroy({
+            where: {
+                cookBookId
+            }
+        });
+
         await db.CookBook.destroy({
             where: {
                 id: cookBookId
