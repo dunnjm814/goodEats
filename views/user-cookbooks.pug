@@ -2,31 +2,77 @@ extends layout
 
 block content
 
+    link(rel='stylesheet' href='/stylesheets/cookbooks.css')
     script(src="../javascripts/cookbooks.js" type="module" defer)
-    link(rel='stylesheet' href='/stylesheets/user-cookbooks.css')
-
-    div(class="navbar")
-        .header-1
-            h1 #{user.userName}'s Cookbooks
-        form(action="/dashboard" method="get" id="return-to-dashboard-button")
-            button(type='submit' class="return-to-dashboard-button hover-popout") Return to Dashboard
-        form(action="/users/logout" method="post" id="logout-user-button")
-            button(type='submit' class="logout-button hover-popout") Logout
-    div(class="body-flex")
-        div(class="cookbook-flex")
+    div(class='hidden' id='cookbook-form-holder' class='cookbook-form-holder')
+        form(action='/cookbooks' method='post' class='cookbook-form')
+            input(type='hidden' name='_csrf' value=token)
+            table
+                if errors
+                    thead
+                        tr
+                            th
+                                ul
+                                    each error in errors
+                                        li=error
+                tbody
+                    tr
+                        td
+                            input(name='newCookbookName' class='new-cookbook-name-input' placeholder='New Cookbook Name')
+                    tr
+                        td
+                            button(type='submit' id='new-cookbook-submit-button' class="hover-popout") Create!
+    div(class='hidden' id='logout-form-holder' class='logout-form-holder')
+        form(action='/users/logout' method='post' class='logout-form')
+            input(type='hidden' name='_csrf' value=token)
+            table
+                thead
+                    tr
+                        th Are you sure you want to logout?
+                tbody
+                    tr
+                        td
+                            button(type='submit' id='logout-confirm-button' class="hover-popout") Yep!
+                        td
+                            button(id="no-logout-button" class="hover-popout") No!
+    div(class="navbar" id='navbar')
+        div(class="navbar-thirds" id="navbar-thirds-header")
+            .header-1
+                h1 My Cookbooks
+        div(class="navbar-thirds")
+        div(class="navbar-thirds")
+        //- div(class="navbar-thirds")
+        div(class="navbar-thirds" id="navbar-thirds-buttons")
+            button(id="create-cookbook-button" class="create-cookbook-button hover-popout") Create Cookbook
+            form(action="/dashboard" method="get" id="return-to-dashboard-button")
+                button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
+            button(id="logout-button" class="logout-button hover-popout") Logout
+    div(class="body-flex" id="body-flex")
+        div(class="cookbook-flex" id="cookbook-flex")
             each cookBook, index in cookBooks
                 - const recipes = cookBook.Recipes;
                 - const recipeLength = recipes.length;
                 - const width = 1/recipeLength * 100;
                 a(href=`http://localhost:8080/cookbooks/${cookBook.id}` class="card hover-popout")
                     div(class="card_header")
-                        h2 #{cookBook.name}
-                    div(class="card_inner")
-                        div(class="recipe_images")
-                            each recipe in recipes
-                                img(src=recipe.foodImg, alt=recipe.title style=`width:${width * .9}%;height:auto; max-height:300px; width: auto;`)
+                        h2(class="cookbook-name") #{cookBook.name}
+                        form(action="/cookbooks/delete" method="post" id="delete-cookbook-button" class="delete")
+                            input(type='hidden' name='_csrf' value=token)
+                            input(type='hidden' name='deleteCookbook' value=cookBook.id)
+                            button(type='submit' class="delete-cookbook-button hover-popout") Delete Cookbook
+                    div(id="box")
+                        if recipes.length > 2
+                            div(class="recipe_image scroller")
+                                each recipe in recipes
+                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
+                        else
+                            div(class="recipe_image")
+                                each recipe in recipes
+                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
                     div(class='status')
                         if cookBook.uncooked > 0
-                            p #{cookBook.uncooked} recipe(s) left to cook
+                            h4 #{cookBook.uncooked} recipe(s) left to cook
+                        else if recipes.length < 1
+                            h4 No recipes here!
                         else
-                            p All recipes cooked!
+                            h4 All recipes cooked!
