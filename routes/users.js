@@ -7,23 +7,11 @@ const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { loginUser, logoutUser } = require('../auth.js')
 
-/* GET users listing. */
 
 router.get('/', function(req, res) {
     const user = { userName: null, email: null, password: null, confirmedPassword: null }
     res.render('splash', { user });
 });
-
-// router.get('/splash', csrfProtection, (req, res) => {
-//     //const user = db.User.build();
-//     const user = { userName: null, email: null, password: null, confirmedPassword: null }
-//     res.render('splash', {
-//         title: 'Sign-up',
-//         user,
-//         token: req.csrfToken(),
-//     });
-
-// });
 
 const loginValidators = [
     check('email')

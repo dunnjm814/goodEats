@@ -10,28 +10,80 @@ body {
     margin: 0%;
 }
 
+#header__1 {
+  display: flex;
+  justify-content: center;
+  padding-top: 3%;
+  font-size: 100px;
+  color: black;
+  font-family:'Palatino';
+  position: absolute;
+  top: 3%;
+  right: 3%;
+}
+
+#logInButton, #signUpButton, #demoButton {
+  color:black;
+  border-color: black;
+  border-radius: 20px;
+  height: 80px;
+  width: 145px;
+  font-size: 25px;
+  transition: all .5s ease-in-out;
+  background-color: rgb(8, 75, 32, 0);
+  text-align: center;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 25px;
+}
+
+#logInButton {
+  position: absolute;
+  top: 23.3%;
+  left: 17%;
+}
+
+.signUpButton {
+  position: absolute;
+  top: 44.8%;
+  left:30.6%;
+}
+
+.demoButton {
+  position: absolute;
+  top:78%;
+  left:32.6%;
+}
+
+#signUpButton:hover, #logInButton:hover, #demoButton:hover {
+  transform:scale(1.20) ;
+  transition: 1s ease-in-out;
+  background: black;
+  color: white;
+}
+
+
 .formHolder {
     position: relative;
 }
 
-#innerForm {
-    background-image: url('/images/plate.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    height: 600px;
-    width: 600px;
-    top: 290px;
-    right: 168px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#forms {
+  background-image: url('/images/plate.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  height: 600px;
+  width: 600px;
+  top: 290px;
+  right: 168px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#loginForm {
-    position: absolute;
-    right: 180px;
-    top: 230px;
+#login__form {
+  position: absolute;
+  right: 180px;
+  top: 230px;
 }
 
 #login__form--title {
@@ -46,14 +98,14 @@ body {
     font-size: 25px;
 }
 
-.loginTextBox {
-    background-color: rgba(0, 0, 0, 0);
-    height: 35px;
-    width: 170px;
-    font-size: 17px;
-    color: black;
-    border-color: black;
-    border-radius: 8px;
+.login__form--textBox {
+  background-color: rgba(0, 0, 0, 0);
+  height: 35px;
+  width: 170px;
+  font-size: 17px;
+  color: black;
+  border-color: black;
+  border-radius: 8px;
 }
 
 #login__form--button {
@@ -69,19 +121,13 @@ body {
     color: rgb(8, 75, 32);
 }
 
-#login__form--button:hover {
-    transform: scale(1.20);
-    transition: all .8s ease-in-out;
-    background: black;
-    color: whitesmoke;
-}
+#signup__form {
+  position: absolute;
+  font-size: 2em;
+  position: absolute;
+  top: 183px;
+  right: 111px
 
-#signupForm {
-    position: absolute;
-    font-size: 2em;
-    position: absolute;
-    top: 183px;
-    right: 111px
 }
 
 #signup__form--title {
@@ -96,44 +142,38 @@ body {
     font-size: 25px;
 }
 
-.signupTextBox {
-    background-color: rgba(0, 0, 0, 0);
-    height: 35px;
-    width: 170px;
-    font-size: 17px;
-    color: black;
-    border-color: black;
-    border-radius: 8px;
+.signup__form--textBox {
+  background-color: rgba(0, 0, 0, 0);
+  height: 35px;
+  width: 170px;
+  font-size: 17px;
+  color: black;
+  border-color: black;
+  border-radius: 8px;
 }
 
-#signupButton {
-    position: absolute;
-    top: 226px;
-    right: 136px;
-    width: 120px;
-    height: 50px;
-    border-color: black;
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 8px;
-    font-size: 24px;
-    color: rgb(8, 75, 32);
+#signup__form--submitButton {
+  position: absolute;
+  top: 226px;
+  right: 136px;
+  width: 120px;
+  height: 50px;
+  border-color: black;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  font-size: 24px;
+  color: rgb(8, 75, 32);
+
 }
 
-#signupButton:hover {
-    transform: scale(1.20);
-    transition: all .8s ease-in-out;
-    background: black;
-    color: whitesmoke;
-}
-
-#demoUserForm {
-    position: absolute;
+#demoUser__form {
+  position: absolute;
     top: 203px;
     right: 241px;
 }
 
-#demoUserInfo {
-    position: absolute;
+#demoUser__form--info {
+  position: absolute;
     top: -98px;
     right: -127px;
     width: 381px;
@@ -154,23 +194,13 @@ body {
     color: rgb(8, 75, 32);
 }
 
+#login__form--button:hover,
+#signup__form--submitButton:hover,
 #demoUser__form--button:hover {
-    transform: scale(1.20);
+  transform:scale(1.20) ;
     transition: all .8s ease-in-out;
     background: black;
     color: whitesmoke;
-}
-
-#header-1 {
-    display: flex;
-    justify-content: center;
-    padding-top: 3%;
-    font-size: 100px;
-    color: black;
-    font-family: 'Palatino';
-    position: absolute;
-    top: 3%;
-    right: 3%;
 }
 
 .loginErrors,
@@ -203,118 +233,50 @@ body {
     transition: all .8s ease-in-out;
 }
 
-#signUpButton:hover,
-#logInButton:hover,
-#demoButton:hover {
-    transform: scale(1.20);
-    transition: 1s ease-in-out;
-    background: black;
-    color: white;
-}
-
-#logInButton,
-#signUpButton,
-#demoButton {
-    color: black;
-    border-color: black;
-    border-radius: 20px;
-    height: 80px;
-    width: 145px;
-    font-size: 25px;
-    transition: all .5s ease-in-out;
-    background-color: rgb(8, 75, 32, 0);
-    text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 25px;
-}
-
-#logInButton {
-    position: absolute;
-    top: 23.3%;
-    left: 17%;
-}
-
-.signUpButton {
-    position: absolute;
-    top: 44.8%;
-    left: 30.6%;
-}
-
-.demoButton {
-    position: absolute;
-    top: 78%;
-    left: 32.6%;
-}
-
 .hidden {
-    visibility: hidden;
+  visibility: hidden;
 }
 
-.fade-in {
-    animation: fadeIn ease 6s;
-    -webkit-animation: fadeIn ease 6s;
-    -moz-animation: fadeIn ease 6s;
-    -o-animation: fadeIn ease 6s;
-    -ms-animation: fadeIn ease 6s;
+input, button {
+  outline: none;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-o-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-ms-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-input,
-button {
-    outline: none;
-}
-
- ::placeholder {
-    color: rgb(8, 75, 32);
+::placeholder {
+  color: rgb(8, 75, 32);
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
+.fade-in {
+  animation: fadeIn ease 6s;
+  -webkit-animation: fadeIn ease 6s;
+  -moz-animation: fadeIn ease 6s;
+  -o-animation: fadeIn ease 6s;
+  -ms-animation: fadeIn ease 6s;
+  }
+  @keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
 
-/* buttonDiv should be absolute*/
+  @-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+
+  @-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+
+  @-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+
+  @-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }

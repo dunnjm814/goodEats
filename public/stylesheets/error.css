@@ -1,0 +1,71 @@
+body {
+  background-image: url('/images/pexels-laurie-shaw-804394.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover;
+  width: 100%;
+  height: 100%;
+  padding: 0%;
+  margin: 0%;
+  overflow: hidden;
+}
+
+#header__1, #error__message, #error__status, #error__stack, #return__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header__1 {
+ font-size: 26px;
+}
+
+#error__message {
+    margin: -2%;
+    padding: auto;
+    font-size: 23px;
+}
+
+#error__status {
+    margin: -1%;
+    padding: 0%;
+    font-size: 25px;
+    max-height: 60%;
+}
+
+#error__stack {
+    margin: auto;
+    padding: 1%;
+    font-size: 15px;
+    max-width: 60%;
+    backdrop-filter: blur(5px);
+    border-radius: 25px;
+    overflow-y: scroll;
+}
+
+#returnHome__button {
+  margin-left: 10px;
+    color:black;
+    border-color: black;
+    border-radius: 20px;
+    height: 60px;
+    width: 135px;
+    font-size: 25px;
+    transition: all .5s ease-in-out;
+    background-color: rgb(8, 75, 32, 0);
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+  }
+
+  #returnHome__button:hover {
+    transform:scale(1.20) ;
+    transition: all .8s ease-in-out;
+    background: black;
+    color: whitesmoke;
+  }
+
+  input, button {
+    outline: none;
+  }
