@@ -8,6 +8,7 @@ const {requireAuth} = require('../auth')
 router.get(
   '/:id(\\d+)',
   csrfProtection,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const pullRecipe = parseInt(req.params.id, 10);
     const recipe = await db.Recipe.findByPk(pullRecipe, {
@@ -16,6 +17,8 @@ router.get(
       },
 
     });
+    const userId = res.locals.user.id;
+    const user = await db.User.findByPk(userId);
 
     const recipeReviews = recipe.Reviews;
     let recipeDescriptions;
@@ -28,6 +31,7 @@ router.get(
     let recipeIngredients = recipe.ingredients.split('&%');
     let recipeDirections = recipe.directions.split('&%');
     res.render('recipe', {
+      user,
       recipe,
       recipeIngredients,
       recipeDirections,
