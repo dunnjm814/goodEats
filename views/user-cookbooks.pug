@@ -64,7 +64,10 @@ block content
                         if recipes.length > 2
                             div(class="recipe_image scroller")
                                 each recipe in recipes
-                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
+                                    if recipe.foodImg
+                                        img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
+                                    else
+                                        p(class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)=recipe.title
                         else
                             div(class="recipe_image")
                                 each recipe in recipes

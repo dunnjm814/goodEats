@@ -172,4 +172,34 @@ router.post(
     })
 );
 
+router.post(
+    '/recipe/cook',
+    asyncHandler(async(req, res) => {
+        if (!res.locals.authenticated) {
+            return res.redirect('/')
+        }
+
+        let { updateRecipe, currentBook } = req.body;
+        deleteRecipe = parseInt(updateRecipe);
+        currentBook = parseInt(currentBook);
+
+        const changeRecipe = await db.CookBookRecipe.findOne({
+            where: {
+                cookBookId: currentBook,
+                recipeId: updateRecipe
+            }
+        });
+
+        if (changeRecipe.cooked) {
+            changeRecipe.cooked = false;
+        } else {
+            changeRecipe.cooked = true;
+        }
+
+        await changeRecipe.save();
+
+        res.redirect(`/cookbooks/${currentBook}`);
+    })
+);
+
 module.exports = router;

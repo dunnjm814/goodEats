@@ -71,6 +71,7 @@ body {
 
 .recipe-title {
     width: fit-content;
+    text-align: center;
 }
 
 .card:hover .delete {
@@ -96,6 +97,12 @@ body {
 .card h4 {
     font-size: 20px;
     margin: 2px;
+}
+
+.card-header-button-holder {
+    display: flex;
+    width: fit-content;
+    justify-content: center;
 }
 
 .hover-popout {
