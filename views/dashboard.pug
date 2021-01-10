@@ -5,8 +5,11 @@ block content
     script(src="../javascripts/dashboard.js" type="module" defer)
     link(rel='stylesheet' href='/stylesheets/dashboard.css')
 
-    div(class="dashboard-page")
-        h1(class='dashboard-title') #{user.userName}'s Dashboard
+    div(class='dashboard-header')
+        div(class="dashboard-page")
+            h1(class='dashboard-title') #{user.userName}'s Dashboard
+        div(class='website-title') 
+            h1(id='title') GoodEats
 
         div(class="navbar")
             a(class="nav-icons hover" href="/cookbooks")
@@ -42,5 +45,3 @@ block content
                                 h4(id='recipe-id') #{recipe.id}
                         div(class="card_body")
                             img(src=recipe.foodImg, class="food_img", alt=recipe.title)
-
-//-  p #{recipe.description}
