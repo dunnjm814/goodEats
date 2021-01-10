@@ -2,7 +2,20 @@ extends layout
 
 block content
 
-    link(rel='stylesheet' href='/stylesheets/cookbooks.css')
+    div(class="navbar" id='navbar')
+        div(class="navbar-thirds" id="navbar-thirds-header")
+            .header-1
+                h1 My Cookbooks
+        div(class="navbar-thirds")
+        div(class="navbar-thirds")
+        //- div(class="navbar-thirds")
+        div(class="navbar-thirds" id="navbar-thirds-buttons")
+            button(id="create-cookbook-button" class="create-cookbook-button hover-popout") Create Cookbook
+            form(action="/dashboard" method="get" id="return-to-dashboard-button")
+                button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
+            button(id="logout-button" class="logout-button hover-popout") Logout
+
+    link(rel='stylesheet' href='/stylesheets/user-cookbooks.css')
     script(src="../javascripts/cookbooks.js" type="module" defer)
     div(class='hidden' id='cookbook-form-holder' class='cookbook-form-holder')
         form(action='/cookbooks' method='post' class='cookbook-form')
@@ -35,18 +48,7 @@ block content
                             button(type='submit' id='logout-confirm-button' class="hover-popout") Yep!
                         td
                             button(id="no-logout-button" class="hover-popout") No!
-    div(class="navbar" id='navbar')
-        div(class="navbar-thirds" id="navbar-thirds-header")
-            .header-1
-                h1 My Cookbooks
-        div(class="navbar-thirds")
-        div(class="navbar-thirds")
-        //- div(class="navbar-thirds")
-        div(class="navbar-thirds" id="navbar-thirds-buttons")
-            button(id="create-cookbook-button" class="create-cookbook-button hover-popout") Create Cookbook
-            form(action="/dashboard" method="get" id="return-to-dashboard-button")
-                button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
-            button(id="logout-button" class="logout-button hover-popout") Logout
+
     div(class="body-flex" id="body-flex")
         div(class="cookbook-flex" id="cookbook-flex")
             each cookBook, index in cookBooks
@@ -61,10 +63,13 @@ block content
                             input(type='hidden' name='deleteCookbook' value=cookBook.id)
                             button(type='submit' class="delete-cookbook-button hover-popout") Delete Cookbook
                     div(id="box")
-                        if recipes.length > 2
+                        if recipes.length > 1
                             div(class="recipe_image scroller")
                                 each recipe in recipes
-                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
+                                    if recipe.foodImg
+                                        img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
+                                    else
+                                        p(class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)=recipe.title
                         else
                             div(class="recipe_image")
                                 each recipe in recipes

@@ -63,7 +63,7 @@ html {
     display: flex;
     flex-direction: column;
     max-height: min-content;
-    width: 40%;
+    width: 35%;
     overflow: hidden;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);
@@ -286,6 +286,7 @@ tr {
 .scroller {
     -webkit-transition: 3.3s;
     -webkit-transition-property: move;
+    transition-property: move;
     -moz-transition: 3.3s;
     -moz-transition-property: move;
     transition: 3.3s;
@@ -294,6 +295,7 @@ tr {
     -moz-transition-property: move;
     transition-timing-function: linear;
     -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
 }
 
 #box {
@@ -316,10 +318,15 @@ tr {
 
 .scroller {
     -webkit-animation-name: move;
+    animation-name: move;
     -webkit-animation-duration: 5s;
+    animation-duration: 5s;
     -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
     -webkit-animation-direction: alternate-reverse;
+    animation-direction: alternate-reverse;
     -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
 }
 
 @-webkit-keyframes move {
@@ -333,6 +340,18 @@ tr {
     }
 }
 
+@keyframes move {
+    0% {
+        padding-left: 400px;
+        padding-right: -400px;
+    }
+    100% {
+        padding-left: -400px;
+        padding-right: 400px;
+    }
+}
+
 .scroller:hover {
     -webkit-animation-play-state: paused;
+    animation-play-state: paused;
 }

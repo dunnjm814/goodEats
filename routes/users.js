@@ -7,23 +7,11 @@ const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { loginUser, logoutUser } = require('../auth.js')
 
-/* GET users listing. */
 
 router.get('/', function(req, res) {
     const user = { userName: null, email: null, password: null, confirmedPassword: null }
     res.render('splash', { user });
 });
-
-// router.get('/splash', csrfProtection, (req, res) => {
-//     //const user = db.User.build();
-//     const user = { userName: null, email: null, password: null, confirmedPassword: null }
-//     res.render('splash', {
-//         title: 'Sign-up',
-//         user,
-//         token: req.csrfToken(),
-//     });
-
-// });
 
 const loginValidators = [
     check('email')
@@ -124,6 +112,23 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
         email
     }
     res.render('splash', { user, loginErrors: errors, token: req.csrfToken() });
+}));
+
+router.get('/demo', loginValidators, csrfProtection, asyncHandler(async(req, res, next) => {
+    const email = "demo@gmail.com";
+    const password = "Password1!";
+    const user = await db.User.findOne({
+        where: {
+            email
+        }
+    })
+    const passwordMatch = await bcrypt.compare(password, user.hashPass.toString())
+    if (passwordMatch) {
+        loginUser(req, res, user);
+        return req.session.save(() => {
+            return res.redirect('/dashboard')
+        })
+    }
 }));
 
 router.post(

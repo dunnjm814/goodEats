@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const asyncHandler = require("./routes/utils");
 
 async function createUsers() {
-    let password = await bcrypt.hash('password', 10);
+    let password = await bcrypt.hash('Password1!', 10);
     let users = [{
             userName: 'CB',
             email: 'cb@gmail.com',
@@ -47,7 +47,7 @@ async function createUsers() {
             hashPass: await bcrypt.hash('userPassword', 10),
             createdAt: new Date(),
             updatedAt: new Date()
-            
+
         }
 
         users.push(newUser);
