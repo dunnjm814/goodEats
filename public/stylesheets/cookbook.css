@@ -1,48 +1,90 @@
 body {
-    background-image: url('/images/pexels-pixabay-326268\ \(2\).jpg');
+    background-image: url('../images/pexels-adonyi-gábor-1414651\ \(2\).jpg');
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover;
+    background-attachment: fixed;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     margin: 0px;
     padding: 0px;
+}
+
+.body-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .navbar {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     width: 100%;
-    border: 2px black solid;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, .2);
     max-height: 100px;
+    justify-content: space-between;
+    position: fixed;
 }
 
 .navbar-thirds {
-    width: 33%;
+    min-width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+#navbar-thirds-buttons {
+    width: fit-content;
+    min-width: 25%;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 10px;
+}
+
+#navbar-thirds-header {
+    width: fit-content;
+    min-width: 25%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .2);
+    color: aliceblue;
+    border-radius: 10px;
+}
+
 .card {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    height: 200px;
+    height: max-content;
+    max-height: min-content;
+    width: 600px;
     overflow: hidden;
-    border: 2px red solid;
-    margin: 5px;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);
     box-shadow: 10px 5px 5px black;
+    margin: 20px;
+    justify-content: space-around;
+    align-items: center;
+    color: whitesmoke;
 }
 
-.card_body {
+.recipe-title {
+    width: fit-content;
+}
+
+.card:hover .delete {
+    display: block;
+    width: fit-content;
+    height: auto;
+    font-size: 15px;
+    padding: 2px;
     margin: 2px;
+}
+
+.delete {
+    display: none;
+    transition: all 1.5s ease-in-out;
 }
 
 .card h3 {
@@ -51,7 +93,7 @@ body {
     margin: 2px;
 }
 
-.card p {
+.card h4 {
     font-size: 20px;
     margin: 2px;
 }
@@ -73,13 +115,6 @@ body {
     padding: 0px;
 }
 
-.recipe-image {
-    width: 100%;
-    height: auto;
-    margin: 0px;
-    padding: 0px;
-}
-
 .recipe-holder {
     display: flex;
     padding: 10px;
@@ -87,43 +122,61 @@ body {
     width: 90%;
 }
 
-.recipe-all {
-    position: absolute;
+.recipe_image {
     display: flex;
-    justify-content: center;
-    top: 21%;
-    left: -15%;
+    justify-content: space-around;
     width: 100%;
+    height: auto;
+    border-radius: 5px;
+    padding: 5px;
+    max-height: 80%;
 }
 
 .card_header {
-    position: absolute;
     display: flex;
     flex-direction: column;
     color: whitesmoke;
-    background-color: rgba(0, 0, 0, .2);
     width: 60%;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     font-size: larger;
     font-weight: bold;
     top: 28%;
     right: 20%;
 }
 
+.card h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 2px;
+    padding-top: 6px;
+}
+
+.recipe-flex {
+    width: 100%;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+}
+
 button {
+    width: 145px;
     margin: 20px;
     padding: 12px;
     height: 60px;
-    width: 110px;
-    color: burlywood;
-    background-color: red;
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid aliceblue;
     border-radius: 6px;
+    font-size: 24px;
+    text-align: center;
 }
 
-h3 {
-    font-size: 50px;
-    margin: 10px;
+input,
+button {
+    outline: none;
 }
 
 h4 {
@@ -132,6 +185,44 @@ h4 {
 }
 
 img {
-    margin: 0px;
-    padding: 0px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.logout-form-holder {
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    position: fixed;
+    top: 40%;
+    right: 5%;
+}
+
+.logout-form {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 2px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: 10px 5px 5px black;
+    font-size: 24px;
+    height: fit-content;
+    color: aliceblue;
+}
+
+.delete button {
+    width: fit-content;
+    height: fit-content;
+    padding: 2px;
+    margin: 2px;
 }
