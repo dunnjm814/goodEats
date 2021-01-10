@@ -10,31 +10,40 @@ html {
     margin: 0%;
 }
 
-/* .dashboard-header {
+.dashboard-header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     width: 100%;
-} */
+}
 
 #title {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
 }
 
+.website-title {
+    display: flex;
+    justify-content: row;
+}
+
 .dashboard-title {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
+    margin-right: 300px;
 }
 .navbar {
     display: flex;
-    position: sticky;
-    top: 0;
+    position: fixed;
     flex-direction: row;
     justify-content: space-around;
-    width: 100%;
+    float: right;
+    width: 30%;
+    height: fit-content;
     border: 2px black solid;
     background-color: rgba(0, 0, 0, .2);
     border-radius: 5px;
+    /* /* top: 100px; */
+    right: 0px;
 }
 
 .nav-icons {
@@ -48,6 +57,12 @@ html {
     font-size: 4em;
 }
 
+.far {
+    display: flex;
+    color:black;
+    font-size: 4em;
+}
+
 .icon-caption {
     display: flex;
     align-content: center;
@@ -56,7 +71,7 @@ html {
 
 .column-holder {
     display: flex;
-    align-content: space-between;
+    justify-content: flex-start;
     width: 100%;
 }
 
@@ -66,24 +81,29 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.cookbook-column {
+/* .cookbook-column {
     position: fixed;
     width: 33%;
     left: 0px;
     height: 100vh;
-}
+} */
 
 .recipe-library-column {
-    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
     border-right: 1px black solid;
-    border-left: 1px black solid;
-    width: 32%;
-    
+    width: 50%;
+    left: 0px;
 }
 
 .top-rated-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: fixed;
-    width: 33%;
+    width: 50%;
     right: 0px;
 }
 
@@ -97,13 +117,13 @@ html {
     background-color: rgba(0, 0, 0, .2);
     box-shadow: 10px 5px 5px black;
     margin: 20px;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    color: whitesmoke
+    color: whitesmoke;
 }
 
 a {
-   color:white;
+    color:white;
     text-decoration: none;
 }
 
