@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    <script src="https://kit.fontawesome.com/928decbe91.js" crossorigin="anonymous"></script>
+    script(src="https://kit.fontawesome.com/928decbe91.js" crossorigin="anonymous")
     script(src="../javascripts/dashboard.js" type="module" defer)
     link(rel='stylesheet' href='/stylesheets/dashboard.css')
 
@@ -9,11 +9,11 @@ block content
         h1(class='dashboard-title') #{user.userName}'s Dashboard
 
         div(class="navbar")
-            div(class='nav-icons')
+            a(class="nav-icons hover" href="/cookbooks")
                 i(class="fas fa-book-open fa-2x row text-center" id="open-book")
                 figcaption CookBooks
 
-            a(class="nav-icons" href="/users/logout")
+            a(class="nav-icons hover" href="/users/logout")
                 i(class="fas fa-door-open" id="logout-user-button")
                 figcaption Logout
             
@@ -26,9 +26,9 @@ block content
                 div(class="column_title")
                     h1 Recipe Library
                 each recipe in recipes
-                    a(class="card hover" href=`http://localhost:8080/recipes/${recipe.id}`)
+                    a(class="card hover" href=`/recipes/${recipe.id}`)
                         div(class="card_header")
-                            h3 #{recipe.title} #{recipe.avgRating} stars
+                            h3 #{recipe.title} #{recipe.avgRating} star
                                 h4(id='recipe-id') #{recipe.id}
                         div(class="card_body")
                             img(src=recipe.foodImg, class="food_img", alt=recipe.title)
@@ -36,9 +36,9 @@ block content
                 div(class="column_title")
                     h1 Top Rated
                 each recipe in topRecipes
-                    a(class="card hover" href=`http://localhost:8080/recipes/${recipe.id}` )
+                    a(class="card hover" href=`/recipes/${recipe.id}` )
                         div(class="card_header")
-                            h3 #{recipe.title} #{recipe.avgRating} stars
+                            h3 #{recipe.title} #{recipe.avgRating} star
                                 h4(id='recipe-id') #{recipe.id}
                         div(class="card_body")
                             img(src=recipe.foodImg, class="food_img", alt=recipe.title)
