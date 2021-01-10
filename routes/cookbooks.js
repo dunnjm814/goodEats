@@ -127,7 +127,6 @@ router.post(
 
 router.post(
     '/delete',
-    csrfProtection,
     asyncHandler(async(req, res) => {
         if (!res.locals.authenticated) {
             return res.redirect('/')
@@ -153,15 +152,14 @@ router.post(
 
 router.post(
     '/recipe/delete',
-    csrfProtection,
     asyncHandler(async(req, res) => {
         if (!res.locals.authenticated) {
             return res.redirect('/')
         }
 
-        const { deleteRecipe, currentBook } = req.body;
-
-        const cookBookId = parseInt(req.body.deleteCookbook);
+        let { deleteRecipe, currentBook } = req.body;
+        deleteRecipe = parseInt(deleteRecipe);
+        currentBook = parseInt(currentBook);
 
         await db.CookBookRecipe.destroy({
             where: {
@@ -170,33 +168,7 @@ router.post(
             }
         });
 
-        const userId = res.locals.user.id;
-
-        const user = await db.User.findByPk(userId);
-        const cookBooks = await db.CookBook.findAll({
-            where: {
-                userId: userId
-            },
-            include: db.Recipe,
-            order: [
-                ['updatedAt', 'DESC']
-            ]
-        });
-
-        cookBooks.forEach(cookBook => {
-            cookBook.Recipes.forEach(recipe => {
-                if (!recipe.cooked) {
-                    if (!cookBook.uncooked) {
-                        cookBook.uncooked = 1;
-                    } else {
-                        cookBook.uncooked++;
-                    }
-                }
-
-            })
-        })
-
-        res.render('user-cookbooks', { user, cookBooks, token: req.csrfToken() });
+        res.redirect(`/cookbooks/${currentBook}`);
     })
 );
 
