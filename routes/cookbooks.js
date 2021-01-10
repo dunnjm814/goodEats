@@ -161,8 +161,6 @@ router.post(
 
         const { deleteRecipe, currentBook } = req.body;
 
-        const cookBookId = parseInt(req.body.deleteCookbook);
-
         await db.CookBookRecipe.destroy({
             where: {
                 cookBookId: currentBook,
@@ -192,10 +190,8 @@ router.post(
                         cookBook.uncooked++;
                     }
                 }
-
             })
         })
-
         res.render('user-cookbooks', { user, cookBooks, token: req.csrfToken() });
     })
 );
