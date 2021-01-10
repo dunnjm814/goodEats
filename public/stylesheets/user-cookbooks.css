@@ -63,7 +63,7 @@ html {
     display: flex;
     flex-direction: column;
     max-height: min-content;
-    width: 35%;
+    width: 32%;
     overflow: hidden;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);
@@ -174,15 +174,6 @@ html {
     align-items: center;
 }
 
-button {
-    margin: 20px;
-    padding: 12px;
-    height: 60px;
-    width: 110px;
-    color: burlywood;
-    background-color: red;
-    border-radius: 6px;
-}
 
 h4 {
     font-size: 40px;
