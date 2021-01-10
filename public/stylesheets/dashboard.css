@@ -70,11 +70,13 @@
     height: 200px;
     overflow: hidden;
     border: 2px red solid;
-    margin: 5px;
     border-radius: 5px;
     border-style: inset;
     background-color: rgba(0, 0, 0, .2);
     box-shadow: 10px 5px 5px black;
+    margin: 20px;
+    justify-content: flex-start;
+    align-items: center;
 }
 #recipe-id {
     visibility: hidden;
@@ -100,9 +102,10 @@
     margin: 2px;
 }
 
-.card p {
-    font-size: 20px;
-    margin: 2px;
+img {
+    border-radius: 20px;
+    padding: 10px;
+    height: auto;
 }
 
 .card_header {

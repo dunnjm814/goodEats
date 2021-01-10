@@ -37,13 +37,13 @@ const loginValidators = [
 ];
 
 const userValidators = [
-    check('userName')
+    check('username')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for user name.')
+    .withMessage('Please provide a user name.')
     .isLength({ max: 50 })
     .withMessage('User name must not be more than 50 characters long.')
-    .custom((value) => {
-        return db.User.findOne({ where: { userName: value } }).then((user) => {
+    .custom((value, { req }) => {
+        return db.User.findOne({ where: { userName: req.body.username } }).then((user) => {
             if (user) {
                 return Promise.reject('That user name is already taken.');
             }
@@ -56,8 +56,8 @@ const userValidators = [
     .withMessage('Email address must not be more than 100 characters long.')
     .isEmail()
     .withMessage('The email address entered is not valid.')
-    .custom((value) => {
-        return db.User.findOne({ where: { email: value } }).then(
+    .custom((value, { req }) => {
+        return db.User.findOne({ where: { email: req.body.email } }).then(
             (user) => {
                 if (user) {
                     return Promise.reject(
@@ -96,7 +96,7 @@ const userValidators = [
 
 router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, res, next) => {
     const { email, password } = req.body;
-    const errors = [];
+    let errors = [];
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
@@ -118,12 +118,12 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
         errors.push('Login Failed');
 
     } else {
-        errors = validatorErrors.array().map((error) => error.message)
+        errors = validatorErrors.array().map((error) => error.msg)
     }
     const user = {
         email
     }
-    res.render('splash', { user, errors, token: req.csrfToken() });
+    res.render('splash', { user, loginErrors: errors, token: req.csrfToken() });
 }));
 
 router.post(
@@ -134,7 +134,7 @@ router.post(
         const { userName, email, password, confirmedPassword } = req.body;
 
         const validatorErrors = validationResult(req);
-    
+
         if (validatorErrors.isEmpty()) {
             const hashPass = await bcrypt.hash(password, 10);
             const user = db.User.build({
@@ -156,7 +156,7 @@ router.post(
             res.render('splash', {
                 title: 'Sign-up',
                 user,
-                errors,
+                signUpErrors: errors,
                 token: req.csrfToken()
             });
         }

@@ -1,13 +1,49 @@
 /* for the directions use numbers instead of bullet points */
+
+
 /* do we want the same font for whole site or different for differnt pages */
+
+body {
+    text-decoration: none;
+    background-image: url('../images/simona-sergi-k87kcKN-Vvs-unsplash.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+
+#headings-wrap {
+    padding: 5%;
+    margin-left: 20%;
+    margin-bottom: 1%;
+    border: .1px black;
+    border-radius: .2em;
+    backdrop-filter: blur(6px);
+}
+
+#title {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#recipe__avgRating--andstars {
+    margin-left: 10px;
+}
 
 .hidden {
     visibility: hidden;
 }
+
 .reviewCookbookWrap {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin: auto;
+    max-width: 400px;
 }
 
 button {
@@ -15,19 +51,139 @@ button {
     padding: 5px;
     height: 50px;
     width: 100px;
-    color:burlywood;
+    color: burlywood;
     background-color: slateblue;
     border-radius: 6px;
 }
 
-h1, h2, h3 {
-    color: springgreen;
+h1,
+h2,
+h3 {
+    color: rgb(255, 255, 255);
     font-weight: 600;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.header-3 {
+    padding: 10px;
+    margin: 5px;
+}
+
+ol li {
+    list-style: upper-roman;
+    font-size: 25px;
+    padding: .5em;
+    line-height: 1em;
+}
+
+#recipeImg {
+    max-width: 550px;
+    max-height: 550px;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+    border: hidden;
+    border-radius: 5%;
 }
 
 .recipe__description,
 .recipe__direction,
 .recipe__ingredients {
-    color: tan;
+    max-width: 600px;
+    margin: auto;
+    color: rgb(180, 180, 180);
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.recipe__ingredients {
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+.recipe__reviews {
+    max-width: 500px;
+    border: 5% black;
+    margin-left: 20%;
+}
+
+.recipe__review--content {
+    border-bottom: 1px solid rgba(46, 49, 49, 1);
+    padding: 5px;
+}
+
+.reviewContent__name--andRating {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: flex-start;
+    font-weight: bold;
+    font-size: 25px;
+    color: cornsilk;
+    padding: 10px;
+}
+
+.userName_and_rating {
+    margin-left: 5px;
+}
+
+#star {
+    max-width: 18px;
+    max-height: 18px;
+}
+
+.reviewContent__the--content {
+    display: flex;
+    justify-content: center;
+    border: .5px solid black;
+    border-radius: .5em;
+    background: rgba(103, 128, 159, .2);
+    margin: 5px;
+}
+
+#review__content {
+    padding: 10px;
+}
+
+.review__form {
+    position: fixed;
+    top: 40%;
+    left: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: 0.5s ease-in;
+}
+
+#reviewForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    padding: 10px;
+    border: 1px solid black;
+    background: cornflowerblue;
+}
+
+.revContent {
+    max-width: 275px;
+}
+
+#reviewForm .revContent:focus {
+    background-color: darkgray;
+}
+
+#review__form--submit {
+    cursor: pointer;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+#review__form--submit:hover {
+    opacity: 1;
 }
