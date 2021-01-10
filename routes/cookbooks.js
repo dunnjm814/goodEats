@@ -161,9 +161,9 @@ router.post(
         }
 
         const userId = res.locals.user.id;
+        let { deleteRecipe, currentBook } = req.body;
 
         if (userId !== 5) {
-            let { deleteRecipe, currentBook } = req.body;
             deleteRecipe = parseInt(deleteRecipe);
             currentBook = parseInt(currentBook);
 
@@ -188,9 +188,9 @@ router.post(
         }
 
         const userId = res.locals.user.id;
+        let { updateRecipe, currentBook } = req.body;
 
         if (userId !== 5) {
-            let { updateRecipe, currentBook } = req.body;
             deleteRecipe = parseInt(updateRecipe);
             currentBook = parseInt(currentBook);
 

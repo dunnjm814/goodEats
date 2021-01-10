@@ -58,7 +58,7 @@ body {
     flex-direction: column;
     height: max-content;
     max-height: min-content;
-    width: 600px;
+    width: 35%;
     overflow: hidden;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);

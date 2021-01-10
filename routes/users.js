@@ -114,7 +114,7 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
     res.render('splash', { user, loginErrors: errors, token: req.csrfToken() });
 }));
 
-router.post('/demo', loginValidators, csrfProtection, asyncHandler(async(req, res, next) => {
+router.get('/demo', loginValidators, csrfProtection, asyncHandler(async(req, res, next) => {
     const email = "demo@gmail.com";
     const password = "Password1!";
     const user = await db.User.findOne({

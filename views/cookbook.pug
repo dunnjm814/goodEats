@@ -2,8 +2,21 @@ extends layout
 
 block content
 
+
     script(src="../javascripts/cookbook.js" type="module" defer)
     link(rel='stylesheet' href='/stylesheets/cookbook.css')
+    div(class="navbar")
+        div(class="navbar-thirds" id="navbar-thirds-header")
+            .header-1
+                h1 Cookbook: #{cookBook.name}
+        div(class="navbar-thirds")
+        div(class="navbar-thirds")
+        div(class="navbar-thirds" id="navbar-thirds-buttons")
+            form(action="/dashboard" method="get" id="return-to-dashboard-button")
+                button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
+            form(action="/cookbooks" method="get" id="cookbooks-button")
+                button(type='submit' class="cookbooks-button hover-popout") Cookbooks
+            button(id="logout-button" class="logout-button hover-popout") Logout
     div(class='hidden' id='logout-form-holder' class='logout-form-holder')
         form(action='/users/logout' method='post' class='logout-form')
             input(type='hidden' name='_csrf' value=token)
@@ -17,18 +30,6 @@ block content
                             button(type='submit' id='logout-confirm-button' class="hover-popout") Yep!
                         td
                             button(id="no-logout-button" class="hover-popout") No!
-    div(class="navbar")
-        div(class="navbar-thirds" id="navbar-thirds-header")
-            .header-1
-                h1 Cookbook: #{cookBook.name}
-        div(class="navbar-thirds")
-        div(class="navbar-thirds")
-        div(class="navbar-thirds" id="navbar-thirds-buttons")
-            form(action="/dashboard" method="get" id="return-to-dashboard-button")
-                button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
-            form(action="/cookbooks" method="get" id="cookbooks-button")
-                button(type='submit' class="cookbooks-button hover-popout") Cookbooks
-            button(id="logout-button" class="logout-button hover-popout") Logout
     div(class="body-flex")
         div(class="recipe-flex")
             each recipe in cookBook.Recipes

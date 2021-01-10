@@ -2,6 +2,19 @@ extends layout
 
 block content
 
+    div(class="navbar" id='navbar')
+        div(class="navbar-thirds" id="navbar-thirds-header")
+            .header-1
+                h1 My Cookbooks
+        div(class="navbar-thirds")
+        div(class="navbar-thirds")
+        //- div(class="navbar-thirds")
+        div(class="navbar-thirds" id="navbar-thirds-buttons")
+            button(id="create-cookbook-button" class="create-cookbook-button hover-popout") Create Cookbook
+            form(action="/dashboard" method="get" id="return-to-dashboard-button")
+                button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
+            button(id="logout-button" class="logout-button hover-popout") Logout
+
     link(rel='stylesheet' href='/stylesheets/user-cookbooks.css')
     script(src="../javascripts/cookbooks.js" type="module" defer)
     div(class='hidden' id='cookbook-form-holder' class='cookbook-form-holder')
@@ -35,18 +48,7 @@ block content
                             button(type='submit' id='logout-confirm-button' class="hover-popout") Yep!
                         td
                             button(id="no-logout-button" class="hover-popout") No!
-    div(class="navbar" id='navbar')
-        div(class="navbar-thirds" id="navbar-thirds-header")
-            .header-1
-                h1 My Cookbooks
-        div(class="navbar-thirds")
-        div(class="navbar-thirds")
-        //- div(class="navbar-thirds")
-        div(class="navbar-thirds" id="navbar-thirds-buttons")
-            button(id="create-cookbook-button" class="create-cookbook-button hover-popout") Create Cookbook
-            form(action="/dashboard" method="get" id="return-to-dashboard-button")
-                button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
-            button(id="logout-button" class="logout-button hover-popout") Logout
+
     div(class="body-flex" id="body-flex")
         div(class="cookbook-flex" id="cookbook-flex")
             each cookBook, index in cookBooks
