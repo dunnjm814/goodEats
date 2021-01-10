@@ -10,6 +10,11 @@ html {
     margin: 0%;
 }
 
+input,
+button {
+    outline: none;
+}
+
 .dashboard-header {
     display: flex;
     justify-content: flex-start;
@@ -23,6 +28,7 @@ html {
 
 .website-title {
     display: flex;
+    align-items: center;
     justify-content: row;
 }
 
@@ -33,6 +39,16 @@ html {
 }
 .navbar {
     display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    border-radius: 5px;
+    max-height: 100px;
+    position: fixed;
+    top: 2%;
+    right: 0%;
+
+    /* display: flex;
     position: fixed;
     flex-direction: row;
     justify-content: space-around;
@@ -42,13 +58,70 @@ html {
     border: 2px black solid;
     background-color: rgba(0, 0, 0, .2);
     border-radius: 5px;
-    /* /* top: 100px; */
-    right: 0px;
+    /* /* top: 100px;
+    right: 0px; */
+}
+.navbar-thirds {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.nav-icons {
+#navbar-thirds-buttons {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    min-width: 25%;
+}
+
+#navbar-thirds-header {
+    min-width: 25%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .2);
+    color: aliceblue;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+button {
+    width: 145px;
+    margin: 20px;
+    padding: 12px;
+    height: 80px;
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid aliceblue;
+    border-radius: 6px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.logout-form-holder {
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    position: fixed;
+    top: 40%;
+    right: 5%;
+}
+
+.hover-popout {
+    transition: none .5s ease-in-out;
+    transition-property: transform;
+    text-decoration: none;
+}
+
+.hover-popout:hover {
+    transform: scale(1.05);
+    max-width: 100%;
+}
+
+#logout-button {
+    color: aliceblue;
 }
 
 .fas {
@@ -60,7 +133,8 @@ html {
 .far {
     display: flex;
     color:black;
-    font-size: 4em;
+    font-size: 3em;
+    margin-left: 10px;
 }
 
 .icon-caption {

@@ -12,14 +12,25 @@ block content
         div(class='website-title') 
             h1(id='title') GoodEats 
             i(class='far fa-pizza')
-        div(class="navbar")
-            a(class="nav-icons hover" href="/cookbooks")
-                i(class="fas fa-book-open fa-2x row text-center" id="open-book")
-                figcaption CookBooks
+    div(class="navbar")
+        div(class="navbar-thirds" id="navbar-thirds-buttons")
+            //- form(action="/dashboard" method="get" id="return-to-dashboard-button")
+            //-     button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
+            form(action="/cookbooks" method="get" id="cookbooks-button")
+                button(type='submit' class="cookbooks-button hover-popout") Cookbooks
+            form(action='/users/logout' method='post' class='logout-form')
+                input(type='hidden' name='_csrf' value=token)
+                button(type='submit' id='logout-confirm-button' class="hover-popout") Logout
 
-            a(class="nav-icons hover" href="/users/logout")
-                i(class="fas fa-door-open" id="logout-user-button")
-                figcaption Logout
+
+        //- div(class="navbar")
+        //-     a(class="nav-icons hover" href="/cookbooks")
+        //-         i(class="fas fa-book-open fa-2x row text-center" id="open-book")
+        //-         figcaption CookBooks
+
+        //-     a(class="nav-icons hover" href="/users/logout")
+        //-         i(class="fas fa-door-open" id="logout-user-button")
+        //-         figcaption Logout
             
 
     div(class="column-holder")
