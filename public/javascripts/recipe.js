@@ -79,22 +79,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     })
 
-    const deleteButton = document.querySelector('.delete')
+    const deleteButtons = document.querySelectorAll('.delete')
+    deleteButtons.forEach(deleteButton => {
 
-    deleteButton.addEventListener('click', async (e) => {
-        e.preventDefault();
-        let reviewTarget = parseInt(`${e.target.id}`, 10)
-
-        const res = await fetch(`/api/reviews/${reviewTarget}`, {
-            method: 'delete'
+        deleteButton.addEventListener('click', async (e) => {
+            e.preventDefault();
+            let reviewTarget = parseInt(`${e.target.id}`, 10)
+            console.log(reviewTarget)
+            const res = await fetch(`/api/reviews/${reviewTarget}`, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'}
+            })
+            const deleteReview = await res.json()
+            console.log(deleteReview)
+            const container = document.querySelector('recipe__review')
+            const deletedReview = document.getElementById(`reviewContainer${deleteReview.reviewId}`)
+            container.removeChild(deletedReview)
         })
-        const deleteReview = await res.json()
-        console.log(deleteReview)
-        const container = document.querySelector('recipe__review')
-        const deletedReview = document.getElementById(`reviewContainer${deleteReview.id}`)
-        container.removeChild(deletedReview)
 
     })
 
 })
-
