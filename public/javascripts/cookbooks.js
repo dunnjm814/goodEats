@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", event => {
     const logoutButton = document.getElementById("logout-button")
     const cookbookForm = document.getElementById('cookbook-form-holder');
     const logoutForm = document.getElementById('logout-form-holder');
-    const cookBookFlex = document.getElementById('cookbook-flex')
+    const noLogoutButton = document.getElementById('no-logout-button');
 
     createButton.addEventListener('click', event => {
 
@@ -37,6 +37,15 @@ window.addEventListener("DOMContentLoaded", event => {
             logoutForm.classList.add('hidden');
             logoutForm.classList.remove('logout-form-holder');
         }
+
+    });
+
+    noLogoutButton.addEventListener('click', event => {
+
+        event.preventDefault();
+
+        logoutForm.classList.add('hidden');
+        logoutForm.classList.remove('logout-form-holder');
 
     });
 

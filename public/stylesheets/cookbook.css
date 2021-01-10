@@ -69,6 +69,24 @@ body {
     color: whitesmoke;
 }
 
+.recipe-title {
+    width: fit-content;
+}
+
+.card:hover .delete {
+    display: block;
+    width: fit-content;
+    height: auto;
+    font-size: 15px;
+    padding: 2px;
+    margin: 2px;
+}
+
+.delete {
+    display: none;
+    transition: all 1.5s ease-in-out;
+}
+
 .card h3 {
     font-size: 22px;
     font-weight: bold;
@@ -120,7 +138,7 @@ body {
     color: whitesmoke;
     width: 60%;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     font-size: larger;
     font-weight: bold;
     top: 28%;
@@ -200,4 +218,11 @@ img {
     font-size: 24px;
     height: fit-content;
     color: aliceblue;
+}
+
+.delete button {
+    width: fit-content;
+    height: fit-content;
+    padding: 2px;
+    margin: 2px;
 }

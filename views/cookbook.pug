@@ -32,9 +32,14 @@ block content
     div(class="body-flex")
         div(class="recipe-flex")
             each recipe in cookBook.Recipes
-                a(href=`http://localhost:8080/recipes/${recipe.id}` class="hover-popout card")
+                a(href=`/recipes/${recipe.id}` class="hover-popout card")
                     div(class="card_header")
-                        h2 #{recipe.title}
+                        h2(class="recipe-title") #{recipe.title}
+                        form(action="/cookbooks/recipe/delete" method="post" id="delete-recipe-button" class="delete")
+                            input(type='hidden' name='_csrf' value=token)
+                            input(type='hidden' name='deleteRecipe' value=recipe.id)
+                            input(type='hidden' name='currentBook' value=cookBook.id)
+                            button(type='submit' class="delete-recipe-button hover-popout") Remove Recipe
                     div(class="recipe_image")
                         img(src=recipe.foodImg alt=recipe.title class="recipe-image" style=`width:90%;height:auto; max-height:300px; width: auto;`)
                     div(class="status")
