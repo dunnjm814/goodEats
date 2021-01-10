@@ -63,7 +63,7 @@ html {
     display: flex;
     flex-direction: column;
     max-height: min-content;
-    width: 40%;
+    width: 35%;
     overflow: hidden;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);

@@ -126,6 +126,23 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async(req, r
     res.render('splash', { user, loginErrors: errors, token: req.csrfToken() });
 }));
 
+router.post('/demo', loginValidators, csrfProtection, asyncHandler(async(req, res, next) => {
+    const email = "demo@gmail.com";
+    const password = "Password1!";
+    const user = await db.User.findOne({
+        where: {
+            email
+        }
+    })
+    const passwordMatch = await bcrypt.compare(password, user.hashPass.toString())
+    if (passwordMatch) {
+        loginUser(req, res, user);
+        return req.session.save(() => {
+            return res.redirect('/dashboard')
+        })
+    }
+}));
+
 router.post(
     '/signup',
     csrfProtection,

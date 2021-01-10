@@ -61,7 +61,7 @@ block content
                             input(type='hidden' name='deleteCookbook' value=cookBook.id)
                             button(type='submit' class="delete-cookbook-button hover-popout") Delete Cookbook
                     div(id="box")
-                        if recipes.length > 2
+                        if recipes.length > 1
                             div(class="recipe_image scroller")
                                 each recipe in recipes
                                     if recipe.foodImg
