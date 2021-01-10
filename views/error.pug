@@ -10,12 +10,11 @@ html
     block content
       div(id='header__1')
         h1 Uh Oh! Something went wrong...
+        form(action="/" method='get')
+          button(type='submit' id='returnHome__button')  Return Home
       div(id='error__message')
         h2= message
       div(id='error__status')
         h3= error.status
       div(id='error__stack')
         pre #{error.stack}
-      div(id='return__button')
-        form(action="/" method='get')
-          button(type='submit' id='returnHome__button')  Return Home

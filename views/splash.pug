@@ -65,8 +65,7 @@ html
                                     td
                                         input(type='password' class='signup__form--textBox' name='confirmedPassword' placeholder='Confirm password')
                         button(type='submit' class='signup__form--button' id='signup__form--submitButton') Signup
-                    form(action='/users/dashboard/5' method='get' id='demoUser__form' class='hidden splash__form' )
-
+                    form(action='/users/demo' method='get' id='demoUser__form' class='hidden splash__form' )
                         p(id='demoUser__form--info') You can use this feature to test out the site, but none of your information will be saved.
                         button(type='submit' id='demoUser__form--button') Enter GoodEats
                     if loginErrors
