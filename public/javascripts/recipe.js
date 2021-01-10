@@ -27,44 +27,51 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         // create elements
         const userSpan = document.createElement('span')
+        userSpan.classList.add("userName_and_rating");
+
         const starSpan = document.createElement('span')
+        starSpan.setAttribute("id", "the-stars");
+
         const pRevContent = document.createElement('p')
-        const rateSpan = document.createElement('span')
-            // set innertext of new elements to text nodes
+        pRevContent.setAttribute("id", "review__content");
+
+        // set innertext of new elements to text nodes
         userSpan.innerText = `${data.userName} ${data.review.rating}`;
+
+        const nameRateStarsDiv = document.createElement('div')
+        nameRateStarsDiv.classList.add("reviewContent__name--andRating");
+
         let n = data.review.rating;
         while (n > 0) {
-
+            let starSpan = document.createElement('span')
+            starSpan.classList.add("the-stars");
             let star = document.createElement('img')
-            let starImg = star.src = "../images/star-icon.png";
-            starSpan.innerHTML = starImg
-            rateSpan.appendChild(starSpan)
+            star.setAttribute('id', 'star')
+            star.setAttribute('src', "../images/star-icon.png");
+            starSpan.appendChild(star)
+            nameRateStarsDiv.appendChild(starSpan)
             n--
         }
 
         pRevContent.innerText = data.review.revContent
-        rateSpan.classList.add("list-stars");
 
         // create new div to house elements set w/ text nodes and query for reviews
-        const newReviewDiv = document.createElement('div')
-        newReviewDiv.classList.add("reviewContent__name--andRating");
+
         const contentDiv = document.createElement('div')
-        contentDiv.classList.add(".recipe__review--content");
-        contentDiv.classList.add(".reviewContent__the--content");
+        contentDiv.classList.add("reviewContent__the--content");
         const reviews = document.querySelector('.recipe__review');
 
         // append elements to div housing review post content
-        newReviewDiv.appendChild(userSpan)
-        newReviewDiv.appendChild(rateSpan)
+        nameRateStarsDiv.appendChild(userSpan)
         contentDiv.appendChild(pRevContent)
 
-        // houses newReviewDiv (userName, numeric rating, and stars), and content div (review)
+        // houses nameRateStarsDiv (userName, numeric rating, and stars), and content div (review)
         const reviewCard = document.createElement('div')
         reviewCard.classList.add("recipe__review--content");
-        reviewCard.appendChild(newReviewDiv)
+        reviewCard.appendChild(nameRateStarsDiv)
         reviewCard.appendChild(contentDiv)
 
-        // append newReviewDiv container to reviews
+        // append nameRateStarsDiv container to reviews
         reviews.appendChild(reviewCard)
 
 
@@ -85,18 +92,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
         deleteButton.addEventListener('click', async (e) => {
             e.preventDefault();
             let reviewTarget = parseInt(`${e.target.id}`, 10)
-            console.log(reviewTarget)
             const res = await fetch(`/api/reviews/${reviewTarget}`, {
                 method: 'DELETE',
-                headers: {'Content-Type': 'application/json'}
+                headers: { 'Content-Type': 'application/json' }
             })
             const deleteReview = await res.json()
             console.log(deleteReview)
-            const container = document.querySelector('recipe__review')
-            const deletedReview = document.getElementById(`reviewContainer${deleteReview.reviewId}`)
+            const container = document.querySelector('.recipe__review')
+            const deletedReview = document.getElementById(
+                `reviewContainer${deleteReview.reviewId}`
+            );
+            console.log(deletedReview)
+            console.log(container)
             container.removeChild(deletedReview)
         })
 
     })
 
+    const addToCookBookForm = document.querySelector(".recipe__cookBook--button");
+    addToCookBookForm.addEventListener('click', e => {
+        e.preventDefault();
+        const addToCookBookForm = document.querySelector(".addToCookbook__form");
+        addToCookBookForm.classList.remove('hidden')
+    })
+    // const addToCookBook = document.getElementById("submitToCookBook");
 })
