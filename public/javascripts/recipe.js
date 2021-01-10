@@ -4,19 +4,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const submitFormButton = document.getElementById('review__form--submit')
     const reviewFormContent = document.getElementById("reviewForm");
 
-    
-
-
     displayFormButton.addEventListener('click', (event) => {
         reviewForm.classList.remove('hidden')
 
     })
-
+    let recipeId = document.getElementById('recipeId');
     submitFormButton.addEventListener('click', async (event) => {
 
         event.preventDefault()
-
-        let recipeId = document.getElementById('recipeId');
 
         const form = new FormData(reviewFormContent);
         const revContent = form.get('revContent');
@@ -51,21 +46,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         // create new div to house elements set w/ text nodes and query for reviews
         const newReviewDiv = document.createElement('div')
+        newReviewDiv.classList.add("reviewContent__name--andRating");
         const contentDiv = document.createElement('div')
+        contentDiv.classList.add(".recipe__review--content");
+        contentDiv.classList.add(".reviewContent__the--content");
         const reviews = document.querySelector('.recipe__review');
 
         // append elements to div housing review post content
         newReviewDiv.appendChild(userSpan)
         newReviewDiv.appendChild(rateSpan)
-        newReviewDiv.classList.add("reviewContent__name--andRating");
         contentDiv.appendChild(pRevContent)
-        contentDiv.classList.add(".reviewContent__the--content");
 
         // houses newReviewDiv (userName, numeric rating, and stars), and content div (review)
         const reviewCard = document.createElement('div')
+        reviewCard.classList.add("recipe__review--content");
         reviewCard.appendChild(newReviewDiv)
         reviewCard.appendChild(contentDiv)
-        reviewCard.classList.add("recipe__review--content");
 
         // append newReviewDiv container to reviews
         reviews.appendChild(reviewCard)
@@ -75,11 +71,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
         const avgRatingDisplay = document.querySelector('.recipeRating')
         const newAvgRating = data.finalAvg
         avgRatingDisplay.innerText = newAvgRating
-        newReviewDiv.classList.add(".recipe__review--content");
 
 
 
         reviewForm.classList.add('hidden')
+
+    })
+
+    const deleteButton = document.querySelector('.delete')
+
+    deleteButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        let reviewTarget = parseInt(`${e.target.id}`, 10)
+
+        const res = await fetch(`/api/reviews/${reviewTarget}`, {
+            method: 'delete'
+        })
+        const deleteReview = await res.json()
+        console.log(deleteReview)
+        const container = document.querySelector('recipe__review')
+        const deletedReview = document.getElementById(`reviewContainer${deleteReview.id}`)
+        container.removeChild(deletedReview)
 
     })
 

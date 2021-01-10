@@ -3,7 +3,7 @@
 body{
 
     text-decoration: none;
-    background-image: url('../images/simona-sergi-k87kcKN-Vvs-unsplash.jpg');
+    background-image: url('../images/saltwoodgrain.jpg');
 
   background-position: center;
   background-repeat: no-repeat;
@@ -17,18 +17,27 @@ body{
 }
 #headings-wrap{
     padding: 5%;
-    margin-left: 20%;
+    margin:auto;
     margin-bottom: 1%;
     border: .1px black;
     border-radius: .2em;
-    backdrop-filter: blur(6px);
+    max-width: 600px;
+
 }
 #title{
     font-size: 50px;
     font-weight: bold;
+    backdrop-filter: blur(6px);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
 }
 #recipe__avgRating--andstars{
-    margin-left: 10px ;
+    backdrop-filter: blur(6px);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+
 }
 .hidden {
     visibility: hidden;
@@ -63,7 +72,7 @@ h1, h2, h3 {
 ol li{
     list-style: upper-roman;
     font-size: 25px;
-    padding: .5em;
+    padding: 30px;
     line-height: 1em;
 }
 #recipeImg{
@@ -72,21 +81,29 @@ ol li{
     display:flex;
     justify-content: center;
     padding: 5%;
-    border:hidden;
-    border-radius: 5%;
+
+    border-radius: 50px;
 }
 .recipe__description,
-.recipe__direction,
+.recipe__directions,
 .recipe__ingredients {
     max-width: 600px;
     margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: rgb(180, 180, 180);
     background-size:cover;
     backdrop-filter: blur(10px);
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 20px;
     padding: 10px;
 
+}
+.recipe__description{
+    padding: 20px;
+}
+.recipe__directions{
+    padding: 30px;
 }
 .recipe__ingredients{
     text-decoration: none;
@@ -127,11 +144,21 @@ ol li{
     justify-content: center;
     border:.5px solid black;
     border-radius: .5em;
-    background:rgba(103, 128, 159, .2);
+    background:rgba(103, 128, 159, .5);
     margin: 5px;
 }
 #review__content{
     padding: 10px;
+}
+#editDelete__container{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 5px;
+}
+.delete{
+    padding: 5px;
+    margin:5px;
 }
 .review__form{
     position:fixed;
@@ -150,14 +177,17 @@ ol li{
     max-width: 300px;
     padding: 10px;
     border: 1px solid black;
-    background: cornflowerblue;
+    border-radius: 5%;
+    background: rgba(100, 149, 237, .8);
+
 }
 
 .revContent{
     max-width: 275px;
 }
 #reviewForm .revContent:focus{
-    background-color: darkgray;
+    transition-delay: 1s;
+    background-color: rgb(211, 211, 211);
 }
 #review__form--submit{
     cursor: pointer;
@@ -166,4 +196,16 @@ ol li{
 }
 #review__form--submit:hover{
     opacity: 1;
+}
+#formReviewText{
+    padding: 10px;
+    margin: 10px;
+
+}
+.ratingSelector{
+    padding: 5px;
+    margin: 10px;
+}
+#review__form--submit{
+    padding: 5px;
 }
