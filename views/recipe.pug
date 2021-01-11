@@ -17,7 +17,9 @@ html(lang='en')
                     button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
                 form(action="/cookbooks" method="get" id="cookbooks-button")
                     button(type='submit' class="cookbooks-button hover-popout") Cookbooks
-                button(id="logout-button" class="logout-button hover-popout") Logout
+                form(action='/users/logout' method='post')
+                    input(type='hidden' name='_csrf' value=token)
+                    button(type='submit' id='logout-confirm-button' class="hover-popout") Logout
 
     body
         div(id='headings-wrap')
