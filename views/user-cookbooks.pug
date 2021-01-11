@@ -16,7 +16,7 @@ block content
             button(id="logout-button" class="logout-button hover-popout") Logout
 
     link(rel='stylesheet' href='/stylesheets/user-cookbooks.css')
-    script(src="../javascripts/cookbooks.js" type="module" defer)
+    script(src="/javascripts/cookbooks.js" type="module" defer)
     div(class='hidden' id='cookbook-form-holder' class='cookbook-form-holder')
         form(action='/cookbooks' method='post' class='cookbook-form')
             input(type='hidden' name='_csrf' value=token)
@@ -55,7 +55,7 @@ block content
                 - const recipes = cookBook.Recipes;
                 - const recipeLength = recipes.length;
                 - const width = 1/recipeLength * 100;
-                a(href=`http://localhost:8080/cookbooks/${cookBook.id}` class="card hover-popout")
+                a(href=`/cookbooks/${cookBook.id}` class="card hover-popout")
                     div(class="card_header")
                         h2(class="cookbook-name") #{cookBook.name}
                         form(action="/cookbooks/delete" method="post" id="delete-cookbook-button" class="delete")
