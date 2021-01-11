@@ -5,29 +5,24 @@
 
 body {
     text-decoration: none;
-
     background-image: url('../images/saltwoodgrain.jpg');
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  padding: 0%;
-  margin: 0%;
-
-
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    padding: 0%;
+    margin: 0%;
 }
 
 #headings-wrap {
     padding: 5%;
-    margin:auto;
+    margin: auto;
     margin-bottom: 1%;
     border: .1px black;
     border-radius: .2em;
     max-width: 600px;
-
 }
 
 #title {
@@ -39,16 +34,15 @@ body {
     padding: 15px;
 }
 
-#recipe__avgRating--andstars{
+#recipe__avgRating--andstars {
     backdrop-filter: blur(6px);
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
-
-
 }
 
 .hidden {
+    display: none;
     visibility: hidden;
 }
 
@@ -68,9 +62,12 @@ button {
     color: burlywood;
     background-color: slateblue;
     border-radius: 6px;
-
 }
-input, button, select, option {
+
+input,
+button,
+select,
+option {
     outline: none;
 }
 
@@ -100,9 +97,7 @@ ol li {
     display: flex;
     justify-content: center;
     padding: 5%;
-
     border-radius: 50px;
-
 }
 
 .recipe__description,
@@ -120,13 +115,15 @@ ol li {
     padding: 10px;
 }
 
-.recipe__description{
+.recipe__description {
     padding: 20px;
 }
-.recipe__directions{
+
+.recipe__directions {
     padding: 30px;
 }
-.recipe__ingredients{
+
+.recipe__ingredients {
     text-decoration: none;
     font-weight: bold;
     line-height: 50px;
@@ -169,9 +166,7 @@ ol li {
     justify-content: center;
     border: .5px solid black;
     border-radius: .5em;
-
-    background:rgba(103, 128, 159, .5);
-
+    background: rgba(103, 128, 159, .5);
     margin: 5px;
 }
 
@@ -179,18 +174,20 @@ ol li {
     padding: 10px;
 }
 
-#editDelete__container{
-    display:flex;
+#editDelete__container {
+    display: flex;
     flex-direction: row;
     justify-content: flex-start;
     padding: 5px;
 }
-.delete{
+
+.delete {
     padding: 5px;
-    margin:5px;
+    margin: 5px;
 }
-.review__form{
-    position:fixed;
+
+.review__form {
+    position: fixed;
     top: 40%;
     left: 0%;
     display: flex;
@@ -208,17 +205,15 @@ ol li {
     border: 1px solid black;
     border-radius: 5%;
     background: rgba(100, 149, 237, .8);
-
 }
 
 .revContent {
     max-width: 275px;
 }
 
-#reviewForm .revContent:focus{
+#reviewForm .revContent:focus {
     transition-delay: 1s;
     background-color: rgb(211, 211, 211);
-
 }
 
 #review__form--submit {
@@ -229,23 +224,24 @@ ol li {
 
 #review__form--submit:hover {
     opacity: 1;
-
 }
-#formReviewText{
+
+#formReviewText {
     padding: 10px;
     margin: 10px;
-
 }
-.ratingSelector{
+
+.ratingSelector {
     padding: 5px;
     margin: 10px;
 }
-#review__form--submit{
+
+#review__form--submit {
     padding: 5px;
 }
 
-.addToCookbook__form{
-    position:fixed;
+.addToCookbook__form {
+    position: fixed;
     top: 40%;
     left: 0%;
     display: flex;
@@ -253,9 +249,9 @@ ol li {
     justify-content: center;
     width: 100%;
     transition: 0.5s ease-in;
-
 }
-#addToCookbookForm{
+
+#addToCookbookForm {
     display: flex;
     flex-direction: column;
     max-width: 300px;
@@ -264,21 +260,116 @@ ol li {
     border-radius: 5%;
     background: rgba(100, 149, 237, .8);
 }
-.cookbookSelector{
-    padding: 15px;
 
+.cookbookSelector {
+    padding: 15px;
 }
-.addToCookBookLabel{
+
+.addToCookBookLabel {
     font-weight: bold;
     padding: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
-.book{
+
+.book {
     padding: 5px;
     margin: 10px;
 }
-#submitToCookBook{
+
+#submitToCookBook {
     padding: 5px;
     margin: 10px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 5px;
+    max-height: 100px;
+    justify-content: space-between;
+    position: fixed;
+}
+
+.navbar-thirds {
+    min-width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navbar-thirds-buttons {
+    width: fit-content;
+    min-width: 25%;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 10px;
+}
+
+
+/* #navbar-thirds-header {
+    width: fit-content;
+    min-width: 25%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .2);
+    color: aliceblue;
+    border-radius: 10px;
+} */
+
+button {
+    width: 145px;
+    margin: 20px;
+    padding: 12px;
+    height: fit-content;
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid aliceblue;
+    border-radius: 6px;
+    font-size: 24px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+input,
+button {
+    outline: none;
+}
+
+.logout-form-holder {
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    position: fixed;
+    top: 40%;
+    right: 5%;
+}
+
+.logout-form {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 2px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: 10px 5px 5px black;
+    font-size: 24px;
+    height: fit-content;
+    color: aliceblue;
+}
+
+.hover-popout {
+    transition: all .5s ease-in-out;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+}
+
+.hover-popout:hover {
+    transform: scale(1.05);
+    max-width: 100%;
 }

@@ -6,8 +6,19 @@ html(lang='en')
         script(src='../javascripts/recipe.js' type='module' defer)
         link(rel='stylesheet', href='/stylesheets/recipe-page.css')
         link(rel='icon' href='../favicon.jpg' type='image/jpg')
-
         title=recipe.title
+
+        div(class="navbar")
+            div(class="navbar-thirds" id="navbar-thirds-header")
+            div(class="navbar-thirds")
+            div(class="navbar-thirds")
+            div(class="navbar-thirds" id="navbar-thirds-buttons")
+                form(action="/dashboard" method="get" id="return-to-dashboard-button")
+                    button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
+                form(action="/cookbooks" method="get" id="cookbooks-button")
+                    button(type='submit' class="cookbooks-button hover-popout") Cookbooks
+                button(id="logout-button" class="logout-button hover-popout") Logout
+
     body
         div(id='headings-wrap')
             div(class='header-1')
@@ -37,9 +48,9 @@ html(lang='en')
                             li=recipeDirection
             div(class='reviewCookbookWrap')
                 div(class='recipe__reviewButton')
-                    button(id='displayReviewButton') Write A Review
+                    button(id='displayReviewButton' class="hover-popout") Write A Review
                 div
-                    button(class='recipe__cookBook--button' ) Add to Cookbook
+                    button(class='recipe__cookBook--button hover-popout') Add to Cookbook
                     //- ask about this for add to cookbooks
 
             div(class='recipe__reviews')
@@ -60,7 +71,7 @@ html(lang='en')
                                 div(id='editDelete__container' class='hidden')
                             else
                                 div(id='editDelete__container')
-                                    button(id=recipeReview.id class='delete') delete
+                                    button(id=recipeReview.id class='delete hover-popout') delete
                     //- how to oder the reviews
 
         div(class='review__form hidden')
@@ -73,8 +84,8 @@ html(lang='en')
                     select(class='ratingSelector' name='rating')
                         each val in [5, 4, 3, 2, 1]
                             option(class='review__form--dropdown') #{val} &#127775
-                div(class='review__form--button')
-                    button(type='submit' id='review__form--submit') Submit
+                div(class='review__form--button ')
+                    button(type='submit' id='review__form--submit' class="hover-popout") Submit
 
         div(class='addToCookbook__form hidden')
                 form(action='/recipes/add' method='post' id='addToCookbookForm')
@@ -85,4 +96,4 @@ html(lang='en')
                         each cookbook in cookBooks
                             option(class='book' value=cookbook.id)=cookbook.name
                     div(class='submitWrap')
-                        button(type='submit' id='submitToCookBook') Submit
+                        button(type='submit' id='submitToCookBook' class="hover-popout") Submit

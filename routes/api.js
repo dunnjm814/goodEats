@@ -13,9 +13,10 @@ router.post(
 
         const recipeId = req.params.id
         const { revContent, rating } = req.body
+        let review;
 
         if (userId !== 5) {
-            const review = await Review.create({ userId, recipeId, revContent, rating: rating[0] })
+            review = await Review.create({ userId, recipeId, revContent, rating: rating[0] })
         }
 
         const recipe = await Recipe.findByPk(recipeId)
@@ -34,7 +35,12 @@ router.post(
                 }
             })
         }
-        res.json({ review, userName, finalAvg });
+
+        if (userId !== 5) {
+            return res.json({ review, userName, finalAvg });
+        }
+
+        res.redirect(`/recipes/${recipeId}`)
 
     })
 );

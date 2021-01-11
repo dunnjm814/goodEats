@@ -55,11 +55,10 @@ router.post(
             return res.redirect("/");
         }
         let userId = res.locals.user.id;
+        let { addRecipe, cookBookName } = req.body;
+        addRecipe = parseInt(addRecipe);
+        currentBook = parseInt(cookBookName);
         if (userId !== 5) {
-            let { addRecipe, cookBookName } = req.body;
-            addRecipe = parseInt(addRecipe);
-            currentBook = parseInt(cookBookName);
-
             await db.CookBookRecipe.create({
                 cookBookId: currentBook,
                 recipeId: addRecipe,
