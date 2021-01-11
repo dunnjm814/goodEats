@@ -58,7 +58,7 @@ body {
   transform:scale(1.20) ;
   transition: 1s ease-in-out;
   background: black;
-  color: white;
+  color: aliceblue;
 }
 
 
@@ -200,13 +200,13 @@ body {
   transform:scale(1.20) ;
     transition: all .8s ease-in-out;
     background: black;
-    color: whitesmoke;
+    color: aliceblue;
 }
 
 .loginErrors,
 .signUpErrors {
     font-size: 15px;
-    color: white;
+    color: aliceblue;
     background-color: rgba(0, 0, 0, 0);
 }
 
