@@ -33,27 +33,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
         nameRateStarsDiv.classList.add("reviewContent__name--andRating");
         let n = data.review.rating;
         while (n > 0) {
-            let starSpan = document.createElement('span')
-            starSpan.classList.add("the-stars");
+
             let star = document.createElement('img')
-            star.setAttribute('id', 'star')
-            star.setAttribute('src', "../images/star-icon.png");
-            starSpan.appendChild(star)
-            nameRateStarsDiv.appendChild(starSpan)
+            let starImg = star.src = "../images/star-icon.png";
+            starSpan.innerHTML = starImg
+            rateSpan.appendChild(starSpan)
             n--
         }
         pRevContent.innerText = data.review.revContent
             // create new div to house elements set w/ text nodes and query for reviews
         const contentDiv = document.createElement('div')
-        contentDiv.classList.add("reviewContent__the--content");
+        contentDiv.classList.add(".recipe__review--content");
+        contentDiv.classList.add(".reviewContent__the--content");
         const reviews = document.querySelector('.recipe__review');
         // append elements to div housing review post content
-        nameRateStarsDiv.appendChild(userSpan)
+        newReviewDiv.appendChild(userSpan)
+        newReviewDiv.appendChild(rateSpan)
         contentDiv.appendChild(pRevContent)
             // houses nameRateStarsDiv (userName, numeric rating, and stars), and content div (review)
         const reviewCard = document.createElement('div')
         reviewCard.classList.add("recipe__review--content");
-        reviewCard.appendChild(nameRateStarsDiv)
+        reviewCard.appendChild(newReviewDiv)
         reviewCard.appendChild(contentDiv)
             // append nameRateStarsDiv container to reviews
         reviews.appendChild(reviewCard)
@@ -84,6 +84,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             console.log(container)
             container.removeChild(deletedReview)
         })
+        const deleteReview = await res.json()
+        console.log(deleteReview)
+        const container = document.querySelector('recipe__review')
+        const deletedReview = document.getElementById(`reviewContainer${deleteReview.id}`)
+        container.removeChild(deletedReview)
 
     })
 

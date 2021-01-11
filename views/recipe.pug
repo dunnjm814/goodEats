@@ -39,7 +39,7 @@ html(lang='en')
                 div(class='recipe__reviewButton')
                     button(id='displayReviewButton') Write A Review
                 div
-                    button(class='recipe__cookBook--button' ) Add to Cookbook
+                    button(class='recipe__cookBook--button' class='hidden') Add to Cookbook
                     //- ask about this for add to cookbooks
 
             div(class='recipe__reviews')
@@ -75,14 +75,11 @@ html(lang='en')
                             option(class='review__form--dropdown') #{val} &#127775
                 div(class='review__form--button')
                     button(type='submit' id='review__form--submit') Submit
-
-        div(class='addToCookbook__form hidden')
-                form(action='/recipes/add' method='post' id='addToCookbookForm')
-                    input(type='hidden' id='recipeId' name='addRecipe' value=recipe.id)
-                    label(for='addToCookbookForm' class='addToCookBookLabel') Add this recipe to one of you cookbooks!
-                            //- do we want to do a selector?
-                    select(class='cookbookSelector' name='cookBookName') Select A Cookbook
-                        each cookbook in cookBooks
-                            option(class='book' value=cookbook.id)=cookbook.name
-                    div(class='submitWrap')
-                        button(type='submit' id='submitToCookBook') Submit
+        //- div(class='addToCookbook__form')
+        //-         form(action=`/api/cookbooks/recipes/${recipe.id}` id='addToCookbookForm' class='hidden')
+        //-             h1(class='addToCookbookLabel')
+        //-             label(for='addToCookbookForm' class='addToCookBookLabel') Add this recipe to one of you cookbooks!
+        //-                     //- do we want to do a selector?
+        //-             select(class='cookbookSelector') Select A Cookbook
+        //-                 each cookbook in cookbooks
+        //-                     option(class='')
