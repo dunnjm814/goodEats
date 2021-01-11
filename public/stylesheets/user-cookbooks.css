@@ -71,7 +71,7 @@ html {
     margin: 20px;
     justify-content: flex-start;
     align-items: center;
-    color: whitesmoke;
+    color: aliceblue;
 }
 
 .cookbook-name {
@@ -148,7 +148,7 @@ html {
 .card_header {
     display: flex;
     flex-direction: row;
-    color: whitesmoke;
+    color: aliceblue;
     width: 60%;
     align-items: center;
     justify-content: space-around;
