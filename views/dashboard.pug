@@ -3,45 +3,54 @@ extends layout
 block content
     script(src="https://kit.fontawesome.com/928decbe91.js" crossorigin="anonymous")
     script(src="../javascripts/dashboard.js" type="module" defer)
+    script(src="https://kit.fontawesome.com/e78d03244a.js" crossorigin="anonymous")
     link(rel='stylesheet' href='/stylesheets/dashboard.css')
 
     div(class='dashboard-header')
         div(class="dashboard-page")
             h1(class='dashboard-title') #{user.userName}'s Dashboard
         div(class='website-title') 
-            h1(id='title') GoodEats
+            h1(id='title') GoodEats 
+            i(class='far fa-pizza')
+    div(class="navbar")
+        div(class="navbar-thirds" id="navbar-thirds-buttons")
+            //- form(action="/dashboard" method="get" id="return-to-dashboard-button")
+            //-     button(type='submit' class="return-to-dashboard-button hover-popout") Dashboard
+            form(action="/cookbooks" method="get" id="cookbooks-button")
+                button(type='submit' class="cookbooks-button hover-popout") Cookbooks
+            form(action='/users/logout' method='post' class='logout-form')
+                input(type='hidden' name='_csrf' value=token)
+                button(type='submit' id='logout-confirm-button' class="hover-popout") Logout
 
-        div(class="navbar")
-            a(class="nav-icons hover" href="/cookbooks")
-                i(class="fas fa-book-open fa-2x row text-center" id="open-book")
-                figcaption CookBooks
 
-            a(class="nav-icons hover" href="/users/logout")
-                i(class="fas fa-door-open" id="logout-user-button")
-                figcaption Logout
+        //- div(class="navbar")
+        //-     a(class="nav-icons hover" href="/cookbooks")
+        //-         i(class="fas fa-book-open fa-2x row text-center" id="open-book")
+        //-         figcaption CookBooks
+
+        //-     a(class="nav-icons hover" href="/users/logout")
+        //-         i(class="fas fa-door-open" id="logout-user-button")
+        //-         figcaption Logout
             
 
-        div(class="column-holder")
-            div(class="cookbook-column")
-                div(class="column_title")
-                    h1 Cookbooks
-            div(class="recipe-library-column")
-                div(class="column_title")
-                    h1 Recipe Library
-                each recipe in recipes
-                    a(class="card hover" href=`/recipes/${recipe.id}`)
-                        div(class="card_header")
-                            h3 #{recipe.title} #{recipe.avgRating} star
-                                h4(id='recipe-id') #{recipe.id}
-                        div(class="card_body")
-                            img(src=recipe.foodImg, class="food_img", alt=recipe.title)
-            div(class="top-rated-column")
-                div(class="column_title")
-                    h1 Top Rated
-                each recipe in topRecipes
-                    a(class="card hover" href=`/recipes/${recipe.id}` )
-                        div(class="card_header")
-                            h3 #{recipe.title} #{recipe.avgRating} star
-                                h4(id='recipe-id') #{recipe.id}
-                        div(class="card_body")
-                            img(src=recipe.foodImg, class="food_img", alt=recipe.title)
+    div(class="column-holder")
+        div(class="recipe-library-column")
+            div(class="column_title")
+                h1 Recipe Library
+            each recipe in recipes
+                a(class="card hover" href=`/recipes/${recipe.id}`)
+                    div(class="card_header")
+                        h3 #{recipe.title} #{recipe.avgRating} star
+                            h4(id='recipe-id') #{recipe.id}
+                    div(class="card_body")
+                        img(src=recipe.foodImg, class="food_img", alt=recipe.title)
+        div(class="top-rated-column")
+            div(class="column_title")
+                h1 Top Rated
+            each recipe in topRecipes
+                a(class="card hover" href=`/recipes/${recipe.id}` )
+                    div(class="card_header")
+                        h3 #{recipe.title} #{recipe.avgRating} star
+                            h4(id='recipe-id') #{recipe.id}
+                    div(class="card_body")
+                        img(src=recipe.foodImg, class="food_img", alt=recipe.title)

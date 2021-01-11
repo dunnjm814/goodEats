@@ -10,7 +10,7 @@ const nameValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide a name')
     .isLength({ max: 50 })
-    .withMessage('Name must be under 50 characters')
+    .withMessage('Name must be under 50 characters'),
 ];
 
 router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -54,7 +54,6 @@ router.get(
         if (!res.locals.authenticated) {
             return res.redirect('/')
         }
-        const userId = res.locals.user.id;
         const pullCookbook = req.params.id;
         const cookBook = await db.CookBook.findByPk(pullCookbook, {
             include: db.Recipe,
@@ -78,19 +77,22 @@ router.post(
             return res.redirect('/')
         }
 
+        const userId = res.locals.user.id;
+
         const validatorErrors = validationResult(req);
 
-        if (validatorErrors.isEmpty()) {
-            const userId = res.locals.user.id;
-            const name = req.body.newCookbookName;
-            const newBook = await db.CookBook.create({
-                userId,
-                name
-            });
-            return res.redirect('/cookbooks')
+        if (userId !== 5) {
+
+            if (validatorErrors.isEmpty()) {
+                const name = req.body.newCookbookName;
+                const newBook = await db.CookBook.create({
+                    userId,
+                    name
+                });
+                return res.redirect('/cookbooks')
+            }
         }
 
-        const userId = res.locals.user.id;
         const user = await db.User.findByPk(userId);
         const cookBooks = await db.CookBook.findAll({
             where: {
@@ -117,9 +119,6 @@ router.post(
 
         const errors = validatorErrors.array().map((error) => error.msg);
 
-
-        console.log(errors)
-
         res.render('user-cookbooks', { errors, user, cookBooks, token: req.csrfToken() })
 
     })
@@ -132,19 +131,23 @@ router.post(
             return res.redirect('/')
         }
 
-        const cookBookId = parseInt(req.body.deleteCookbook);
+        const userId = res.locals.user.id;
 
-        await db.CookBookRecipe.destroy({
-            where: {
-                cookBookId
-            }
-        });
+        if (userId !== 5) {
+            const cookBookId = parseInt(req.body.deleteCookbook);
 
-        await db.CookBook.destroy({
-            where: {
-                id: cookBookId
-            }
-        });
+            await db.CookBookRecipe.destroy({
+                where: {
+                    cookBookId
+                }
+            });
+
+            await db.CookBook.destroy({
+                where: {
+                    id: cookBookId
+                }
+            });
+        }
 
         res.redirect('/cookbooks');
     })
@@ -157,16 +160,56 @@ router.post(
             return res.redirect('/')
         }
 
+        const userId = res.locals.user.id;
         let { deleteRecipe, currentBook } = req.body;
-        deleteRecipe = parseInt(deleteRecipe);
-        currentBook = parseInt(currentBook);
 
-        await db.CookBookRecipe.destroy({
-            where: {
-                cookBookId: currentBook,
-                recipeId: deleteRecipe
+        if (userId !== 5) {
+            deleteRecipe = parseInt(deleteRecipe);
+            currentBook = parseInt(currentBook);
+
+            await db.CookBookRecipe.destroy({
+                where: {
+                    cookBookId: currentBook,
+                    recipeId: deleteRecipe
+                }
+            });
+        }
+
+
+        res.redirect(`/cookbooks/${currentBook}`);
+    })
+);
+
+router.post(
+    '/recipe/cook',
+    asyncHandler(async(req, res) => {
+        if (!res.locals.authenticated) {
+            return res.redirect('/')
+        }
+
+        const userId = res.locals.user.id;
+        let { updateRecipe, currentBook } = req.body;
+
+        if (userId !== 5) {
+            deleteRecipe = parseInt(updateRecipe);
+            currentBook = parseInt(currentBook);
+
+            const changeRecipe = await db.CookBookRecipe.findOne({
+                where: {
+                    cookBookId: currentBook,
+                    recipeId: updateRecipe
+                }
+            });
+
+            if (changeRecipe.cooked) {
+                changeRecipe.cooked = false;
+            } else {
+                changeRecipe.cooked = true;
             }
-        });
+
+            await changeRecipe.save();
+        }
+
 
         res.redirect(`/cookbooks/${currentBook}`);
     })
