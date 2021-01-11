@@ -68,6 +68,10 @@ button {
     color: burlywood;
     background-color: slateblue;
     border-radius: 6px;
+
+}
+input, button, select, option {
+    outline: none;
 }
 
 h1,
@@ -240,3 +244,41 @@ ol li {
     padding: 5px;
 }
 
+.addToCookbook__form{
+    position:fixed;
+    top: 40%;
+    left: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: 0.5s ease-in;
+
+}
+#addToCookbookForm{
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5%;
+    background: rgba(100, 149, 237, .8);
+}
+.cookbookSelector{
+    padding: 15px;
+
+}
+.addToCookBookLabel{
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.book{
+    padding: 5px;
+    margin: 10px;
+}
+#submitToCookBook{
+    padding: 5px;
+    margin: 10px;
+}
