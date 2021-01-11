@@ -7,12 +7,6 @@ const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { loginUser, logoutUser } = require('../auth.js')
 
-
-router.get('/', function(req, res) {
-    const user = { userName: null, email: null, password: null, confirmedPassword: null }
-    res.render('splash', { user });
-});
-
 const loginValidators = [
     check('email')
     .exists({ checkFalsy: true })
@@ -25,13 +19,13 @@ const loginValidators = [
 ];
 
 const userValidators = [
-    check('username')
+    check('userName')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a user name.')
     .isLength({ max: 50 })
     .withMessage('User name must not be more than 50 characters long.')
     .custom((value, { req }) => {
-        return db.User.findOne({ where: { userName: req.body.username } }).then((user) => {
+        return db.User.findOne({ where: { userName: req.body.userName } }).then((user) => {
             if (user) {
                 return Promise.reject('That user name is already taken.');
             }
@@ -133,8 +127,8 @@ router.get('/demo', loginValidators, csrfProtection, asyncHandler(async(req, res
 
 router.post(
     '/signup',
-    csrfProtection,
     userValidators,
+    csrfProtection,
     asyncHandler(async(req, res) => {
         const { userName, email, password, confirmedPassword } = req.body;
 
@@ -169,11 +163,6 @@ router.post(
 );
 
 router.post('/logout', (req, res) => {
-    logoutUser(req, res);
-    res.redirect('/')
-});
-
-router.get('/logout', (req, res) => {
     logoutUser(req, res);
     res.redirect('/')
 });

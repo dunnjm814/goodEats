@@ -40,7 +40,7 @@ router.post(
 );
 
 router.delete(
-    `/api/reviews/:id(\\d+)`,
+    `/reviews/:id(\\d+)`,
     asyncHandler(async(req, res) => {
         const reviewId = req.params.id
         console.log(reviewId)
