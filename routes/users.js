@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
@@ -6,12 +7,6 @@ const bcrypt = require('bcryptjs');
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { loginUser, logoutUser } = require('../auth.js')
-
-
-router.get('/', function(req, res) {
-    const user = { userName: null, email: null, password: null, confirmedPassword: null }
-    res.render('splash', { user });
-});
 
 const loginValidators = [
     check('email')
@@ -169,11 +164,6 @@ router.post(
 );
 
 router.post('/logout', (req, res) => {
-    logoutUser(req, res);
-    res.redirect('/')
-});
-
-router.get('/logout', (req, res) => {
     logoutUser(req, res);
     res.redirect('/')
 });
