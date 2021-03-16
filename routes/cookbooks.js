@@ -81,17 +81,16 @@ router.post(
 
         const validatorErrors = validationResult(req);
 
-        if (userId !== 5) {
 
-            if (validatorErrors.isEmpty()) {
-                const name = req.body.newCookbookName;
-                const newBook = await db.CookBook.create({
-                    userId,
-                    name
-                });
-                return res.redirect('/cookbooks')
-            }
+        if (validatorErrors.isEmpty()) {
+            const name = req.body.newCookbookName;
+            const newBook = await db.CookBook.create({
+                userId,
+                name
+            });
+            return res.redirect('/cookbooks')
         }
+
 
         const user = await db.User.findByPk(userId);
         const cookBooks = await db.CookBook.findAll({
@@ -131,23 +130,20 @@ router.post(
             return res.redirect('/')
         }
 
-        const userId = res.locals.user.id;
+        const cookBookId = parseInt(req.body.deleteCookbook);
 
-        if (userId !== 5) {
-            const cookBookId = parseInt(req.body.deleteCookbook);
+        await db.CookBookRecipe.destroy({
+            where: {
+                cookBookId
+            }
+        });
 
-            await db.CookBookRecipe.destroy({
-                where: {
-                    cookBookId
-                }
-            });
+        await db.CookBook.destroy({
+            where: {
+                id: cookBookId
+            }
+        });
 
-            await db.CookBook.destroy({
-                where: {
-                    id: cookBookId
-                }
-            });
-        }
 
         res.redirect('/cookbooks');
     })
@@ -160,20 +156,19 @@ router.post(
             return res.redirect('/')
         }
 
-        const userId = res.locals.user.id;
         let { deleteRecipe, currentBook } = req.body;
 
-        if (userId !== 5) {
-            deleteRecipe = parseInt(deleteRecipe);
-            currentBook = parseInt(currentBook);
 
-            await db.CookBookRecipe.destroy({
-                where: {
-                    cookBookId: currentBook,
-                    recipeId: deleteRecipe
-                }
-            });
-        }
+        deleteRecipe = parseInt(deleteRecipe);
+        currentBook = parseInt(currentBook);
+
+        await db.CookBookRecipe.destroy({
+            where: {
+                cookBookId: currentBook,
+                recipeId: deleteRecipe
+            }
+        });
+
 
 
         res.redirect(`/cookbooks/${currentBook}`);
@@ -187,28 +182,26 @@ router.post(
             return res.redirect('/')
         }
 
-        const userId = res.locals.user.id;
         let { updateRecipe, currentBook } = req.body;
 
-        if (userId !== 5) {
-            deleteRecipe = parseInt(updateRecipe);
-            currentBook = parseInt(currentBook);
+        deleteRecipe = parseInt(updateRecipe);
+        currentBook = parseInt(currentBook);
 
-            const changeRecipe = await db.CookBookRecipe.findOne({
-                where: {
-                    cookBookId: currentBook,
-                    recipeId: updateRecipe
-                }
-            });
-
-            if (changeRecipe.cooked) {
-                changeRecipe.cooked = false;
-            } else {
-                changeRecipe.cooked = true;
+        const changeRecipe = await db.CookBookRecipe.findOne({
+            where: {
+                cookBookId: currentBook,
+                recipeId: updateRecipe
             }
+        });
 
-            await changeRecipe.save();
+        if (changeRecipe.cooked) {
+            changeRecipe.cooked = false;
+        } else {
+            changeRecipe.cooked = true;
         }
+
+        await changeRecipe.save();
+
 
 
         res.redirect(`/cookbooks/${currentBook}`);

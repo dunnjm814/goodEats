@@ -54,17 +54,16 @@ router.post(
         if (!res.locals.authenticated) {
             return res.redirect("/");
         }
-        let userId = res.locals.user.id;
+
         let { addRecipe, cookBookName } = req.body;
         addRecipe = parseInt(addRecipe);
         currentBook = parseInt(cookBookName);
-        if (userId !== 5) {
-            await db.CookBookRecipe.create({
-                cookBookId: currentBook,
-                recipeId: addRecipe,
-                cooked: false
-            });
-        }
+        await db.CookBookRecipe.create({
+            cookBookId: currentBook,
+            recipeId: addRecipe,
+            cooked: false
+        });
+
         res.redirect(`/cookbooks/${currentBook}`);
     })
 );
