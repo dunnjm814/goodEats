@@ -15,9 +15,9 @@ router.post(
         const { revContent, rating } = req.body
         let review;
 
-        if (userId !== 5) {
-            review = await Review.create({ userId, recipeId, revContent, rating: rating[0] })
-        }
+
+        review = await Review.create({ userId, recipeId, revContent, rating: rating[0] })
+
 
         const recipe = await Recipe.findByPk(recipeId)
         const avgRating = recipe.avgRating
@@ -28,19 +28,14 @@ router.post(
         let finalSum = (tempSum + rateFromForm)
         let finalAvg = Math.ceil(finalSum / numReview)
 
-        if (userId !== 5) {
-            await recipe.update({ avgRating: finalAvg, numReviews: numReview }, {
-                where: {
-                    id: recipeId
-                }
-            })
-        }
 
-        if (userId !== 5) {
-            return res.json({ review, userName, finalAvg });
-        }
+        await recipe.update({ avgRating: finalAvg, numReviews: numReview }, {
+            where: {
+                id: recipeId
+            }
+        })
 
-        res.redirect(`/recipes/${recipeId}`)
+        return res.json({ review, userName, finalAvg });
 
     })
 );
