@@ -8,6 +8,7 @@ body {
     height: 100%;
     padding: 0%;
     margin: 0%;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 #header__1 {
@@ -16,7 +17,6 @@ body {
   padding-top: 3%;
   font-size: 100px;
   color: black;
-  font-family:'Palatino';
   position: absolute;
   top: 3%;
   right: 3%;
@@ -32,7 +32,6 @@ body {
   transition: all .5s ease-in-out;
   background-color: rgb(8, 75, 32, 0);
   text-align: center;
-  font-family:Georgia, 'Times New Roman', Times, serif;
   font-size: 25px;
 }
 
@@ -95,7 +94,6 @@ body {
 }
 
 #login__form--label {
-    font-family: 'Times New Roman', Times, serif;
     font-size: 25px;
 }
 
@@ -139,7 +137,6 @@ body {
 }
 
 #signup__form--label {
-    font-family: 'Times New Roman', Times, serif;
     font-size: 25px;
 }
 
