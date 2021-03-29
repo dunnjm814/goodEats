@@ -85,8 +85,4 @@ window.addEventListener('DOMContentLoaded', (event) => {
       demoUserForm.classList.add('hidden');
     }
   });
-
-
-
-
 });
