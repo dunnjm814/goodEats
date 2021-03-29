@@ -38,7 +38,7 @@ body {
 
 #logInButton {
   position: absolute;
-  top: 23.3%;
+  top: 22.3%;
   left: 17%;
 }
 
@@ -50,14 +50,15 @@ body {
 
 .demoButton {
   position: absolute;
-  top:78%;
+  top:79%;
   left:32.6%;
 }
 
 #signUpButton:hover, #logInButton:hover, #demoButton:hover {
-  transform:scale(1.20) ;
-  transition: 1s ease-in-out;
-  background: black;
+  transform:scale(1.10) ;
+  transition: .5s ease-in-out;
+  background: rgba(0, 0, 0, .7);
+  border: rgba(0, 0, 0, .7);
   color: aliceblue;
 }
 
@@ -197,9 +198,10 @@ body {
 #login__form--button:hover,
 #signup__form--submitButton:hover,
 #demoUser__form--button:hover {
-  transform:scale(1.20) ;
-    transition: all .8s ease-in-out;
-    background: black;
+  transform:scale(1.10) ;
+    transition: all .5s ease-in-out;
+    background: rgba(0, 0, 0, .7);
+    border: rgba(0, 0, 0, .7);
     color: aliceblue;
 }
 
@@ -250,11 +252,11 @@ li {
 }
 
 .fade-in {
-  animation: fadeIn ease 6s;
-  -webkit-animation: fadeIn ease 6s;
-  -moz-animation: fadeIn ease 6s;
-  -o-animation: fadeIn ease 6s;
-  -ms-animation: fadeIn ease 6s;
+  animation: fadeIn ease 3s;
+  -webkit-animation: fadeIn ease 3s;
+  -moz-animation: fadeIn ease 3s;
+  -o-animation: fadeIn ease 3s;
+  -ms-animation: fadeIn ease 3s;
   }
   @keyframes fadeIn {
   0% {opacity:0;}
