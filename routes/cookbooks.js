@@ -1,211 +1,203 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const db = require('../db/models');
-const { csrfProtection, asyncHandler } = require('./utils');
-const { check, validationResult } = require('express-validator');
+const db = require("../db/models");
+const { csrfProtection, asyncHandler } = require("./utils");
+const { check, validationResult } = require("express-validator");
 
 const nameValidators = [
-    check('newCookbookName')
+  check("newCookbookName")
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a name')
+    .withMessage("Please provide a name")
     .isLength({ max: 50 })
-    .withMessage('Name must be under 50 characters'),
+    .withMessage("Name must be under 50 characters"),
 ];
 
-router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
+router.get(
+  "/",
+  csrfProtection,
+  asyncHandler(async (req, res, next) => {
     if (!res.locals.authenticated) {
-        return res.redirect('/')
+      return res.redirect("/");
     }
 
     const userId = res.locals.user.id;
 
     const user = await db.User.findByPk(userId);
     const cookBooks = await db.CookBook.findAll({
-        where: {
-            userId: userId
-        },
-        include: db.Recipe,
-        order: [
-            ['updatedAt', 'DESC']
-        ]
+      where: {
+        userId: userId,
+      },
+      include: db.Recipe,
+      order: [["updatedAt", "DESC"]],
     });
 
-    cookBooks.forEach(cookBook => {
-        cookBook.Recipes.forEach(recipe => {
-            if (!recipe.cooked) {
-                if (!cookBook.uncooked) {
-                    cookBook.uncooked = 1;
-                } else {
-                    cookBook.uncooked++;
-                }
-            }
+    cookBooks.forEach((cookBook) => {
+      cookBook.Recipes.forEach((recipe) => {
+        if (!recipe.CookBookRecipe.cooked) {
+          if (!cookBook.uncooked) {
+            cookBook.uncooked = 1;
+          } else {
+            cookBook.uncooked++;
+          }
+        }
+      });
+    });
 
-        })
-    })
-
-    res.render('user-cookbooks', { user, cookBooks, token: req.csrfToken() });
-}));
+    res.render("user-cookbooks", { user, cookBooks, token: req.csrfToken() });
+  }),
+);
 
 router.get(
-    '/:id(\\d+)',
-    csrfProtection,
-    asyncHandler(async(req, res) => {
-        if (!res.locals.authenticated) {
-            return res.redirect('/')
-        }
-        const pullCookbook = req.params.id;
-        const cookBook = await db.CookBook.findByPk(pullCookbook, {
-            include: db.Recipe,
-            order: [
-                ['updatedAt', 'DESC']
-            ]
-        });
+  "/:id(\\d+)",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    if (!res.locals.authenticated) {
+      return res.redirect("/");
+    }
+    const pullCookbook = req.params.id;
+    const cookBook = await db.CookBook.findByPk(pullCookbook, {
+      include: db.Recipe,
+      order: [["updatedAt", "DESC"]],
+    });
 
-        res.render('cookbook', {
-            cookBook,
-        });
-    })
+    res.render("cookbook", {
+      cookBook,
+    });
+  }),
 );
 
 router.post(
-    '/',
-    nameValidators,
-    csrfProtection,
-    asyncHandler(async(req, res) => {
-        if (!res.locals.authenticated) {
-            return res.redirect('/')
+  "/",
+  nameValidators,
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    if (!res.locals.authenticated) {
+      return res.redirect("/");
+    }
+
+    const userId = res.locals.user.id;
+
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+      const name = req.body.newCookbookName;
+      const newBook = await db.CookBook.create({
+        userId,
+        name,
+      });
+      return res.redirect("/cookbooks");
+    }
+
+    const user = await db.User.findByPk(userId);
+    const cookBooks = await db.CookBook.findAll({
+      where: {
+        userId: userId,
+      },
+      include: db.Recipe,
+      order: [["updatedAt", "DESC"]],
+    });
+
+    cookBooks.forEach((cookBook) => {
+      cookBook.Recipes.forEach((recipe) => {
+        if (!recipe.cooked) {
+          if (!cookBook.uncooked) {
+            cookBook.uncooked = 1;
+          } else {
+            cookBook.uncooked++;
+          }
         }
+      });
+    });
 
-        const userId = res.locals.user.id;
+    const errors = validatorErrors.array().map((error) => error.msg);
 
-        const validatorErrors = validationResult(req);
-
-
-        if (validatorErrors.isEmpty()) {
-            const name = req.body.newCookbookName;
-            const newBook = await db.CookBook.create({
-                userId,
-                name
-            });
-            return res.redirect('/cookbooks')
-        }
-
-
-        const user = await db.User.findByPk(userId);
-        const cookBooks = await db.CookBook.findAll({
-            where: {
-                userId: userId
-            },
-            include: db.Recipe,
-            order: [
-                ['updatedAt', 'DESC']
-            ]
-        });
-
-        cookBooks.forEach(cookBook => {
-            cookBook.Recipes.forEach(recipe => {
-                if (!recipe.cooked) {
-                    if (!cookBook.uncooked) {
-                        cookBook.uncooked = 1;
-                    } else {
-                        cookBook.uncooked++;
-                    }
-                }
-
-            })
-        })
-
-        const errors = validatorErrors.array().map((error) => error.msg);
-
-        res.render('user-cookbooks', { errors, user, cookBooks, token: req.csrfToken() })
-
-    })
+    res.render("user-cookbooks", {
+      errors,
+      user,
+      cookBooks,
+      token: req.csrfToken(),
+    });
+  }),
 );
 
 router.post(
-    '/delete',
-    asyncHandler(async(req, res) => {
-        if (!res.locals.authenticated) {
-            return res.redirect('/')
-        }
+  "/delete",
+  asyncHandler(async (req, res) => {
+    if (!res.locals.authenticated) {
+      return res.redirect("/");
+    }
 
-        const cookBookId = parseInt(req.body.deleteCookbook);
+    const cookBookId = parseInt(req.body.deleteCookbook);
 
-        await db.CookBookRecipe.destroy({
-            where: {
-                cookBookId
-            }
-        });
+    await db.CookBookRecipe.destroy({
+      where: {
+        cookBookId,
+      },
+    });
 
-        await db.CookBook.destroy({
-            where: {
-                id: cookBookId
-            }
-        });
+    await db.CookBook.destroy({
+      where: {
+        id: cookBookId,
+      },
+    });
 
-
-        res.redirect('/cookbooks');
-    })
+    res.redirect("/cookbooks");
+  }),
 );
 
 router.post(
-    '/recipe/delete',
-    asyncHandler(async(req, res) => {
-        if (!res.locals.authenticated) {
-            return res.redirect('/')
-        }
+  "/recipe/delete",
+  asyncHandler(async (req, res) => {
+    if (!res.locals.authenticated) {
+      return res.redirect("/");
+    }
 
-        let { deleteRecipe, currentBook } = req.body;
+    let { deleteRecipe, currentBook } = req.body;
 
+    deleteRecipe = parseInt(deleteRecipe);
+    currentBook = parseInt(currentBook);
 
-        deleteRecipe = parseInt(deleteRecipe);
-        currentBook = parseInt(currentBook);
+    await db.CookBookRecipe.destroy({
+      where: {
+        cookBookId: currentBook,
+        recipeId: deleteRecipe,
+      },
+    });
 
-        await db.CookBookRecipe.destroy({
-            where: {
-                cookBookId: currentBook,
-                recipeId: deleteRecipe
-            }
-        });
-
-
-
-        res.redirect(`/cookbooks/${currentBook}`);
-    })
+    res.redirect(`/cookbooks/${currentBook}`);
+  }),
 );
 
 router.post(
-    '/recipe/cook',
-    asyncHandler(async(req, res) => {
-        if (!res.locals.authenticated) {
-            return res.redirect('/')
-        }
+  "/recipe/cook",
+  asyncHandler(async (req, res) => {
+    if (!res.locals.authenticated) {
+      return res.redirect("/");
+    }
 
-        let { updateRecipe, currentBook } = req.body;
+    let { updateRecipe, currentBook } = req.body;
 
-        deleteRecipe = parseInt(updateRecipe);
-        currentBook = parseInt(currentBook);
+    deleteRecipe = parseInt(updateRecipe);
+    currentBook = parseInt(currentBook);
 
-        const changeRecipe = await db.CookBookRecipe.findOne({
-            where: {
-                cookBookId: currentBook,
-                recipeId: updateRecipe
-            }
-        });
+    const changeRecipe = await db.CookBookRecipe.findOne({
+      where: {
+        cookBookId: currentBook,
+        recipeId: updateRecipe,
+      },
+    });
 
-        if (changeRecipe.cooked) {
-            changeRecipe.cooked = false;
-        } else {
-            changeRecipe.cooked = true;
-        }
+    if (changeRecipe.cooked) {
+      changeRecipe.cooked = false;
+    } else {
+      changeRecipe.cooked = true;
+    }
 
-        await changeRecipe.save();
+    await changeRecipe.save();
 
-
-
-        res.redirect(`/cookbooks/${currentBook}`);
-    })
+    res.redirect(`/cookbooks/${currentBook}`);
+  }),
 );
 
 module.exports = router;
