@@ -8,6 +8,7 @@ html {
     height: 100vh;
     margin: 0px;
     padding: 0px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .body-flex {
@@ -304,8 +305,6 @@ tr {
 .scroller {
     margin-left: 0em;
 }
-
-#box:hover .scroller {}
 
 .scroller {
     -webkit-animation-name: move;
