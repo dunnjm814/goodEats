@@ -35,9 +35,22 @@ body {
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.hidden {
+#reviewHidden {
+    display: none;
+    visibility: hidden;
+    transition: none;
+}
+#cookbookHidden {
+    display: none;
+    visibility: hidden;
+    transition: none;
+}
+.hidden{
     display: none;
     visibility: hidden;
 }
@@ -97,7 +110,8 @@ ol li {
 
 .recipe__description,
 .recipe__directions,
-.recipe__ingredients {
+.recipe__ingredients,
+.recipe__reviews {
     max-width: 600px;
     margin: auto;
     margin-top: 10px;
@@ -124,11 +138,6 @@ ol li {
     line-height: 50px;
 }
 
-.recipe__reviews {
-    max-width: 500px;
-    border: 5% black;
-    margin-left: 20%;
-}
 
 .recipe__review--content {
     border-bottom: 1px solid rgba(46, 49, 49, 1);
@@ -143,12 +152,12 @@ ol li {
     align-items: flex-start;
     font-weight: bold;
     font-size: 25px;
-    color: cornsilk;
+    color: rgb(245, 245, 245);
     padding: 10px;
 }
 
 .userName_and_rating {
-    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #star {
@@ -167,6 +176,7 @@ ol li {
 
 #review__content {
     padding: 10px;
+    color: rgb(255 251 251);
 }
 
 #editDelete__container {
@@ -189,7 +199,7 @@ ol li {
     align-items: center;
     justify-content: center;
     width: 100%;
-    transition: 0.5s ease-in;
+    /* transition: 0.5s ease-in; */
 }
 
 #reviewForm {
@@ -198,8 +208,8 @@ ol li {
     max-width: 300px;
     padding: 10px;
     border: 1px solid black;
-    border-radius: 5%;
-    background: rgba(100, 149, 237, .8);
+    border-radius: 20px;
+    background: rgba(103, 128, 159, 1);
 }
 
 .revContent {
@@ -211,10 +221,10 @@ ol li {
     background-color: rgb(211, 211, 211);
 }
 
-#review__form--submit {
-    cursor: pointer;
-    margin-bottom: 10px;
-    opacity: 0.8;
+.review__form--button,
+.submitWrap {
+    display: flex;
+    flex-direction: row;
 }
 
 #review__form--submit:hover {
@@ -224,16 +234,19 @@ ol li {
 #formReviewText {
     padding: 10px;
     margin: 10px;
+    border-radius: 5px;
+    outline: none;
+}
+#formReviewText:focus {
+    outline: none;
 }
 
 .ratingSelector {
     padding: 5px;
     margin: 10px;
+    border-radius: 5px;
 }
 
-#review__form--submit {
-    padding: 5px;
-}
 
 .addToCookbook__form {
     position: fixed;
@@ -252,27 +265,23 @@ ol li {
     max-width: 300px;
     padding: 10px;
     border: 1px solid black;
-    border-radius: 5%;
-    background: rgba(100, 149, 237, .8);
+    border-radius: 20px;
+    background: rgba(103, 128, 159, 1);
 }
 
 .cookbookSelector {
-    padding: 15px;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .addToCookBookLabel {
     font-weight: bold;
-    padding: 10px;
+
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
 .book {
-    padding: 5px;
-    margin: 10px;
-}
-
-#submitToCookBook {
     padding: 5px;
     margin: 10px;
 }

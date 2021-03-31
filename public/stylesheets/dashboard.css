@@ -109,8 +109,8 @@ button {
 }
 
 .hover-popout {
-    transition: none .5s ease-in-out;
-    transition-property: transform;
+    transition: all .5s ease-in-out;
+    /* transition-property: transform; */
     text-decoration: none;
 }
 
