@@ -50,9 +50,9 @@ html(lang='en')
                             li=recipeDirection
             div(class='reviewCookbookWrap')
                 div(class='recipe__reviewButton')
-                    button(id='displayReviewButton' class="hover-popout") Write A Review
+                    button(class="displayReviewButton hover-popout") Write A Review
                 div
-                    button(id='recipe__cookBook--button' class='hover-popout') Add to Cookbook
+                    button(class='recipe__cookBook--button hover-popout') Add to Cookbook
                     //- ask about this for add to cookbooks
 
             div(class='recipe__reviews')
@@ -61,7 +61,7 @@ html(lang='en')
                     each recipeReview, index in recipeReviews
                         div(id=`reviewContainer${recipeReview.id}` class='recipe__review--content')
                             div(class='reviewContent__name--andRating')
-                                span(class='userName_and_rating')= `${recipeReview.User.userName} ${recipeReview.rating}`
+                                span(class='userName_and_rating')= `${recipeReview.User.userName} ${recipeReview.rating ? recipeReview.rating : ''}`
                                 -let n=0
                                 while n<recipeReview.rating
                                     span(id='the-stars')
@@ -76,7 +76,7 @@ html(lang='en')
                                     button(id=recipeReview.id class='delete hover-popout') delete
                     //- how to oder the reviews
 
-        div(class='review__form reviewHidden')
+        div(id='reviewHidden' class='review__form')
             form(action=`/api/recipes/${recipe.id}/review` method='post' id='reviewForm')
                 input(type='hidden' id='recipeId' value=recipe.id)
                 label(for='revContent' class='revFormLabel') Write your review!
@@ -90,11 +90,10 @@ html(lang='en')
                     button(type='submit' id='review__form--submit' class="hover-popout") Submit
                     button(type='cancel' id='review__form--cancel' class="hover-popout") Cancel
 
-        div(class='addToCookbook__form cookbookHidden')
+        div(id='cookbookHidden' class='addToCookbook__form')
                 form(action='/recipes/add' method='post' id='addToCookbookForm')
                     input(type='hidden' id='recipeId' name='addRecipe' value=recipe.id)
-                    label(for='addToCookbookForm' class='addToCookBookLabel') Add this recipe to one of you cookbooks!
-                            //- do we want to do a selector?
+                    label(for='addToCookbookForm' class='addToCookBookLabel') Add this recipe to one of your cookbooks!
                     select(class='cookbookSelector' name='cookBookName') Select A Cookbook
                         each cookbook in cookBooks
                             option(class='book' value=cookbook.id)=cookbook.name

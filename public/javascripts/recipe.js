@@ -1,11 +1,14 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+
+
   const reviewForm = document.querySelector(".review__form");
-  const displayFormButton = document.getElementById("displayReviewButton");
+  const displayFormButton = document.querySelector(".displayReviewButton");
   const submitFormButton = document.getElementById("review__form--submit");
   const reviewFormContent = document.getElementById("reviewForm");
 
-  displayFormButton.addEventListener("click", (event) => {
-    reviewForm.classList.remove("reviewHidden");
+    displayFormButton.addEventListener("click", (event) => {
+      event.preventDefault();
+    reviewForm.removeAttribute('id', "reviewHidden");
   });
   let recipeId = document.getElementById("recipeId");
   submitFormButton.addEventListener("click", async (event) => {
@@ -69,13 +72,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const avgRatingDisplay = document.querySelector(".recipeRating");
     const newAvgRating = data.finalAvg;
     avgRatingDisplay.innerText = newAvgRating;
-    reviewForm.classList.add("reviewHidden");
+    reviewForm.setAttribute("id", "reviewHidden");
   });
 
     const cancelReview = document.getElementById("review__form--cancel")
         cancelReview.addEventListener('click', e => {
         e.preventDefault();
-        reviewForm.classList.add("reviewHidden");
+        reviewForm.setAttribute("id", "reviewHidden");
     });
 
   const deleteButtons = document.querySelectorAll(".delete");
@@ -99,7 +102,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
   });
 
-  const addToCookButton = document.getElementById("recipe__cookBook--button");
+  const addToCookButton = document.querySelector(".recipe__cookBook--button");
   const cancelAddCookBook = document.getElementById("cancelAddToCookBook");
   const addToCookBookForm = document.querySelector(
     ".addToCookbook__form"
@@ -107,12 +110,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
   addToCookButton.addEventListener("click", (e) => {
     e.preventDefault();
     // const addToCookBookForm = document.querySelector(".addToCookbook__form");
-    addToCookBookForm.classList.remove("cookbookHidden");
+    addToCookBookForm.removeAttribute("id", "cookbookHidden");
   });
   // const addToCookBook = document.getElementById("submitToCookBook");
   cancelAddCookBook.addEventListener("click", (e) => {
     e.preventDefault();
 
-    addToCookBookForm.classList.add("cookbookHidden");
+    addToCookBookForm.setAttribute("id", "cookbookHidden");
   });
 })

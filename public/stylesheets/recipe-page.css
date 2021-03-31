@@ -40,13 +40,15 @@ body {
     align-items: center;
 }
 
-.reviewHidden {
+#reviewHidden {
     display: none;
     visibility: hidden;
+    transition: none;
 }
-.cookbookHidden {
+#cookbookHidden {
     display: none;
     visibility: hidden;
+    transition: none;
 }
 .hidden{
     display: none;
@@ -197,7 +199,7 @@ ol li {
     align-items: center;
     justify-content: center;
     width: 100%;
-    transition: 0.5s ease-in;
+    /* transition: 0.5s ease-in; */
 }
 
 #reviewForm {
@@ -206,8 +208,8 @@ ol li {
     max-width: 300px;
     padding: 10px;
     border: 1px solid black;
-    border-radius: 5%;
-    background: rgba(100, 149, 237, .8);
+    border-radius: 20px;
+    background: rgba(103, 128, 159, 1);
 }
 
 .revContent {
@@ -232,11 +234,17 @@ ol li {
 #formReviewText {
     padding: 10px;
     margin: 10px;
+    border-radius: 5px;
+    outline: none;
+}
+#formReviewText:focus {
+    outline: none;
 }
 
 .ratingSelector {
     padding: 5px;
     margin: 10px;
+    border-radius: 5px;
 }
 
 
@@ -257,17 +265,18 @@ ol li {
     max-width: 300px;
     padding: 10px;
     border: 1px solid black;
-    border-radius: 5%;
-    background: rgba(100, 149, 237, .8);
+    border-radius: 20px;
+    background: rgba(103, 128, 159, 1);
 }
 
 .cookbookSelector {
-    padding: 15px;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .addToCookBookLabel {
     font-weight: bold;
-    padding: 10px;
+
     margin-top: 15px;
     margin-bottom: 15px;
 }
