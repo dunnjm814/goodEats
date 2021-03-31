@@ -35,9 +35,20 @@ body {
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.hidden {
+.reviewHidden {
+    display: none;
+    visibility: hidden;
+}
+.cookbookHidden {
+    display: none;
+    visibility: hidden;
+}
+.hidden{
     display: none;
     visibility: hidden;
 }
@@ -97,7 +108,8 @@ ol li {
 
 .recipe__description,
 .recipe__directions,
-.recipe__ingredients {
+.recipe__ingredients,
+.recipe__reviews {
     max-width: 600px;
     margin: auto;
     margin-top: 10px;
@@ -124,11 +136,6 @@ ol li {
     line-height: 50px;
 }
 
-.recipe__reviews {
-    max-width: 500px;
-    border: 5% black;
-    margin-left: 20%;
-}
 
 .recipe__review--content {
     border-bottom: 1px solid rgba(46, 49, 49, 1);
@@ -143,12 +150,12 @@ ol li {
     align-items: flex-start;
     font-weight: bold;
     font-size: 25px;
-    color: cornsilk;
+    color: rgb(245, 245, 245);
     padding: 10px;
 }
 
 .userName_and_rating {
-    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #star {
@@ -167,6 +174,7 @@ ol li {
 
 #review__content {
     padding: 10px;
+    color: rgb(255 251 251);
 }
 
 #editDelete__container {
@@ -211,12 +219,11 @@ ol li {
     background-color: rgb(211, 211, 211);
 }
 
-#review__form--submit {
-    cursor: pointer;
-    margin-bottom: 10px;
-    opacity: 0.8;
-}
+.review__form--button{
 
+    display: flex;
+    flex-direction: row;
+}
 #review__form--submit:hover {
     opacity: 1;
 }
@@ -231,9 +238,6 @@ ol li {
     margin: 10px;
 }
 
-#review__form--submit {
-    padding: 5px;
-}
 
 .addToCookbook__form {
     position: fixed;

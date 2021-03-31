@@ -70,7 +70,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         const avgRatingDisplay = document.querySelector('.recipeRating')
         const newAvgRating = data.finalAvg
         avgRatingDisplay.innerText = newAvgRating
-        reviewForm.classList.add('hidden')
+        reviewForm.classList.add('reviewHidden')
     })
 
     const deleteButtons = document.querySelectorAll('.delete')
@@ -97,10 +97,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
     })
 
     const addToCookBookForm = document.querySelector(".recipe__cookBook--button");
+    const cancelAddCookBook = document.querySelector(".cancelAddCookBook")
     addToCookBookForm.addEventListener('click', e => {
             e.preventDefault();
-            const addToCookBookForm = document.querySelector(".addToCookbook__form");
-            addToCookBookForm.classList.remove('hidden')
+            // const addToCookBookForm = document.querySelector(".addToCookbook__form");
+            addToCookBookForm.classList.remove('cookbookHidden')
         })
         // const addToCookBook = document.getElementById("submitToCookBook");
+    cancelAddCookBook.addEventListener("click", e => {
+        e.preventDefault();
+        // const addToCookBookForm = document.querySelector(
+        //   ".addToCookbook__form"
+        // );
+        addToCookBookForm.classList.add("cookbookHidden");
+    })
 })

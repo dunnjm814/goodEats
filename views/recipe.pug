@@ -76,7 +76,7 @@ html(lang='en')
                                     button(id=recipeReview.id class='delete hover-popout') delete
                     //- how to oder the reviews
 
-        div(class='review__form hidden')
+        div(class='review__form reviewHidden')
             form(action=`/api/recipes/${recipe.id}/review` method='post' id='reviewForm')
                 input(type='hidden' id='recipeId' value=recipe.id)
                 label(for='revContent' class='revFormLabel') Write your review!
@@ -88,8 +88,9 @@ html(lang='en')
                             option(class='review__form--dropdown') #{val} &#127775
                 div(class='review__form--button ')
                     button(type='submit' id='review__form--submit' class="hover-popout") Submit
+                    button(type='cancel' id='review__form--cancel' class="hover-popout") Cancel
 
-        div(class='addToCookbook__form hidden')
+        div(class='addToCookbook__form cookbookHidden')
                 form(action='/recipes/add' method='post' id='addToCookbookForm')
                     input(type='hidden' id='recipeId' name='addRecipe' value=recipe.id)
                     label(for='addToCookbookForm' class='addToCookBookLabel') Add this recipe to one of you cookbooks!
@@ -99,3 +100,4 @@ html(lang='en')
                             option(class='book' value=cookbook.id)=cookbook.name
                     div(class='submitWrap')
                         button(type='submit' id='submitToCookBook' class="hover-popout") Submit
+                        button(type='cancel' id='cancelAddToCookBook' class="hover-popout") Cancel
