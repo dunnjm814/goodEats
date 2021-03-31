@@ -219,11 +219,12 @@ ol li {
     background-color: rgb(211, 211, 211);
 }
 
-.review__form--button{
-
+.review__form--button,
+.submitWrap {
     display: flex;
     flex-direction: row;
 }
+
 #review__form--submit:hover {
     opacity: 1;
 }
@@ -272,11 +273,6 @@ ol li {
 }
 
 .book {
-    padding: 5px;
-    margin: 10px;
-}
-
-#submitToCookBook {
     padding: 5px;
     margin: 10px;
 }
