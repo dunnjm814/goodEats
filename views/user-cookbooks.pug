@@ -67,13 +67,17 @@ block content
                             div(class="recipe_image scroller")
                                 each recipe in recipes
                                     if recipe.foodImg
-                                        img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
+                                        img(src=recipe.foodImg,
+                                        alt=recipe.title class="recipe-image"
+                                        style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
                                     else
-                                        p(class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)=recipe.title
+                                        p(class="recipe-image"
+                                        style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)=recipe.title
                         else
                             div(class="recipe_image")
                                 each recipe in recipes
-                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image" style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
+                                    img(src=recipe.foodImg, alt=recipe.title class="recipe-image"
+                                    style=`width:${width *.8}%;height:auto; max-height:250px; width: auto;`)
                     div(class='status')
                         if cookBook.uncooked > 0
                             h4 #{cookBook.uncooked} recipe(s) left to cook
